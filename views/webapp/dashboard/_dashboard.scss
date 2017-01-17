@@ -1,0 +1,455 @@
+// Root node
+.dashboard {
+  background-color: $comp-blue-light;
+
+  [role="main"] {
+    // Make it span 100% height
+    display: flex;
+    // ..and center content.
+    justify-content: center;
+  }
+}
+
+.dashboard-root {
+  display: flex;
+  width: 100%;
+}
+
+// A button kinda.
+.dashboard-back {
+  color: $grey-tint;
+
+  .icon {
+    position: relative;
+    top: -2px;
+    margin-right: 4px;
+  }
+
+  &:hover {
+    color: darken($grey-tint, 15%);
+    text-decoration: none;
+  }
+}
+
+.dashboard__main {
+  padding: calc(#{$lineheight} + .5rem) $webapp-sidebar-spacing*2 $lineheight*2 $webapp-sidebar-spacing*2;
+  flex: 1;
+
+  @include smaller-than(910px) {
+    padding: $lineheight 1rem;
+  }
+
+  .project-type-btn {
+    .icon {
+      top: -.1ex;
+      font-size: 1.7em;
+    }
+  }
+
+  .btn-icon {
+    color: $grey-tint;
+    padding: 0 .5em;
+
+    &:hover {
+      color: darken($grey-tint, 10%);
+    }
+
+    .icon {
+      position: relative;
+      top: -1px;
+    }
+  }
+
+  .dashboard-new-project-btn {
+    color: darken($grey-tint, 10%);
+    margin-left: .5rem;
+    position: relative;
+    top: 4px;
+
+    &:hover {
+      color: darken($grey-tint, 30%);
+    }
+
+    .icon {
+      font-size: to_rem(23);
+    }
+  }
+
+  h1, h2 {
+    font-family: $sans;
+    color: $comp-teal-dark;
+    font-weight: 300;
+  }
+
+  .project__name {
+    @include truncate($max: 95%);
+
+    &--can-edit {
+      transition: background-color .2s ease;
+      cursor: text;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: darken($comp-blue-light, 4%);
+      }
+    }
+  }
+
+  .project-rename-form {
+    position: relative;
+
+    &__name {
+      line-height: 34px;
+      font-size: to_rem(25);
+      margin: 0;
+      font-weight: 300;
+      width: 100%;
+      padding: 0 !important;
+      padding-right: 2ex !important; // #selfloath
+    }
+
+    &__cancel {
+      position: absolute;;
+      top: 1.4ex;
+      right: 1ex;
+      opacity: .8;
+      transition: opacity .2s ease;
+      color: $comp-blue-faded;
+      transform: translate3d(0,0,0);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .dashboard__no-content {
+    @include center(all);
+    margin-top: $lineheight*2;
+
+    &__figure {
+      margin-bottom: $lineheight;
+    }
+
+    .icon {
+      font-size: 7rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: to_rem(32);
+    }
+  }
+
+  .dashboard__wall-of-text {
+    max-width: 40rem;
+
+    h1 {
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    p {
+      color: #76969e;
+      font-size: to_rem(20);
+
+      &.subtext {
+        margin-bottom: 0.8rem;
+        font-size: to_rem(14);
+      }
+    }
+  }
+}
+
+.dashboard-project-dropdown {
+  .dropdown__trigger {
+    padding: 0 7px;
+    display: inline-block;
+    font-size: 1.2em;
+    position: relative;
+    top: 6px;
+  }
+
+  @include larger-than(910px) {
+    display: none;
+  }
+}
+
+.dropdown.participate-link-dropdown {
+  padding: 6px 11px;
+  min-width: 240px;
+
+  input {
+    margin: 0;
+    width: 100%;
+    color: $comp-teal-dark;
+    border-radius: 0;
+  }
+}
+
+
+.dashboard__header {
+  margin-bottom: $lineheight;
+  padding-bottom: calc(#{$lineheight / 2} - 1px);
+  border-bottom: 1px solid $webapp-border;
+
+  .dashboard-participant-btn {
+    padding: .6em 1.1em;
+
+    .icon {
+      font-size: 1.3em;
+    }
+  }
+
+  .dashboard-title-group {
+    width: 100%;
+  }
+
+  &__title {
+    width: 40%;
+  }
+
+  &__created-by {
+    color: $grey-tint;
+    margin-right: .5rem;
+
+    .icon,
+    .avatar {
+      margin: 0 5px;
+      position: relative;
+      top: -2px;
+    }
+
+
+    a {
+      color: $grey-tint;
+
+      &:hover {
+        color: darken(saturate($grey-tint, 10%), 20%);
+      }
+    }
+
+    .username {
+      color: darken(desaturate($grey-tint, 10%), 20%);
+      font-weight: bold;
+    }
+  }
+
+  &__action {
+    &:not(:first-child) {
+      margin-left: .5rem;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:not(:first-child) {
+      margin-top: $lineheight / 2;
+    }
+  }
+
+  &__group {
+    // Not really crucial with Flexbox but it removes the
+    // whitespace between horizontal components that are not
+    // positioned with inline-block or inline.
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    margin: 0 .2em;
+    color: $comp-blue-faded;
+    opacity: .7;
+
+    .icon {
+      font-size: .6em;
+      vertical-align: baseline;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  h1 {
+    margin: 0;
+    font-size: to_rem(25);
+    line-height: 34px;
+
+    @include smaller-than(910px) {
+      font-size: to_rem(20);
+    }
+
+    .dashboard__header__icon {
+
+    }
+  }
+
+  &__pretitle {
+    margin-bottom: 0;
+    margin-top: -20px; // Bump up, in order to align stuff vertically with the main title instead
+  }
+
+  &--project {
+    padding-bottom: calc(#{$lineheight / 3} - 1px);
+    margin-bottom: $lineheight / 2;
+  }
+
+  &--highlight {
+    text-align: center;
+
+    h1 {
+      font-size: to_rem(34);
+      margin-left: -34px; // Center text, not the icon+text.
+
+      .icon {
+        position: relative;
+        top: -.1ex;
+        margin-right: .1em;
+      }
+    }
+
+    .dashboard__header__group {
+      &:nth-child(2) {
+        flex: 1;
+        justify-content: center;
+      }
+      &:last-child {
+        width: 10%;
+      }
+    }
+  }
+}
+
+
+.dashboard__btn {
+  color: darken($grey-tint, 20%);
+  font-weight: bold;
+  padding: 6px .6rem;
+  transition: opacity .2s ease,
+              background-color .15s ease;
+  opacity: .9;
+  -webkit-appearance: none;
+  border: 0;
+  background-color: transparent;
+  border-radius: 4px;
+
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover,
+  &.active {
+    opacity: 1;
+    text-decoration: none;
+    color: darken($grey-tint, 30%);
+    background-color: rgba($grey-tint, .12);
+
+    .icon {
+      color: darken($grey-tint, 15%);
+    }
+  }
+
+  &:active,
+  &.active {
+    background-color: rgba($grey-tint, .2);
+  }
+
+  &[disabled],
+  &[disabled]:hover {
+    opacity: .5;
+    cursor: default;
+    color: darken($grey-tint, 20%);
+  }
+
+  &--outline {
+    border: 1px solid rgba($grey-tint, .9);
+    transition: none;
+
+    &:hover,
+    &.active {
+      background-color: transparent;
+      border-color: darken($grey-tint, 15%);
+      color: darken($grey-tint, 30%);
+
+      .icon {
+        color: darken($grey-tint, 20%);
+      }
+    }
+  }
+
+  &--primary {
+    &:hover {
+      border-color: saturate($btn-color-primary, 10%);
+      background-color: saturate($btn-color-primary, 10%);
+      box-shadow: rgba(saturate($btn-color-primary, 10%), .4) 0 3px 20px;
+      color: #fff;
+
+      &:active {
+        background-color: darken($btn-color-primary, 8%);
+        border-color: darken($btn-color-primary, 8%);
+        box-shadow: none;
+      }
+
+      .icon {
+        color: #fff;
+      }
+    }
+  }
+
+  &--attention {
+    &:hover {
+      border-color: saturate($btn-color-attention, 10%);
+      background-color: saturate($btn-color-attention, 10%);
+      box-shadow: rgba(saturate($btn-color-attention, 10%), .4) 0 3px 20px;
+      color: #fff;
+
+      &:active {
+        background-color: darken($btn-color-attention, 8%);
+        border-color: darken($btn-color-attention, 8%);
+        box-shadow: none;
+      }
+
+      .icon {
+        color: #fff;
+      }
+    }
+  }
+
+  .icon {
+    color: darken($grey-tint, 5%);
+    font-size: 1.4em;
+    // Why am I *always* having to tweak this shit
+    position: relative;
+    top: -0.2ex;
+    transform: translateZ(0);
+  }
+
+  > .icon:first-child {
+    margin-right: 5px;
+  }
+
+  .icon-chevron-down {
+    top: -.1ex;
+    font-size: 1.2em;
+  }
+}
+
+.dashboard-highlight {
+
+  &__toggle {
+    label {
+      color: rgba($comp-teal-dark, .7);
+      margin-right: 1rem;
+      transition: color .2s ease;
+
+      &:hover {
+        color: rgba($comp-teal-dark, .9);
+      }
+    }
+  }
+}

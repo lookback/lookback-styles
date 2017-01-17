@@ -1,0 +1,96 @@
+// View names
+
+.player__views {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: $timeline-radius;
+}
+
+.player__view {
+  position: absolute;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  transition: box-shadow .8s ease-out;
+
+  // Border radius every fucking thing.
+  &:first-child {
+    border-top-left-radius: $timeline-radius;
+    border-bottom-left-radius: $timeline-radius;
+
+    &.last {
+      border-radius: $timeline-radius;
+    }
+  }
+
+  &.last {
+    border-top-right-radius: $timeline-radius;
+    border-bottom-right-radius: $timeline-radius;
+  }
+
+  &__name {
+    cursor: default;
+    display: inline-block;
+    pointer-events: none;
+    top: 6px;
+    padding: 0 8px;
+    font-size: .9em;
+    position: relative;
+    user-select: none;
+    border-radius: 2em;
+    color: #fff;
+    white-space: nowrap;
+    transition: opacity .3s ease;
+  }
+
+  // From settings.js
+  $colors: (
+    0: #21AE5D,   // green
+    1: #1abc9c,   // teal
+    2: #F5891F,   // orange
+    3: #e74d3d,   // red
+    4: #8f45ae,   // purple
+    5: #3DAEE7,   // blue
+    6: #4551AE,   // dark blueish
+    7: #C9388B,   // cerise
+    8: #C9B900    // yellow
+  );
+
+  // Color each view block.
+  @each $n, $color in $colors {
+    &--color-#{$n} {
+      background-color: $color;
+      box-shadow: rgba(darken($color, 25%), .3) 0 0 2px;
+
+      &.player__view--current {
+        box-shadow: rgba($color, .4) 0 -1px 20px;
+      }
+
+      .player__view__name {
+        background-color: $color;
+      }
+    }
+  }
+
+  // For each capped view, show the view name
+  // as a coloured bubble.
+  &--current.player__view--capped,
+  &--capped:hover {
+    overflow: visible;
+
+    .player__view__name {
+      opacity: 1;
+      z-index: 30;
+      transition-delay: 0s;
+      box-shadow: rgba(0, 0, 0, 0.4) 0 1px 1px,
+                  rgba(0, 0, 0, 0.2) 0 1px 6px;
+    }
+  }
+}
+
+.player__timeline.snippet-active {
+  .player__view__name {
+    opacity: .6;
+  }
+}

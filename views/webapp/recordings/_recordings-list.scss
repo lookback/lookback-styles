@@ -1,0 +1,433 @@
+/* =RECORDINGS LIST (NEW)
+--------------------------------------------- */
+
+.recordings-list {
+  $color: darken($grey-dark, 5%);
+  $selected-color: darken($comp-green, 30%);
+  $radius: 6px;
+  $spacing: .75rem;
+  $border: 1px solid $webapp-border;
+
+  width: 100%;
+  margin: 0;
+  color: $color;
+  font-size: to_rem(13);
+
+  &__table {
+    display: table;
+    width: 100%;
+  }
+
+  &__list {
+    @include list-reset;
+    background-color: #fff;
+    overflow: hidden;
+    display: table-row-group;
+  }
+
+  &__sort {
+    cursor: pointer;
+    transition: color .2s ease;
+    display: inline-block;
+
+    .recordings-sort-arrow {
+      font-size: .8em;
+    }
+
+    &:hover {
+      color: darken($color, 10%);
+    }
+  }
+
+  &__row {
+    display: table-row;
+
+    &:hover {
+      background-color: #FBFBFB;
+      color: $comp-teal-dark;
+
+      .avatar {
+        opacity: 1;
+      }
+
+      .avatar--initials::after {
+        color: rgba($comp-teal-dark, .9);
+        border-color: rgba($comp-teal-dark, .7);
+      }
+
+      .recordings-list__link {
+        color: $comp-teal-dark;
+      }
+
+      .recordings-list__thumbs {
+        opacity: 1;
+      }
+    }
+
+    &:first-child .recordings-list__cell__group::before {
+      display: none;
+    }
+
+    // It's not possible to add an inset box shadow or position relative w/
+    // pseudo element to table-row elements, so use the first cell instead.
+    .recordings-list__cell:first-child {
+      position: relative;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: -1px; // Overlay over table outline border
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background-color: $comp-green;
+        pointer-events: none;
+        transform: scaleX(0);
+        transition: transform .15s ease;
+      }
+    }
+
+    &--selected .recordings-list__cell:first-child::before {
+      transform: none;
+    }
+
+    &--selected,
+    &--selected:hover {
+      background-color: rgba($comp-green, .1);
+      color: $selected-color;
+
+      .recordings-list__link {
+        color: $selected-color;
+      }
+    }
+
+    .recordings-list__device {
+      .icon {
+        font-size: 1.3em;
+        position: relative;
+        top: -.2ex;
+      }
+
+      @include smaller-than(1055px) {
+        .recordings-list__device__name {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .recordings-list__cell {
+    display: table-cell;
+    vertical-align: middle;
+
+    &__group {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 0 $spacing;
+      height: 43px;
+
+      // We want the borders to go almost to the edge. So we use a
+      // pseudo element to align it.
+      &::before {
+        display: block;
+        content: '';
+        height: 1px;
+        background-color: lighten($webapp-border, 15%);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+
+      }
+    }
+
+    &:first-child .recordings-list__cell__group {
+      padding-left: $spacing*2;
+
+      &::before {
+        left: $spacing;
+      }
+    }
+
+    &:last-child .recordings-list__cell__group {
+      padding-right: $spacing*2;
+
+      &::before {
+        right: $spacing;
+      }
+    }
+  }
+
+  // Selective hiding
+  .recordings-list__user {
+    @include laptop {
+      display: none;
+    }
+  }
+
+  &__header {
+    display: table-row;
+    color: rgba($comp-teal-dark, .5);
+    transition: color .15s ease-out;
+    font-weight: bold;
+
+    .recordings-list__cell {
+      padding-left: $spacing;
+      padding-bottom: $spacing / 2;
+    }
+
+    .icon {
+      font-size: 1rem;
+      position: relative;
+      margin-right: 5px;
+      top: -1px;
+    }
+
+    .recordings-list__checkbox {
+      label {
+        padding-bottom: 0;
+        padding-top: 0;
+      }
+    }
+  }
+
+  // BORDERS
+  // Since we're using a table layout, things get a little more .. tricky. We can't
+  // for some reason put borders around other elements than the table cells. #css
+  .recordings-list__list {
+    .recordings-list__row:first-child {
+      .recordings-list__cell {
+        border-top: $border;
+
+        &:first-child {
+          border-top-left-radius: $radius;
+        }
+        &:last-child {
+          border-top-right-radius: $radius;
+        }
+      }
+    }
+
+    .recordings-list__row:last-child {
+      .recordings-list__cell {
+        border-bottom: $border;
+
+        &:first-child {
+          border-bottom-left-radius: $radius;
+        }
+        &:last-child {
+          border-bottom-right-radius: $radius;
+        }
+      }
+    }
+
+    .recordings-list__cell {
+      &:first-child {
+        border-left: $border;
+      }
+      &:last-child {
+        border-right: $border;
+      }
+    }
+  }
+  //
+
+  .recordings-list__checkbox {
+    text-align: center;
+    padding-left: 0;
+    width: 40px;
+
+    > label {
+      // Make this click area large
+      padding: 7px;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"],
+    .fancy-checkbox .fancy-checkbox__box {
+      margin: 0;
+      top: auto;
+      cursor: pointer;
+    }
+  }
+
+  &__thumbs {
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 3px;
+    height: 32px;
+    width: 52px;
+    opacity: .9;
+    white-space: nowrap;
+
+    img {
+      vertical-align: top;
+      width: 25px;
+    }
+  }
+
+  &__load-more {
+    &__indicator {
+      font-weight: normal;
+      font-style: italic;
+    }
+  }
+
+  &__field {
+    @include truncate($max: 280px);
+  }
+
+  &__link {
+    color: darken($color, 10%);
+
+    &:hover {
+      color: darken($color, 20%);
+    }
+  }
+
+  .avatar {
+    opacity: .8;
+    position: relative;
+    left: -4px;
+  }
+
+  .avatar--initials::after {
+    color: rgba($comp-teal-dark, .6);
+    border-color: rgba($comp-teal-dark, .5);
+  }
+
+  .recording--new {
+    .recordings-list__name .recordings-list__link {
+      font-weight: bold;
+      color: $text-color;
+    }
+  }
+
+  .recording--streaming {
+    .recordings-list__name .recordings-list__link {
+      color: darken($comp-green, 6%);
+
+      &:hover {
+        color: darken($comp-green, 11%);
+      }
+    }
+  }
+
+  .recording--processing {
+    color: lighten($color, 15%);
+  }
+
+  .recording--uploading {
+    color: lighten($color, 15%);
+  }
+
+  .mention {
+
+    &--you {
+      background-color: transparent;
+      box-shadow: none;
+      display: inline;
+      padding: 0;
+      color: saturate(darken($grey-tint, 13%), 28%);
+    }
+  }
+
+  &__footer {
+    text-align: center;
+    color: rgba($comp-teal-dark, .5);
+    margin-top: $lineheight;
+    font-weight: bold;
+  }
+}
+
+@keyframes processing {
+  100% {
+    transform: rotate(-1turn);
+  }
+}
+
+@keyframes uploading {
+  0% {
+    transform: translateY(100%);
+  }
+
+  90%,
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes streaming {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.recording__status {
+  $broken-color: lighten(#CF4C62, 10%);
+
+  font-size: 12px;
+  position: relative;
+  top: -2px;
+  margin: 0 8px;
+  width: 15px;
+  text-align: center;
+
+  .spinner-circular {
+    vertical-align: middle;
+  }
+
+  &.broken {
+    cursor: pointer;
+    color: $broken-color; // Light red.
+
+    &:hover {
+      color: darken($broken-color, 5%);
+    }
+  }
+
+  &.new {
+    color: $comp-blue;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+
+  &.streaming {
+    color: $comp-green;
+    font-size: 15px;
+  }
+
+  &.processing,
+  &.uploading {
+    $spinner-color: darken($comp-green, 15%);
+
+    .spinner-circular {
+      font-size: 8px;
+      border-color: rgba($spinner-color, .3) rgba($spinner-color, .3) rgba($spinner-color, .3) rgba($spinner-color, .9);
+    }
+
+    .icon {
+      position: absolute;
+      top: 6px;
+      font-size: 10px;
+      left: 3px;
+      color: darken($spinner-color, 10%);
+    }
+  }
+
+  &.processing {
+    .icon {
+      animation: processing .8s infinite linear;
+    }
+  }
+}

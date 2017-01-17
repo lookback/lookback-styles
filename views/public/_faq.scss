@@ -1,0 +1,296 @@
+.faq__topics {
+  $spacing: 1.5rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1040px;
+  margin: $lineheight auto;
+  width: 90%;
+
+  .faq__topic {
+    margin: 0 $spacing $lineheight*2;
+    flex-basis: 45%;
+
+    @include larger-than($handheld) {
+      $pad: 11px;
+
+      h2 {
+        padding-left: $pad;
+      }
+
+      a {
+        line-height: 1.4;
+        display: block;
+        padding: 4px 0;
+        padding-left: $pad;
+        position: relative;
+
+        &:hover {
+          &::before {
+            color: $link-color;
+          }
+        }
+
+        &::before {
+          position: absolute;
+          left: 0;
+          content: '›';
+          display: inline-block;
+          margin-right: 5px;
+          color: lighten($grey-dark, 10%);
+          font-size: 1.1em;
+        }
+      }
+    }
+  }
+
+  h2 {
+    font-size: to_rem(24);
+    margin-bottom: 1rem;
+    @include smooth(false);
+  }
+
+  ol {
+    @include list-reset;
+  }
+
+  @include smaller-than(1161px) {
+    justify-content: flex-start;
+  }
+
+  @include handheld {
+    flex-direction: column;
+
+    .faq__topic {
+      flex-basis: auto;
+      font-size: 1.2em;
+      margin: 0 0 $lineheight;
+
+      ol {
+        margin-left: -6%;
+        width: 111.5%;
+      }
+
+      li {
+        &:not(:last-child) {
+          border-bottom: 1px solid $grey-light;
+        }
+
+        &:first-child a {
+          padding-top: 0;
+        }
+
+        a {
+          display: block;
+          padding: .5rem 6%;
+        }
+      }
+    }
+  }
+}
+
+.faq__highlighted {
+  display: flex;
+  justify-content: space-between;
+  max-width: 75%;
+  margin: $lineheight auto;
+  text-align: center;
+
+  h2 {
+    font-size: to_rem(16);
+    margin: 0;
+    @include smooth(false);
+  }
+
+  figure {
+    width: 130px;
+    margin: 0 auto .5em;
+
+    img {
+      height: 80px;
+      opacity: .6;
+      filter: saturate(0%);
+      transition: filter .3s ease,
+                  opacity .3s ease;
+    }
+  }
+
+  a {
+    display: block;
+    color: rgba($text-color, .8);
+
+    &:hover {
+      text-decoration: none;
+      color: $text-color;
+
+      .underlined {
+        @include underline($color: $grey-light, $offset: .2);
+      }
+
+      figure {
+        img {
+          filter: none;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.faq__live-search {
+  width: 90%;
+  max-width: to_rem(700);
+  margin: $lineheight auto $lineheight*3;
+
+  h2 {
+    font-family: $sans;
+    font-size: to_rem(20);
+    color: $grey-dark;
+    margin: 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $lineheight / 2;
+  }
+
+  &__list {
+    @include list-reset;
+    font-size: to_rem(17);
+
+    li {
+      border-top: 1px solid $grey-light;
+
+      &:last-child {
+        border-bottom: 1px solid $grey-light;
+      }
+    }
+
+    a {
+      display: flex;
+      padding: .5em 0;
+      justify-content: space-between;
+      align-items: center;
+
+      &:hover {
+        text-decoration: none;
+
+        .title {
+          text-decoration: underline;
+        }
+
+        .topic {
+          color: darken($grey-dark, 10%);
+        }
+      }
+    }
+
+    .title {
+      flex: 1;
+    }
+
+    .topic {
+      color: $grey-dark;
+      font-size: .8em;
+    }
+  }
+
+}
+
+.faq__no-results {
+  @include center(all);
+  padding: $lineheight*4 0;
+  font-size: to_rem(24);
+  color: $grey-dark;
+
+  @include handheld {
+    padding: $lineheight 5%;
+    font-size: to_rem(18);
+  }
+}
+
+.form-faq {
+  position: relative;
+  max-width: to_rem(700);
+  margin: 0 auto;
+  font-size: to_rem(20);
+
+  input[type="search"] {
+    margin: 0;
+    color: $text-color;
+    text-align: center;
+    padding-left: 1.2ex;
+    border-radius: 5px;
+    width: 100%;
+    font-weight: 300;
+    border: 0;
+    transition: background-color .15s ease;
+    background-color: rgba(#fff, .95);
+    // We're using a custom search icon label instead of background
+    background-image: none;
+
+    &:focus {
+      background-color: #fff;
+
+      & + label {
+        color: $comp-blue;
+      }
+    }
+  }
+
+  &--autocompleting {
+    input[type="search"] {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      box-shadow: none;
+
+      &,
+      &:focus {
+        border-color: transparent;
+      }
+    }
+  }
+
+  .autocomplete-menu-wide {
+    border: 0;
+  }
+
+  label {
+    display: inline-block;
+    position: absolute;
+    z-index: 101;
+    left: 1ex;
+    top: 2px;
+    color: $grey;
+    transition: color .2s ease-out;
+    font-size: 1.6rem;
+  }
+
+  @include handheld {
+
+    input[type="search"] {
+      text-align: left;
+      font-size: 1.2rem;
+      font-weight: normal;
+      padding-left: 2.3rem;
+    }
+
+    label {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.support__contact {
+
+  span {
+    transition: opacity .5s ease-out;
+  }
+
+  .triggered-intercom {
+    opacity: .5;
+  }
+}

@@ -1,0 +1,37 @@
+/* =MULTI SELECT BOX
+--------------------------------------------- */
+
+.multi-select {
+  @include list-reset;
+  display: flex;
+  line-height: 1.2;
+
+  &__item {
+    white-space: normal;
+    overflow: hidden;
+    margin-right: 5px;
+    border-radius: 3px;
+    background-color: $comp-blue-light;
+    border: 1px solid $comp-blue;
+    font-size: to_rem(12);
+    padding: 3px 4px;
+    cursor: default;
+
+    &__data {
+      display: inline-block;
+      user-select: none;
+    }
+
+    &__remove {
+      margin-left: 1px;
+      padding: 0 1px;
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

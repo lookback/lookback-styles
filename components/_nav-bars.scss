@@ -1,0 +1,323 @@
+/* =NAV BARS
+-------------------------------- */
+
+%pill-nav {
+  margin: 0 0 $lineheight*2;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  a {
+    display: inline-block;
+    padding: .5em 3em;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .nav--current a {
+    position: relative;
+    cursor: default;
+  }
+
+  li:first-child a {
+    border-radius: 3px 0 0 3px;
+  }
+  li:last-child a {
+    border-radius: 0 3px 3px 0;
+  }
+
+  @include handheld {
+    text-align: center;
+
+    ul {
+      flex-direction: column;
+    }
+
+    li {
+
+      a {
+        width: 100%;
+        display: block;
+      }
+
+      &:first-child a {
+        border-radius: 3px 3px 0 0;
+      }
+      &:last-child a {
+        border-radius: 0 0 3px 3px;
+      }
+    }
+  }
+}
+
+// A bubble, imagined for counts in nav bars.
+.nav__bubble {
+  background-color: #DDD;
+  padding: 1px 9px 1px 8px;
+  display: inline-block;
+  line-height: 1.2;
+  border-radius: 12px;
+  font-size: .7em;
+  color: $text-color;
+  margin-left: 2px;
+  font-weight: normal;
+}
+
+.horizontal-ghost-nav {
+  @extend %pill-nav;
+  color: $comp-blue;
+
+  a {
+    color: currentColor;
+    border: 1px solid currentColor;
+    border-right-width: 0;
+  }
+
+  .nav--current {
+    a {
+      background-color: $comp-blue;
+      color: #fff;
+      box-shadow: none;
+    }
+  }
+
+  li:last-child a {
+    border-right-width: 1px;
+  }
+
+  &.mode--light {
+    color: $light;
+
+    a {
+      background-color: rgba(#000, .6);
+      -webkit-backdrop-filter: blur(3px);
+    }
+
+    .nav--current a {
+      background-color: $light;
+      color: $text-color;
+      border-color: $light;
+    }
+
+    li:not(.nav--current) a {
+
+      &:hover {
+        background-color: rgba($light, .35);
+        -webkit-backdrop-filter: blur(5px);
+      }
+    }
+  }
+
+  @include handheld {
+    li:first-child a {
+      border-top-width: 1px;
+    }
+
+    a {
+      border-width: 0 1px 1px;
+    }
+  }
+}
+
+.horizontal-pill-nav {
+  @extend %pill-nav;
+
+  li:not(.nav--current):not(:first-child) {
+    box-shadow: $grey -1px 0 0;
+  }
+
+  .nav--current a {
+    background-color: $comp-blue;
+    color: #fff;
+    position: relative;
+
+    &:hover {
+      background-color: $comp-blue;
+    }
+
+    @include larger-than($handheld) {
+      &::after {
+        $size: 8px;
+        @include arrow($color: $comp-blue, $direction: down, $size: $size, $width: $size + 3px, $equilateral: false);
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: -$size;
+        left: calc(50% - #{$size});
+      }
+    }
+  }
+
+  a {
+    color: rgba($comp-teal-dark, .8);
+    background-color: $grey-light;
+    transition: background-color .1s ease-out,
+                color .1s ease-out;
+
+    &:hover {
+      background-color: darken($grey-light, 5%);
+    }
+
+    &:active {
+      background-color: darken($grey-light, 8%);
+    }
+  }
+
+  @include handheld {
+    li {
+      &:not(.nav--current):not(:first-child) {
+        box-shadow: $grey 0 -1px 0;
+      }
+    }
+  }
+
+  &.horizontal-pill-nav--light {
+    li:not(.nav--current) a {
+      background-color: #fff;
+
+      &:hover {
+        color: lighten($text-color, 10%);
+        background-color: rgba(#fff, .6);
+      }
+
+      &:active {
+        background-color: $grey-light;
+      }
+    }
+  }
+}
+
+.horizontal-pill-nav--rounded {
+  @extend %pill-nav;
+
+  a {
+    color: rgba($comp-teal-dark, .8);
+    border: 1px solid darken($webapp-border, 2%);
+    background-color: #fff;
+
+    &:hover {
+      color: $comp-teal-dark;
+      background-color: rgba($comp-blue-light, .8);
+    }
+
+    &:active {
+      color: $comp-teal-dark;
+      background-color: darken($comp-blue-light, 2%);
+    }
+  }
+
+  li:not(:last-child) a {
+    border-right: 0;
+  }
+
+  li:first-child a {
+    border-radius: 3em 0 0 3em;
+  }
+  li:last-child a {
+    border-radius: 0 3em 3em 0;
+  }
+
+  .nav--current {
+    a {
+      background-color: $comp-blue;
+      color: #fff;
+      border-color: $comp-blue;
+    }
+
+    + li a {
+      border-left-color: $comp-blue;
+    }
+  }
+}
+
+.horizontal-nav {
+  font-size: to_em(20);
+
+  &--centered {
+    text-align: center;
+
+    ul {
+      justify-content: center;
+    }
+  }
+
+  ul {
+    display: flex;
+  }
+
+  li {
+    margin: 0 10px;
+  }
+
+  a {
+    display: inline-block;
+    color: rgba($comp-teal-dark, .5);
+    transition: color .3s, box-shadow .3s;
+    padding: .5em .3em;
+
+    &:hover {
+      text-decoration: none;
+      color: rgba($comp-teal-dark, .75);
+    }
+  }
+
+  .nav--current a {
+    color: rgba($comp-teal-dark, .9);
+    box-shadow: inset $comp-blue 0 -2px 0;
+    cursor: default;
+  }
+
+  @include handheld {
+    text-align: center;
+    font-size: 1.2em;
+
+    ul {
+      justify-content: center;
+    }
+  }
+}
+
+.simple-nav {
+  font-size: .9em;
+
+  &--with-separator {
+    li:not(:last-child) {
+      &::after {
+        content: '|';
+        display: inline-block;
+        padding: 0 2px;
+      }
+    }
+  }
+
+  ul {
+    display: flex;
+  }
+
+  li {
+    &.nav--current {
+      a {
+        color: darken($grey-dark, 10%);
+        cursor: default;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: 0 4px;
+
+    &:active {
+      color: darken($link-color, 10%);
+    }
+  }
+}

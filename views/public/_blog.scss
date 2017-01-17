@@ -1,0 +1,361 @@
+/* =BLOG
+
+  Styles for blog listing and single posts.
+--------------------------------------------- */
+
+@mixin side-borders($color: $accent, $border-length: 2rem) {
+  &::after,
+  &::before {
+    display: block;
+    position: absolute;
+    border-top: 1px solid $color;
+    content: '';
+    top: 1rem;
+    width: $border-length;
+  }
+
+  &::before {
+    left: -$border-length - 1rem;
+  }
+
+  &::after {
+    right: -$border-length - 1rem;
+  }
+}
+
+.blog {
+
+  [role="article"] {
+    &:not(:first-child) {
+      padding-top: $lineheight*2.5;
+      margin-top: $lineheight*2.5;
+      border-top: 1px solid $grey-light;
+    }
+
+    /*
+      Use regular border if there's a banner image,
+      since we must set a solid coloured outline for the
+      fancy underline (will be fucked up with background).
+    */
+    header {
+      h1 a {
+        color: #fff;
+
+        &:hover {
+          text-decoration: none;
+          border-bottom: 1px solid #fff;
+        }
+      }
+
+      &:not(.has-banner) {
+        h1 a {
+          color: $comp-teal-dark;
+
+          &:hover {
+            color: $link-color;
+            @include underline($color: $grey-tint-light, $offset: .2);
+          }
+        }
+      }
+    }
+  }
+}
+
+.blogpost {
+  // Remove border
+  [role="banner"].background--solid {
+    box-shadow: none;
+  }
+
+  [role="article"] {
+    header {
+      padding-top: $lineheight*2;
+    }
+  }
+
+  .blog__latest-posts {
+    margin-top: $lineheight*4;
+
+    h1 {
+      font-size: to_rem(28);
+      margin: 0;
+    }
+
+    h2 {
+      font-size: to_rem(24);
+    }
+
+    .post__meta {
+      font-family: $serif;
+      display: inline-block;
+      position: relative;
+      font-size: 1.1rem;
+      width: auto;
+
+      @include larger-than($handheld) {
+        @include side-borders;
+      }
+    }
+
+    .avatar {
+      width: 40px;
+    }
+  }
+
+  .desc-block {
+    $bg: #f7f7f7;
+    $hover: saturate(darken($grey-dark, 3%), 20%);
+
+    color: $text-color;
+    background-color: $bg;
+    border-bottom: 1px solid darken($grey-light, 8%);
+
+    a {
+      color: $text-color;
+    }
+
+    .desc-block__banner {
+      border-top: 1px solid darken($grey-light, 4%);
+      border-bottom: 1px solid darken($grey-light, 8%);
+
+      a:hover {
+        @include underline($color: $text-color, $bg: $bg, $offset: .2);
+      }
+    }
+
+    .desc-block__children {
+
+      > a {
+        padding: $lineheight 2%;
+        transition: background-color .3s ease-out;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        &:nth-child(1) {
+          background-color: darken($bg, 3%);
+
+          &:hover {
+            background-color: rgba(darken($hover, 30%), .1);
+          }
+        }
+        &:nth-child(2) {
+          background-color: darken($bg, 5%);
+
+          &:hover {
+            background-color: rgba(darken($hover, 40%), .1);
+          }
+        }
+        &:nth-child(3) {
+          background-color: darken($bg, 7%);
+
+          &:hover {
+            background-color: rgba(darken($hover, 45%), .1);
+          }
+        }
+      }
+
+      p {
+        color: $text-color;
+      }
+    }
+  }
+}
+
+
+
+/* =SINGLE POST
+------------------------------------ */
+
+
+[role="article"] {
+  header {
+    text-align: center;
+    padding-top: $lineheight*3;
+    padding-bottom: $lineheight;
+
+    &.has-banner {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+
+      padding-top: $lineheight*7;
+      padding-bottom: $lineheight*9;
+      margin-bottom: $lineheight*2;
+      color: #fff;
+
+      h1 {
+        font-size: to_em(60);
+        line-height: 1.3;
+        color: #fff;
+      }
+
+      .post__meta {
+        // Side borders
+        &::before,
+        &::after {
+          border-color: #fff;
+        }
+        .post__permalink,
+        .post__permalink:hover,
+        .post__by,
+        .post__by:hover,
+        .post__author,
+        .post__author:hover {
+          color: #fff;
+        }
+      }
+
+      @include handheld {
+        padding-top: $lineheight*2;
+        padding-bottom: $lineheight*3;
+
+        h1 {
+          font-size: 10vw;
+        }
+      }
+    }
+
+    h1 {
+      max-width: 60rem;
+      margin: 0 auto $lineheight / 2;
+      color: $comp-teal-dark;
+      font-family: $sans;
+      font-weight: 300;
+    }
+
+    p {
+      margin: 0 auto $lineheight;
+    }
+
+    .avatar {
+      width: 48px;
+    }
+
+    .post__meta {
+      font-family: $serif;
+      font-size: 1.1rem;
+      position: relative;
+      display: inline-block;
+
+      @include larger-than($handheld) {
+        @include side-borders;
+      }
+
+      .post__author {
+
+      }
+
+      .post__permalink {
+        color: $text-color;
+        text-decoration: none;
+
+        &:hover {
+          color: $link-color;
+        }
+      }
+    }
+
+    header:not(.has-banner) .post__meta {
+      .post__permalink:hover,
+      .post__author:hover {
+        @include underline($color: $link-color, $offset: .2em);
+      }
+    }
+
+    .post__edit-link {
+      margin: 0 5px;
+    }
+
+    .post__by {
+      font-style: italic;
+      color: #777;
+      font-size: .9em;
+      margin-right: .3em;
+    }
+
+    @include handheld {
+      padding: 0 5%;
+
+      h1 {
+        font-size: 8vw;
+      }
+    }
+  }
+
+  /* Element styling for blog posts.
+  --------------------------------------------- */
+
+  .post__content {
+
+    h2, h3 {
+      font-family: $sans;
+    }
+
+    h2 {
+      margin-top: $lineheight*3;
+      font-weight: 300;
+      text-align: center;
+
+      // Border
+      @include has-separator($spacing: 1, $color: lighten($text-color, 10%));
+    }
+
+    h3 {
+      margin-top: $lineheight*2;
+    }
+
+    // Make these guys more like sub-section headings.
+    h4, h5, h6 {
+      margin-bottom: $lineheight / 2;
+    }
+
+    @include handheld {
+      font-size: to_em(14);
+      line-height: 1.6;
+      width: 85%;
+    }
+
+    @media only screen and (max-width: 670px) and (orientation: landscape) {
+      max-width: 33rem;
+    }
+  }
+}
+
+.blog__not-found {
+  text-align: center;
+  max-width: to_rem(600);
+  margin: $lineheight*3 auto 0;
+  width: 90%;
+
+  h1 {
+    font-weight: bold;
+  }
+
+  p {
+    color: #777;
+  }
+}
+
+.blog__load-more,
+.blog__rss {
+  text-align: center;
+  padding: $lineheight*3 5%;
+
+  p, h2 {
+    margin: 0;
+  }
+}
+
+.blog__rss {
+  a:hover {
+    @include underline($color: $accent, $offset: .2);
+  }
+}
+
+.blog__load-more {
+  background: transparent url('/images/phoenix/typewriter.jpg') no-repeat center;
+  background-size: cover;
+  margin-top: $lineheight*3;
+}

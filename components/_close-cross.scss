@@ -1,0 +1,47 @@
+.close-cross {
+  cursor: pointer;
+  text-indent: -999em;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  width: 1.5em;
+  height: 1.5em;
+  color: rgba($text-color, .8);
+
+  &::before,
+  &::after {
+    background-color: currentColor;
+    transition: background-color .15s ease;
+    display: inline-block;
+    width: 100%;
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+  }
+
+  &::before {
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    transform: rotate(45deg);
+  }
+
+  &:hover {
+    color: $comp-blue;
+  }
+
+  &--thin {
+    &::before,
+    &::after {
+      height: 1px;
+    }
+  }
+
+  &--small {
+    font-size: .7em;
+  }
+}

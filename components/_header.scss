@@ -1,0 +1,72 @@
+/* =HEADER
+--------------------------------------------- */
+
+@keyframes slideMenuDown {
+  0% {
+    opacity: 0;
+    transform: translate(0, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+[role="banner"] {
+  padding: 0 2%;
+  position: relative;
+  z-index: 100;
+  // Fixes flickering
+  transform: translate3d(0,0,0);
+  transition: background-color .55s ease-out;
+
+  &.background--solid {
+    box-shadow: rgba(#000, .1) 0 1px 1px;
+    background-color: #fff;
+
+    @include smaller-than($mobile-nav) {
+      @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, .85);
+      }
+    }
+  }
+
+  &.header--fixed {
+    @include fixed-header;
+  }
+
+  &.has-background {
+    box-shadow: rgba(#000, .1) 0 1px 3px;
+  }
+
+  @include smaller-than($mobile-nav) {
+    @include fixed-header;
+    padding: 0 3%;
+  }
+}
+
+// Used for doing transitions between visible and hidden
+// header, since we can't apply position: fixed and transforms
+// at the same time.
+
+[role="banner"] {
+
+  &.fixed-header {
+    @include fixed-header;
+    transform: translate3d(0, -100%, 0);
+
+    &.is-transitioning {
+      transition: transform .3s ease;
+    }
+
+    &.is-minimized {
+      visibility: hidden;
+    }
+
+    &.is-maximized {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

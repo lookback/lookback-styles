@@ -1,0 +1,550 @@
+/* =NAVIGATION
+--------------------------------------------- */
+
+.navigation {
+
+  $nav-link-color: #1E4E58;
+  $hoverBoxshadow: inset darken($grey-light, 5%) 0 -3px 0;
+  $currentBoxshadow: inset $comp-blue 0 -3px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: to_rem(14);
+
+  .lookback-logo {
+    vertical-align: text-bottom;
+    width: 8.3em;
+    height: 1.3em;  // "Make the logo bigger"
+  }
+
+  .nav__signup {
+    font-weight: bold;
+  }
+
+  .nav-item {
+    display: block;
+    padding: 1.1em 0;
+    color: $nav-link-color;
+    transition: color .5s ease;
+
+    &:hover {
+      color: rgba($nav-link-color, .5);
+      text-decoration: none;
+
+      .icon {
+        color: darken(desaturate($grey-tint, 25%), 30%);
+      }
+
+      .icon-chevron-down {
+        color: saturate($comp-blue, 20%);
+      }
+    }
+
+    .icon {
+      color: $grey-tint;
+      transition: color .5s ease;
+    }
+
+    .icon-chevron-down {
+      color: $comp-blue;
+      transition: transform .3s ease-out,
+                  color .2s ease-out;
+    }
+  }
+
+  .dropdown--open {
+    .icon {
+      color: darken(desaturate($grey-tint, 25%), 30%);
+    }
+
+    .icon-chevron-down {
+      color: darken($comp-blue, 20%);
+    }
+  }
+
+  .nav--current {
+    .nav-item {
+      font-weight: bold;
+      color: $comp-teal-dark;
+      // Fake border with inset box-shadow, since a 3px
+      // border would screw the vertical rhythm.
+      box-shadow: $currentBoxshadow;
+    }
+  }
+
+  > ul {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .navigation__button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-right: -1rem;
+  }
+
+  .navigation__main {
+    flex: 4;
+    min-width: 395px;
+
+    > li {
+      padding-right: 1.8rem;
+      white-space: nowrap;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+    .icon.custom-icon--circle-dots {
+      width: 20px;
+      height: 20px;
+      color: rgba($nav-link-color, .8);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .navigation__webapp-logo {
+    text-align: center;
+    flex: 1;
+    transition: opacity .2s ease-out;
+
+    svg {
+      height: 1.2rem;
+      width: 2.7rem;
+      margin-bottom: -4px;
+    }
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  .navigation__secondary {
+    flex: 4;
+    align-items: center;
+    justify-content: flex-end;
+
+    > li {
+      padding-left: .7rem;
+    }
+  }
+
+  .navigation__user {
+    padding-left: 1rem;
+    position: relative;
+    margin-left: 1rem;
+
+    // Fake border
+    &::before {
+      display: block;
+      content: '';
+      width: 1px;
+      background-color: #ddd;
+      position: absolute;
+      left: 0;
+      top: 12px;
+      bottom: 12px;
+    }
+
+    .dropdown {
+      text-align: left;
+    }
+
+    .nav-item {
+      padding: 10px 5px;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  .user__name {
+    margin: 0 5px 0 10px;
+    @include truncate();
+  }
+
+  .navigation__notifications {
+    .notification-trigger {
+      padding: .7em .5em;
+      padding-right: .25em;
+      top: -2px;
+      display: inline-block;
+    }
+  }
+
+  .navigation__changelog {
+
+    &--unread {
+      position: relative;
+
+      .icon-megaphone {
+        color: darken($comp-blue, 10%);
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        border-radius: 100%;
+        background-color: $comp-blue;
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        left: 21px;
+        top: 17px;
+      }
+    }
+
+    .icon-megaphone {
+      font-size: 1.1em;
+    }
+  }
+
+  .navigation__misc {
+    // The dropdown
+    .dropdown {
+      text-align: center;
+      min-width: 8rem;
+    }
+  }
+
+  .navigation__mobile {
+    display: none;
+    width: 100%;
+
+    &-group {
+      display: flex;
+    }
+
+    .logo {
+      height: 20px;
+    }
+
+    .lookback-mark {
+      width: 40px;
+      height: 20px;
+    }
+
+    .navigation__notifications {
+      .notification-trigger {
+        padding: 10px;
+        padding-right: 20px;
+        top: auto;
+        display: block;
+
+        .notifications__unread-count {
+          right: 15px;
+        }
+      }
+    }
+
+    .nav-symbol {
+      $distance: 6px;
+
+      position: relative;
+      top: -3px;
+      margin-left: .5rem;
+
+      &,
+      &::before,
+      &::after {
+        border-radius: 3px;
+        display: inline-block;
+        height: 2px;
+        background-color: $nav-link-color;
+        width: 1.5rem;
+      }
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+      }
+
+      &::before {
+        top: -$distance;
+      }
+      &::after {
+        top: $distance;
+      }
+    }
+  }
+
+  .navigation__mobile__trigger {
+    padding: 1em 0;
+    font-weight: normal;
+    margin-left: .5rem;
+    color: $nav-link-color;
+  }
+
+  @include smaller-than($mobile-nav) {
+    .navigation__main,
+    .navigation__secondary,
+    .navigation__webapp-logo {
+      display: none;
+    }
+
+    .navigation__mobile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  @include handheld {
+    padding: 0;
+
+    .lookback-logo {
+      font-size: .8rem; // Notch down a bit
+    }
+  }
+
+}
+
+.navigation--centered {
+  padding: 1.5rem 1rem;
+  font-size: 1em;
+
+  .lookback-logo {
+    vertical-align: middle;
+
+    .logo__text {
+      fill: $comp-teal-dark;
+    }
+  }
+
+  .nav-item {
+    font-weight: bold;
+  }
+
+  .nav--current {
+    .nav-item {
+      box-shadow: none;
+    }
+  }
+
+  .navigation__user {
+    &::before {
+      background-color: rgba(saturate($comp-teal-dark, 20%), .2);
+    }
+  }
+
+  .navigation__download {
+    margin-right: 1rem;
+  }
+
+  .navigation__main > li:not(:last-child) {
+    padding-right: 3rem;
+  }
+
+  .navigation__main {
+    > li .more-icon {
+      top: 18px;
+
+      .icon {
+        position: relative;
+        top: -1px;
+        left: -1px;
+        font-size: .9em;
+      }
+    }
+  }
+
+  .lookback-logo {
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+
+  @include smaller-than(1000px) {
+    .lookback-logo {
+      font-size: 1em;
+    }
+
+    .navigation__main {
+      min-width: 0;
+    }
+  }
+
+  @include smaller-than(950px) {
+    padding: .5rem 1rem;
+
+    .navigation__main > li:not(:last-child) {
+      padding-right: 2rem;
+    }
+
+    .logo:not(.touch) {
+      display: none;
+    }
+  }
+}
+
+.navigation--home {
+
+  .lookback-logo {
+    vertical-align: middle;
+  }
+}
+
+// Round signin button
+.nav__signin {
+
+  &.active {
+    color: darken($btn-color, 20%);
+  }
+}
+
+
+.navigation.mode--light {
+
+  .nav-item,
+  .nav-item .icon,
+  .dropdown__trigger,
+  .btn.mode--light {
+    color: rgba(#fff, .8);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .btn.mode--light {
+    background-color: transparent;
+  }
+
+  .dropdown__trigger {
+    &:hover [class*="icon-chevron"],
+    &.dropdown--open [class*="icon-chevron"] {
+      color: #fff;
+    }
+  }
+
+  .dropdown {
+    border-width: 0;
+  }
+
+  .navigation__main > li {
+    > a.more-icon:hover,
+    > a.more-icon.dropdown--open {
+      box-shadow: inset currentColor 0 0 0 1px;
+    }
+  }
+
+  .lookback-logo {
+
+    .logo__text,
+    .logo__swirl {
+      fill: #fff;
+    }
+
+    &:hover {
+      .logo__swirl,
+      .logo__text {
+        fill: rgba(#fff, .9);
+      }
+    }
+  }
+
+  .navigation__mobile__trigger {
+    color: rgba(#fff, .85);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  // Fix dropdown chevron to white
+  .navigation__misc,
+  .navigation__user {
+    .dropdown__trigger.dropdown--open {
+      color: #fff;
+    }
+  }
+
+  .navigation__user {
+    &::before {
+      background-color: rgba(#fff, .3);
+    }
+
+    .avatar--initials::after {
+      color: rgba(#fff, .8);
+      border-color: rgba(#fff, .4);
+      transition: color .3s ease,
+                  border-color .3s ease;
+    }
+
+    .nav-item:hover .avatar--initials::after {
+      color: #fff;
+      border-color: rgba(#fff, .6);
+    }
+  }
+
+  .nav--current .nav-item {
+    color: #fff;
+  }
+
+  .nav--current .nav-item,
+  .nav--current .nav-item:hover,
+  .nav-item:hover {
+    box-shadow: none;
+  }
+
+  .navigation__mobile {
+    .nav-symbol {
+      &,
+      &::before,
+      &::after {
+        background-color: #fff;
+      }
+    }
+
+    .lookback-mark {
+      fill: #fff;
+    }
+  }
+}
+
+.teams-dropdown {
+  .dropdown--submenu {
+    [role="menuitem"] > a {
+      // Since we're fucking with the line height of each item
+      // (see below), we're just gonna hard code a min height
+      // in order to have them buttons nice and clickable.
+      min-height: 30px;
+    }
+
+    .dropdown__menu {
+      // Cap height
+      max-height: 294px;
+      overflow-y: scroll;
+    }
+  }
+
+  .dropdown-team {
+    margin: 0;
+    @include truncate($max: 182px);
+    display: block;
+    text-align: left;
+    line-height: 1.2;
+
+    &:hover {
+      .dropdown-team__slug {
+        color: rgba($comp-teal-dark, .6);
+      }
+    }
+
+    &__name {
+      display: block;
+    }
+
+    &__slug {
+      color: $grey-dark;
+    }
+  }
+}

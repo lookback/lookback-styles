@@ -1,0 +1,724 @@
+/* =PLAYER STAGE
+
+  Controls the layout of the screen and camera.
+---------------------------------------------------- */
+
+$player-camera-width: 210px;
+$player-stage-bottom: 25px;
+
+@import "controls";
+@import "timeline";
+
+.player__stage {
+  position: relative;
+  background-color: $dark;
+  padding: 2vmin 1.5rem 2vmin 1rem;
+  height: calc(85vh - #{$header-height});
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // Leave space for the hover track below the timeline
+  padding-bottom: $player-stage-bottom;
+
+  @include fullscreen {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    .player__videos {
+      height: 80vh;
+    }
+
+    .player__videos__wrapper {
+      width: 100%;
+    }
+
+    .player__camera {
+      width: 20%;
+    }
+
+    .player__touches {
+      svg {
+        max-width: none !important;
+        max-height: none !important;
+      }
+
+      circle {
+        r: 15px;
+        stroke: #666;
+        stroke-width: 3px;
+      }
+    }
+  }
+
+  .circle-spinner {
+    color: $comp-yellow;
+  }
+}
+
+.player__edit-banner {
+  $bg: rgb(84, 168, 243);
+  // We're bouncing this banner down with a physics easing,
+  // so extend the height to accommodate for the blank space on top.
+  $safe-offset: 7px;
+
+  position: fixed;
+  top: -$safe-offset;
+  z-index: 1001;
+  background: $bg;
+  background-image: linear-gradient($bg, saturate($bg, 20%));
+  color: rgba(#fff, .9);
+  right: 0;
+  left: 0;
+  height: $header-height + $safe-offset;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: $safe-offset 1rem 0;
+  box-shadow: rgba(#000, .2) 0 1px 3px, rgba(#fff, .2) 0 -1px 0;
+
+  .btn {
+    line-height: 1.8;
+    color: darken($bg, 10%);
+    box-shadow: rgba(#000, .1) 0 1px 1px;
+  }
+
+  div {
+    margin: 0 1rem;
+  }
+
+  kbd {
+    border: 0;
+    background-color: rgba(#fff, .8);
+    color: darken($bg, 20%);
+  }
+
+  s {
+    opacity: .6;
+  }
+}
+
+.player__breadcrumb {
+  @include list-reset;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  color: #555;
+  font-size: 1.1em;
+  transition: opacity .5s ease,
+              color .5s ease;
+  opacity: .6;
+  cursor: default;
+  // Just to create some hover space
+  padding-right: 3em;
+  padding-bottom: 2em;
+
+  @include smaller-than(1200px) {
+    opacity: 0;
+  }
+
+  @include handheld {
+    display: none;
+  }
+
+  &:hover {
+    opacity: 1;
+    color: #9E9E9E;
+  }
+
+  .icon {
+    color: #777;
+    font-size: 1.2em;
+    position: relative;
+    top: 3px;
+    vertical-align: top;
+  }
+
+  a {
+    color: #ddd;
+    font-weight: 500;
+  }
+
+  li:first-child a,
+  li:last-child {
+    @include truncate($max: 140px);
+  }
+
+  li:not(:last-child) {
+    margin-right: .4em;
+  }
+}
+
+.player-badge {
+  padding: 3px 1.5em 4px;
+  border-radius: 4px;
+  line-height: 1.5;
+  color: darken($grey-dark, 10%);
+  border-color: darken($grey-dark, 20%);
+  transition: opacity .5s ease;
+
+  @include smaller-than(1200px) {
+    opacity: 0;
+  }
+
+  @include handheld {
+    display: none;
+  }
+}
+
+.player-archive-badge {
+  position: absolute;
+  z-index: 11;
+  top: 50px;
+}
+
+%stage-setting {
+  position: absolute;
+  color: darken($grey-dark, 20%);
+  z-index: 20;
+  transition: opacity .15s ease-out, color .15s ease-out;
+  opacity: .8;
+  font-size: 1.75rem;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+    color: $grey-dark;
+  }
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.player__control-fullscreen {
+  @extend %stage-setting;
+  color: $grey-dark;
+  top: 1vmin;
+  right: 2vmin;
+  font-size: 1.5rem;
+  z-index: 201;
+  // Safaaariii
+  transform: translateZ(0);
+
+  span {
+    // Needs to be positioned above its parent for
+    // mouse events to trigger -.-
+    position: relative;
+    z-index: 21;
+    -webkit-transform: translateZ(0);
+  }
+
+  &:hover {
+    color: #eaeaea;
+  }
+}
+
+.player__ended {
+
+  &.off-screen &__replay {
+
+    .icon {
+      transform: rotate(90deg);
+      opacity: 0;
+    }
+  }
+
+  .player__ended__container {
+    margin-top: -4rem;
+    transition: transform .8s ease,
+                opacity 1s ease;
+  }
+
+  &.off-screen {
+    .player__ended__container {
+      transform: translateZ(-100px);
+      opacity: 0;
+    }
+  }
+
+  // Action buttons
+
+  &__btn {
+    display: inline-block;
+    padding: 2px 7px;
+    margin-left: 4px;
+    font-size: 1.1em;
+
+    border-radius: 3px;
+    background-color: #444;
+    color: #BDBDBD;
+    transition: color .2s ease,
+                background-color .2s ease;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:hover:not(.disabled) {
+      background-color: #4e4e4e;
+      color: #eee;
+    }
+
+    &:active:not(.disabled) {
+      background-color: #3e3e3e;
+      color: #bdbdbd;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      color: #666;
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    .icon {
+      margin-right: 4px;
+      font-size: 1.1em;
+      position: relative;
+      top: -1px;
+      transition: color .2s ease;
+    }
+  }
+
+  &__share {
+    display: flex;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(#000, .6);
+    -webkit-backdrop-filter: blur(5px);
+    font-size: 1.1em;
+  }
+
+  &__heading {
+    color: #bdbdbd;
+    font-size: to_em(18);
+    margin-bottom: 10px;
+    cursor: default;
+  }
+
+  input[type="text"].player__ended__permalink {
+    color: #eee;
+    flex: 1;
+    font-size: 1.3em;
+    margin: 0;
+    width: 19em;
+    cursor: pointer;
+    @include truncate($max: 100%);
+  }
+
+  &__replay {
+    color: rgba(#fff, .8);
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    transition: color .4s ease-out,
+                transform .3s ease-out,
+                opacity .2s;
+
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+
+      .icon {
+        transition-delay: 0s;
+        transition-duration: .3s;
+        transform: rotate(-30deg);
+        background-color: rgba(#000, .6);
+        box-shadow: rgba(#000, .1) 0 1px 20px;
+      }
+
+      kbd {
+        opacity: 1;
+      }
+    }
+
+    .icon {
+      transition: background-color .4s ease-out,
+                  transform .6s ease,
+                  box-shadow .3s ease-out;
+      font-size: to_rem(70);
+      margin-bottom: .5rem;
+      background-color: rgba(#000, .4);
+      border-radius: 100%;
+      -webkit-backdrop-filter: blur(3px);
+    }
+
+    .btn-text {
+      display: block;
+    }
+
+    kbd {
+      background-color: rgba(#000, 0.2);
+      background-image: none;
+      border: 0;
+      font-size: to_rem(13);
+      text-transform: uppercase;
+      transform: scaleY(.9);
+      display: inline-block;
+      opacity: .8;
+      transition: opacity .4 ease-out;
+      color: rgba(#fff, .8);
+      text-shadow: none;
+    }
+  }
+
+  .player-slack-dropdown {
+    .dropdown__menu {
+      text-align: left;
+      min-width: 150px;
+    }
+  }
+}
+
+.player__videos {
+  position: relative;
+  flex: 1;
+  @include center(all);
+
+  transition: transform .5s cubic-bezier(0.29, 0.67, 0.32, 0.94),
+              opacity .4s cubic-bezier(0.29, 0.67, 0.32, 0.94);
+
+  &.loading {
+    .player__screen,
+    .player__camera {
+      video {
+        opacity: .3;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &.hidden {
+    opacity: 0;
+    display: none;
+    transform: perspective(100px) translateZ(-10px);
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 90%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+.play-pause-click-area {
+  cursor: pointer;
+}
+
+.player__screen {
+
+  .player__screen__spinner {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    font-size: 20px;
+  }
+
+  &.rotate--short {
+    transition: transform 300ms;
+  }
+
+  &.rotate--long {
+    transition: transform 600ms;
+  }
+
+  &[data-degrees="90"] {
+    transform: rotate(90deg);
+  }
+
+  &[data-degrees="-90"] {
+    transform: rotate(-90deg);
+  }
+
+  &[data-degrees="180"] {
+    transform: rotate(180deg);
+  }
+
+  &[data-degrees="-180"] {
+    transform: rotate(-180deg);
+  }
+}
+
+.player__screen,
+.player__camera {
+  $box-shadow-color: rgba(#000, .6);
+  $box-shadow-distance: 1px;
+  $box-shadow-blur: 6px;
+
+  video {
+    transition: opacity .2s ease-out;
+    // Prevent Sass calculation:
+    box-shadow: $box-shadow-color #{0} -$box-shadow-distance $box-shadow-blur;
+  }
+
+  &[data-degrees="90"] {
+    video {
+      box-shadow: #{$box-shadow-color} -$box-shadow-distance 0 $box-shadow-blur;
+    }
+  }
+
+  &[data-degrees="-90"] {
+
+    video {
+      box-shadow: $box-shadow-color $box-shadow-distance 0 $box-shadow-blur;
+    }
+  }
+
+  &[data-degrees="180"] {
+
+    video {
+      box-shadow: $box-shadow-color 0 $box-shadow-distance $box-shadow-blur;
+    }
+  }
+
+  &[data-degrees="-180"] {
+
+    video {
+      box-shadow: $box-shadow-color 0 $box-shadow-distance $box-shadow-blur;
+    }
+  }
+}
+
+.player__screen--buffering,
+.player__camera--buffering {
+  video {
+    -webkit-filter: grayscale(100%);
+    opacity: .8;
+  }
+}
+
+.player__screen-surface {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  &--hidden {
+    display: none;
+  }
+}
+
+.player__screen {
+  position: relative;
+  height: 100%;
+  transition: transform .2s cubic-bezier(0.160, 0.975, 0.280, 1.005),
+              opacity .2s cubic-bezier(0.160, 0.975, 0.280, 1.005);
+
+  &:hover {
+    .player__play-overlay__btn {
+      background: rgba(#000, .8);
+    }
+    .player__play-overlay__icon {
+      transform: scale(.9);
+    }
+  }
+
+  video {
+    border-radius: 2px;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    -webkit-tap-highlight-color: transparent;
+
+    // Remove controls on iOS.
+    &::-webkit-media-controls {
+      display: none !important;
+    }
+
+    @include handheld {
+      width: 58vw;
+    }
+  }
+
+  &.loading {
+    @include handheld {
+      opacity: 0;
+      transform: perspective(100px) translateZ(-10px);
+    }
+  }
+}
+
+.player__play-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: flex !important;   // VelocityJS
+  justify-content: center;
+  align-items: center;
+
+  &__btn {
+    width: 6rem;
+    height: 6rem;
+    background-color: rgba(#000, .4);
+    border-radius: 100%;
+    padding: 1.7em;
+    transition: background .4s ease-out;
+
+    .player__play-overlay__icon {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      left: 10%;
+      transition: transform .2s ease-out;
+    }
+  }
+
+  @include larger-than($handheld) {
+    display: none !important;
+  }
+}
+
+.player__touches {
+  z-index: 10;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  circle {
+    fill: #fff;
+    stroke: #777;
+    stroke-width: 2px;
+    r: 10px;
+  }
+}
+
+.player__camera {
+  width: $player-camera-width;
+  margin-left: 20px;
+
+  &--disabled {
+    display: none;
+  }
+
+  &.loading {
+    video {
+      opacity: 0;
+    }
+  }
+
+  .player__camera__spinner {
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  &[data-degrees="90"],
+  &[data-degrees="-90"] {
+    margin-left: 0;
+  }
+
+  // Fix for browsers (ahem, Firefox) we need to flip the
+  // camera video for.
+  &.flipped,
+  &.flipped-reverse {
+    margin-left: 0;
+  }
+
+  &.flipped-reverse {
+    // Flip the actual video and not the container, since
+    // we're using other transforms on that.
+    video {
+      // The camera video ratio is 3:1.
+      transform: scale(1.3) rotate(-90deg);
+      transform-origin: 67% 58%;
+    }
+  }
+
+  &.flipped {
+    video {
+      transform: scale(1.3) rotate(90deg);
+      transform-origin: 40% 70%;
+    }
+  }
+}
+
+.player-volume-dropdown {
+  width: 150px;
+}
+
+.player-playback-speed-dropdown {
+  min-width: 200px;
+
+  label {
+    text-align: center;
+    font-weight: normal;
+    font-size: .9rem;
+    position: relative;
+    top: -5px;
+    cursor: pointer;
+  }
+
+  .range__step {
+    cursor: pointer;
+  }
+
+  .range__step--full {
+
+    &:first-child {
+      text-align: left;
+      position: relative;
+      left: -4px;
+    }
+
+    &:last-child {
+      text-align: right;
+      position: relative;
+      right: -4px;
+    }
+  }
+}
+
+// Viewport layout adjustments
+
+.player--desktop {
+  // Make camera larger for desktop recs.
+  .player__camera {
+    max-width: 280px;
+    width: 60%;
+  }
+
+  @media only screen and (max-height: 850px) {
+    .player__breadcrumb {
+      opacity: 0;
+    }
+  }
+
+  @include fullscreen {
+    .player__camera {
+      max-width: none;
+    }
+  }
+}
+
+@include handheld {
+  .player__stage {
+    height: auto;
+    min-height: 0;
+  }
+
+  .player__camera,
+  .player__touches {
+    display: none;
+  }
+}
+
+@import "live";

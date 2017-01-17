@@ -1,0 +1,82 @@
+/* =USER SETTINGS
+---------------------------------------- */
+
+.user-settings {
+
+  .settings-form__section {
+    position: relative;
+  }
+
+  &__form {
+    @include wrap($max-width: to_rem(600));
+    margin-top: $lineheight;
+
+    @include handheld {
+      width: 95%;
+    }
+  }
+
+  &__change-password {
+    margin-bottom: $lineheight;
+  }
+
+  &__split {
+    display: flex;
+    margin-bottom: $lineheight;
+
+    .settings-form__section:last-child {
+      border-bottom: 0;
+    }
+
+    &__1 {
+      flex: 1;
+    }
+
+    &__2 {
+      flex: 2;
+    }
+  }
+
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .avatar {
+      width: 96px;
+      margin-bottom: 7px;
+      border-radius: 100%;
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: 1em;
+      font-weight: normal;
+    }
+
+    @include handheld {
+      .avatar {
+        width: 72px;
+      }
+    }
+  }
+
+  &__notifications-steps {
+    @include list-reset;
+  }
+
+  &__notifications {
+    .icon-check {
+      position: relative;
+      top: -2px;
+      margin-right: 4px;
+      font-size: 0.9em;
+    }
+
+    .settings-form__text .icon-check {
+      color: darken($comp-green, 10%);
+      margin-right: .5rem;
+    }
+  }
+}

@@ -1,0 +1,471 @@
+/* =NEW PROJECT MODAL
+--------------------------------------------- */
+
+.modal.modal-new-project {
+
+  @include smaller-than(796px) {
+    .modal__inner {
+      width: 90%;
+    }
+  }
+
+  h1 {
+    .icon {
+      position: relative;
+      top: -.1ex;
+      margin-left: .2em;
+    }
+  }
+
+  .btn.mode--link {
+    color: $grey-tint;
+
+    .icon {
+      margin: 0 3px;
+      font-size: .8em;
+      position: relative;
+      top: -1px;
+    }
+  }
+
+  p {
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .project-modal-submit {
+    margin-top: $lineheight*2;
+
+    .btn {
+      min-width: 160px;
+    }
+  }
+
+  .project-modal-notice {
+    text-align: center;
+    color: $comp-blue-faded;
+    font-size: .9em;
+    padding: 0 2rem;
+
+    &--split {
+      display: flex;
+      align-items: center;
+
+      > :first-child {
+        flex: 1;
+        margin: 0;
+        text-align: left;
+      }
+    }
+  }
+
+  .user-selector-container {
+    margin: $lineheight*2 0 $lineheight;
+    transition: opacity .2s ease;
+
+    &--disabled {
+      pointer-events: none;
+      opacity: .4;
+    }
+
+    label {
+      .icon {
+        margin-left: 3px;
+        font-size: 1.2em;
+        position: relative;
+        top: -1px;
+        color: $grey-tint;
+      }
+    }
+  }
+
+  .user-selector {
+    width: 100%;
+  }
+
+  .new-project-name {
+    width: 500px;
+    margin: 0 auto;
+
+    label,
+    input[type="text"] {
+      text-align: left;
+    }
+
+    .subtitle {
+      margin-left: .5rem;
+    }
+
+    input.style--flat {
+      margin-top: 0;
+    }
+
+    input[type="text"].size--large {
+      width: 100%;
+    }
+
+    .permission-toggle {
+      display: flex;
+      align-items: center;
+      font-size: 1em;
+      font-weight: normal;
+      color: rgba($comp-teal-dark, .8);
+    }
+
+    .switch {
+      margin-right: 1rem;
+    }
+  }
+}
+
+/* =PROJECT SETTINGS MODAL
+--------------------------------------------- */
+
+.modal.modal-manage-project {
+  max-width: 720px;
+  width: 95%;
+  min-height: 400px;
+  background-color: #fff;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: $lineheight*2;
+
+  .badge {
+    margin-right: 5px;
+    vertical-align: text-bottom;
+  }
+
+  .project-type-btn {
+    .icon {
+      top: -0.3ex;
+      font-size: 1.2em;
+      margin-left: -0.2em;
+    }
+  }
+
+  .modal-manage-project__footer {
+    text-align: center;
+    margin-top: $lineheight*2;
+    color: darken($grey-tint, 10%);
+    font-style: italic;
+  }
+
+  .modal-manage-project__save-name {
+    text-align: left;
+    position: relative;
+
+    .subtitle {
+      margin-left: .5rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      margin-top: 0;
+      padding-right: 4rem;
+    }
+
+    &__submit {
+      position: absolute;
+      right: 0;
+      text-align: right;
+      top: calc(35px - 1em);
+      padding: 1em .5rem;
+    }
+  }
+
+  .modal-nav {
+    font-size: 1.1rem;
+  }
+
+  .btn-icon {
+    color: rgba($grey-dark, .7);
+    transform-origin: 50% 55%;
+    transition: color .2s ease,
+                transform .8s ease;
+
+    &:hover {
+      color: $grey-dark;
+      transform: rotate(-1turn);
+    }
+  }
+
+  h1 {
+    font-size: to_rem(32);
+  }
+
+  .modal-setting {
+    font-size: .9em;
+
+    .custom-icon--flash {
+      color: $comp-green;
+      position: relative;
+      top: -.3ex;
+    }
+
+    > form {
+      width: 100%;
+      margin-bottom: $lineheight;
+    }
+
+    .switch {
+      margin-right: 1rem;
+    }
+  }
+
+  .modal-manage-project__inner {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 545px;
+  }
+
+  .modal-manage-project__url {
+    vertical-align: initial;
+    min-width: 330px;
+    text-align: right;
+    margin: 0;
+    position: relative;
+    top: 2px;
+  }
+
+  .modal-manage-project__detail {
+    color: darken($grey-tint, 15%);
+    margin-right: .5rem;
+
+    .icon {
+      position: relative;
+      top: -3px;
+    }
+  }
+
+  .modal-manage-project__creator {
+    margin: $lineheight 0;
+    color: darken($grey-tint, 5%);
+    font-size: 0.9em;
+    text-align: left;
+    font-style: italic;
+
+    strong {
+      color: $comp-teal-dark;
+      font-weight: normal;
+    }
+
+    .avatar {
+      margin-right: .5rem;
+    }
+  }
+
+  .modal-manage-project__users {
+    $item-spacing: .5rem;
+
+    text-align: left;
+    margin-top: $lineheight;
+    position: relative;
+
+    &__overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: $lineheight*2 0;
+      position: absolute;
+      z-index: 30;
+      background-color: rgba(#fff, .8);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: darken($grey-tint, 25%);
+      font-style: italic;
+      box-shadow: inset rgba(#fff, .9) 0 0 40px 20px;
+      border-radius: 8px;
+    }
+
+    &__actions {
+      display: flex;
+
+      .btn {
+        color: $grey-tint;
+      }
+    }
+
+    li:hover .modal-manage-project__users__actions {
+      .btn {
+        color: $negative;
+      }
+    }
+
+    li {
+      padding-left: $item-spacing;
+      padding-right: $item-spacing;
+      margin-left: -$item-spacing;
+      margin-right: -$item-spacing;
+      border-radius: 6px;
+    }
+
+    .user-selector-container {
+      position: relative;
+
+      &__controls {
+        position: absolute;
+        z-index: 20;
+        right: 1rem;
+
+        .btn {
+          padding: .8em;
+          padding-right: 0;
+        }
+
+        .added {
+          position: relative;
+          top: .8em;
+          font-size: .9em;
+          font-weight: bold;
+          color: rgba($comp-teal-dark, .7);
+        }
+      }
+    }
+
+    .user-selector {
+      margin-bottom: $lineheight;
+    }
+
+    .no-content {
+      text-align: center;
+      color: $grey-tint;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .list__role {
+      color: rgba($comp-teal-dark, .7);
+      text-align: left;
+      font-size: 1em;
+    }
+
+    .team-member--self {
+      .list__role {
+        font-style: italic;
+      }
+    }
+  }
+
+  @include smaller-than(700px) {
+    .modal-manage-project__url {
+      text-align: left;
+    }
+  }
+}
+
+.modal-manage-project__renew {
+  padding: $lineheight*2 0 0;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  &__text {
+    color: $grey-tint;
+  }
+
+  figure {
+    margin: $lineheight*2 auto;
+  }
+}
+
+.project-types {
+  display: flex;
+  justify-content: center;
+  margin-bottom: $lineheight*2;
+
+  @include smaller-than(796px) {
+    flex-direction: column;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    left: -999em;
+  }
+
+  h2 {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+
+  &__card {
+    width: 220px;
+    font-weight: normal;
+    user-select: none;
+    margin: 0 .5rem;
+    background-color: rgba(#fff, .95);
+    border-radius: 8px;
+    padding: $lineheight 0 $lineheight / 2;
+    box-shadow: inset $webapp-border 0 0 0 1px,
+                $box-shadow-light 0 2px 20px;
+    transition: box-shadow .2s ease,
+                background-color .2s ease;
+
+    &:hover {
+      background-color: #fff;
+    }
+
+    .icon {
+      color: $comp-blue-faded;
+      font-size: 5rem;
+      margin-bottom: .5rem;
+    }
+
+    .custom-icon--checkmark-circle {
+      color: $positive;
+      font-size: 1.5rem;
+      margin-top: .5rem;
+      margin-bottom: 0;
+      opacity: 0;
+      transform: scale(.8);
+      transition: opacity .15s ease,
+                  transform .2s ease;
+    }
+
+    &__info {
+      font-size: to_rem(13);
+      color: $grey-tint;
+      margin: 0;
+    }
+
+    &--selected {
+      background-color: #fff;
+      box-shadow: inset $comp-green 0 0 0 2px,
+                  $box-shadow-light 0 1px 15px;
+
+      .custom-icon--checkmark-circle {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @include smaller-than(796px) {
+      display: flex;
+      align-items: center;
+      padding: 1rem $lineheight;
+      margin: 0 0 .5rem;
+      width: 100%;
+
+      .project-types__card__info {
+        display: none;
+      }
+
+      .icon {
+        margin-bottom: 0;
+      }
+
+      .icon:first-child {
+        margin-right: 1.5rem;
+        font-size: 3rem;
+      }
+
+      .custom-icon--checkmark-circle {
+        margin-left: .5rem;
+        margin-top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+/* =USER LIST FOR LIVE PLAYER
+--------------------------------------------- */
+
+.live-player__users {
+  h2 {
+    font-size: to_rem(12);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgba($comp-teal-dark, .5);
+    margin-left: 1rem;
+    margin-bottom: $lineheight / 3;
+  }
+
+  .no-content {
+    font-size: 1.1em;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.live-player__userlist {
+  @include list-reset;
+  color: $comp-teal-dark;
+  margin-bottom: $lineheight / 2;
+
+  li {
+    background-color: #fff;
+    box-shadow: $box-shadow-light 0 1px 10px;
+    border-radius: 7px;
+    padding: .618rem .8rem;
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: .5rem;
+    }
+
+    .avatar {
+      margin-right: .5rem;
+    }
+  }
+
+  .user__title {
+    font-weight: bold;
+  }
+
+  .user__name {
+    @include truncate($max: 72px);
+  }
+
+  .live-player__user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > div:first-child {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .live-player__user--current.live-player__user--moderator {
+    border: 2px solid $comp-green;
+    box-shadow: rgba($comp-green, .2) 0 0 10px 3px;
+
+    .live-player__user__details {
+      a {
+        color: darken($comp-green, 10%);
+      }
+    }
+  }
+
+  .live-player__user__details {
+    font-size: 1em;
+    text-align: right;
+    color: desaturate(darken($comp-blue-light, 40%), 5%);
+  }
+
+  .live-player__userlist__placeholder {
+    $color: darken(rgba(144, 177, 198, .7), 15%);
+
+    border: 1px dashed currentColor;
+    color: $color;
+    box-shadow: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .2s ease;
+
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
+    .custom-icon--john-doe {
+      width: 24px;
+      height: 24px;
+      color: #90B0C4;
+      margin-right: 0.5rem;
+      transition: color .2s ease;
+    }
+
+    &:hover {
+      color: darken(#90B0C4, 30%);
+      border-color: darken($color, 5%);
+      background-color: rgba(darken($comp-blue-light, 10%), .35);
+
+      .custom-icon--john-doe {
+        color: darken(#90B0C4, 30%);
+      }
+    }
+  }
+}

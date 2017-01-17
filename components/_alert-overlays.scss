@@ -1,0 +1,53 @@
+/* =ALERT OVERLAYS
+
+Small overlays in the middle of the screen.
+--------------------------------------------- */
+
+.alert-overlay {
+  position: fixed;
+  top: calc(50% - (7em / 2));
+  left: calc(50% - (7em / 2));
+  padding: 1em;
+  border-radius: 10px;
+  z-index: 3000;
+  pointer-events: none;
+  
+  // **This resizes everything!!**
+  font-size: 1.8em;
+
+  min-width: 7em;
+  min-height: 7em;
+
+  background-color: rgba(#000, .8);
+  -webkit-backdrop-filter: blur(13px);
+  color: #fff;
+  text-align: center;
+  font-weight: 300;
+
+  transition: opacity .1s ease,
+              transform .15s ease-out;
+
+  .icon {
+    font-size: 3em;
+    margin-bottom: $lineheight / 3;
+  }
+
+  &__msg {
+    margin: 0;
+  }
+
+  // States
+  
+  &.in {
+    transition-duration: .1s, .15s;
+    opacity: 1;
+    transform: none;
+  }
+
+  &.out,
+  &.off-screen {
+    transition-duration: .2s, .25s;
+    transform: perspective(1000px) translateZ(300px);
+    opacity: 0;
+  }
+}

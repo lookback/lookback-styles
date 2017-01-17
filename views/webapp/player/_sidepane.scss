@@ -1,0 +1,90 @@
+/* =SIDE PANE
+-------------------------------------------- */
+
+$player-side-pane-width: 500px;
+$player-side-pane-duration: .3s;
+
+.side-pane {
+  position: fixed;
+  background-color: #fff;
+  padding-bottom: 3rem;
+  width: $player-side-pane-width;
+  top: 0;
+  right: 0;
+  height: 100%;
+  transition: transform $player-side-pane-duration ease,
+              box-shadow $player-side-pane-duration ease;
+  // Hide initially.
+  transform: translate3d($player-side-pane-width, 0, 0);
+  z-index: 1002;
+  overflow-y: scroll;
+
+  @supports (-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px)) {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(#fff, .97);
+  }
+
+  &--show {
+    transform: none;
+    box-shadow: rgba($dark, .06) -3px 0 20px;
+  }
+
+  h1 {
+    font-size: to_rem(24);
+    font-weight: 300;
+  }
+
+  &__inner {
+    position: relative;
+    height: 100%;
+    padding: 1rem 2rem;
+  }
+
+  &__desc {
+    margin: $lineheight 0 $lineheight*2;
+    padding-right: 30%;
+    color: #555;
+    font-size: 1rem;
+  }
+}
+
+// For sliding in sidepanes.
+.player-wrapper {
+  width: 100%;
+  transition: transform $player-side-pane-duration + .1s ease;
+
+  &.side-pane--active {
+    transform: translate3d(-#{$player-side-pane-width / 3}, 0, 0);
+  }
+}
+
+
+// The keyboard shortcut pane
+
+.player-shortcuts {
+
+  .shortcut-list {
+    kbd {
+      font-size: 1em;
+    }
+
+    dt {
+      font-weight: normal;
+      float: left;
+      clear: left;
+      min-width: 100px;
+      text-align: right;
+      margin-right: 1rem;
+    }
+
+    dd {
+      font-weight: 500;
+    }
+
+    .icon {
+      position: relative;
+      top: -1px;
+    }
+  }
+}

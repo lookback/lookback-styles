@@ -1,0 +1,231 @@
+/* =ABOUT VIEW
+--------------------------------------------- */
+
+.about {
+
+  [role="main"] {
+    h1, h2 {
+      text-align: center;
+    }
+
+    h2 {
+      font-size: to_rem(28);
+
+      @include handheld {
+        font-size: to_em(20);
+      }
+    }
+
+    header {
+      background: transparent url('/images/banners/team-lookback.jpg') no-repeat center 30%;
+      background-size: cover;
+      @include center(all);
+      height: 100vh;
+      color: #fff;
+      margin-bottom: $lineheight*3;
+      position: relative;
+
+      &.transition {
+        &::after {
+          opacity: 1;
+          transition: opacity 10s 3s linear;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        content: '';
+        display: block;
+        background: transparent url('/images/banners/team-lookback-color.jpg') no-repeat center 29.2%;
+        background-size: cover;
+        opacity: 0;
+        transition: opacity .4s ease;
+      }
+
+      @include smaller-than($mobile-nav) {
+        background-image: url('/images/banners/team-lookback-mobile.jpg');
+        background-position: center;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      h1 {
+        line-height: 1.5;
+        font-size: to_rem(48);
+        margin: 1em 0 0;
+        text-shadow: #000 0 -2px 30px;
+        position: relative;
+        z-index: 3;
+
+        span {
+          font-size: .53em;
+          display: block;
+          text-shadow: #000 0 0 15px;
+        }
+
+        @include larger-than($laptop) {
+          font-size: 4vw;
+        }
+
+        @include smaller-than($mobile-nav) {
+          font-size: 10vw;
+        }
+
+        @include handheld {
+          font-size: to_rem(32);
+
+          span {
+            margin-top: 1rem;
+          }
+        }
+      }
+
+      @include tablet {
+        padding: $lineheight 5%;
+        height: auto;
+        min-height: 50vh;
+      }
+    }
+  }
+
+  [role="contentinfo"] {
+    @include footer-style($accent);
+  }
+}
+
+.about__social {
+  ul {
+    @include list-reset;
+    margin: 0 auto $lineheight;
+    display: flex;
+    max-width: 10rem;
+    justify-content: space-between;
+    font-size: 2.5rem;
+  }
+
+  a {
+    &:hover {
+      color: darken($accent, 10%);
+    }
+  }
+
+  .icon {
+    pointer-events: all;
+  }
+}
+
+.about__contact {
+  text-align: center;
+  margin-bottom: $lineheight*2;
+}
+
+.about-body {
+
+  section {
+    margin-bottom: $lineheight*3;
+  }
+
+  .about__content {
+    @include wrap($max-width: 38rem);
+  }
+
+  h2 {
+    @include has-separator;
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+}
+
+.team-members-list {
+  @include list-reset;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 50rem;
+  width: 90%;
+  margin: 0 auto;
+
+  li {
+    margin: 0 2% $lineheight;
+    position: relative;
+
+    @include smaller-than(750px) {
+      flex-basis: 25%;
+    }
+    @include handheld {
+      flex-basis: 40%;
+    }
+  }
+
+  .member__image {
+    position: relative;
+    z-index: 10;
+    border-radius: 100%;
+    width: 165px;
+
+    &.ui-draggable-dragging {
+      z-index: 1000;
+    }
+  }
+
+  .member__trollface {
+    position: absolute;
+    top: 40px;
+    left: 25%;
+    width: 70px;
+    z-index: 1;
+  }
+
+  .member__name {
+    font: normal 1rem/1.5 $sans;
+    margin: .5rem 0 0;
+  }
+
+  .member__specialization {
+    color: $grey-dark;
+    font-size: .9rem;
+
+    .icon {
+      opacity: .8;
+      font-size: .7em;
+      position: relative;
+      top: -1px;
+      color: $grey-dark;
+    }
+  }
+}
+
+.about-hiring {
+  border: 1px solid $grey-light;
+  border-width: 1px 0;
+  text-align: center;
+  padding: $lineheight*2 5%;
+
+  figure {
+    $size: 165px;
+    cursor: default;
+    width: $size;
+    height: $size;
+    margin: $lineheight auto;
+    display: inline-block;
+    transition: transform .5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+    &:hover {
+      transform: rotateY(-45deg);
+    }
+
+    img {
+      border-radius: 100%;
+    }
+  }
+}

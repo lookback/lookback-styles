@@ -1,0 +1,353 @@
+/* =DOWNLOAD PAGE
+--------------------------------------------- */
+
+.download {
+  background-color: $comp-blue-light;
+
+  .section-heading {
+    text-align: center;
+    margin: $lineheight*2 auto $lineheight;
+  }
+
+  h1, h2, h3 {
+    font-family: $sans;
+  }
+
+  h1 {
+    font-weight: 300;
+
+    @include smaller-than(600px) {
+      font-size: to_rem(26);
+    }
+  }
+
+  .get-started-section {
+    padding-top: 0;
+  }
+}
+
+.page-download-container {
+  color: $comp-teal-dark;
+  max-width: 730px;
+  width: 90%;
+  margin: $lineheight*2 auto $lineheight*3;
+
+  @include smaller-than(600px) {
+    margin-top: $lineheight*4;
+  }
+
+  .loading-container {
+    margin: $lineheight*4 auto;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: to_rem(24);
+    margin-bottom: $lineheight;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid rgba($comp-teal-dark, .1);
+
+    small {
+      color: rgba($comp-teal-dark, .4);
+      margin-left: .5rem;
+      font-weight: normal;
+      font-size: .6em;
+    }
+
+    @include smaller-than(500px) {
+      // Break
+      small {
+        display: block;
+        margin-left: 0;
+      }
+    }
+  }
+
+  > section {
+    margin-bottom: $lineheight*3;
+  }
+}
+
+.download__outro {
+  color: darken($comp-blue-light, 40%);
+
+  h1 {
+    font-family: $sans;
+    font-weight: 300;
+    color: $comp-teal-dark;
+  }
+}
+
+.download__group {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
+
+  @include smaller-than(500px) {
+    justify-content: center;
+  }
+}
+
+.download__card {
+  position: relative;
+  text-align: center;
+  margin: 0 1rem 2rem;
+  width: 223px;
+  transition: transform .5s ease;
+  transform-style: preserve-3d;
+
+  &--flipped {
+    // Just above the backdrop
+    z-index: 1002;
+    // We use translate3d with a negative Z index so we can break
+    // out of the stacking context created, and put the card on top
+    // of the fixed positioned backdrop element.
+    transform: perspective(1000px) rotateY(180deg);
+  }
+
+  &--downloaded {
+    .download__card__back .download__card__heading {
+      display: block;
+    }
+  }
+
+  // Close icon
+  &__toggle {
+    position: absolute;;
+    top: 0;
+    right: 7px;
+    opacity: .3;
+    transition: opacity .15s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+
+  &__heading {
+    display: none;
+    font-weight: normal;
+    margin-bottom: .5rem;
+    font-size: to_rem(18);
+  }
+
+  &__front,
+  &__back {
+    border-radius: 8px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  &__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-shadow: $box-shadow-light 0 2px 50px;
+    transform: rotateY(180deg);
+    background-color: #fff;
+    border: 1px solid #D4E8F5;
+    @include center(all);
+
+    .btn {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+  }
+
+  &__close {
+    font-size: .9em;
+    margin-top: $lineheight / 2;
+  }
+}
+
+.download__release {
+  display: block;
+  background-color: rgba(#fff, .95);
+  border-radius: 8px;
+  padding: $lineheight 0 $lineheight / 2;
+  box-shadow: inset transparent 0 0 0,
+              $box-shadow-light 0 2px 20px;
+  transition: box-shadow .2s ease,
+              background-color .2s ease;
+
+  .download__participate-icon {
+    background-color: #fff;
+    box-shadow: 0 2px 15px 0 rgba(40, 144, 169, .25);
+    border-radius: 100%;
+    position: absolute;
+    top: 30px;
+    right: 62px;
+    z-index: 20;
+    font-size: 1.2em;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: box-shadow .3s ease,
+                transform .3s ease;
+
+    .icon {
+      color: $comp-orange;
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: #fff;
+    box-shadow: inset $comp-green 0 0 0 2px,
+                $box-shadow-light 0 1px 15px;
+
+    .download__release__note {
+      color: rgba(darken($comp-teal-dark, 10%), .6);
+    }
+
+    .download__participate-icon {
+      box-shadow: 0 1px 7px 0 rgba(40, 144, 169, .3);
+      transform: scale(.9);
+    }
+
+    .download__release__link {
+      visibility: visible;
+    }
+
+    .download__release__logo {
+      opacity: 1;
+      fill: darken($grey-tint, 20%);
+    }
+
+    h3 {
+      color: darken($comp-teal-dark, 10%);
+    }
+  }
+
+  h3 {
+    font-size: to_rem(18);
+    margin-bottom: 0;
+    color: darken($comp-teal-dark, 5%);
+  }
+
+  .download__release__logo {
+    fill: $grey-tint;
+    max-width: 40%;
+    max-height: 55px;
+    margin: 1.5rem auto;
+    opacity: .9;
+    transition: opacity .2s ease;
+    // Resete .icon styles
+    width: auto;
+    height: auto;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  // Exceptiooons
+  .custom-icon--laptop-with-device {
+    max-height: 74px;
+    max-width: 51%;
+    margin-bottom: 3px;
+  }
+
+  .custom-icon--android-sdk,
+  .custom-icon--ios-sdk {
+    position: relative;
+    right: -6px;
+  }
+
+  .custom-icon--android-sdk {
+    max-width: 60%;
+  }
+
+  &__note {
+    color: rgba($comp-teal-dark, .4);
+    font-size: to_rem(12);
+    margin: 0;
+    padding: 0 2rem;
+    line-height: 1.3;
+    margin-top: 5px;
+  }
+
+  // On back of each card.
+  &__description {
+    margin-bottom: $lineheight;
+    color: rgba($comp-teal-dark, .8);
+    padding: 0 10%;
+    font-size: .85em;
+  }
+
+  &__link {
+    color: darken($comp-green, 5%);
+    text-shadow: rgba($comp-green, .15) 0 1px 4px;
+    font-weight: bold;
+    font-size: to_rem(12);
+    margin: 0;
+    margin-top: $lineheight / 2;
+    visibility: hidden;
+  }
+}
+
+.download__changelog {
+  margin-top: $lineheight*2;
+  text-align: center;
+  color: darken($comp-blue-light, 40%);
+}
+
+.modal-download-chrome {
+  color: rgba($comp-teal-dark, .6);
+  padding: 3rem 6rem;
+
+  .modal__inner {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .download-modal__explanation {
+    line-height: 1.8;
+  }
+
+  h1 {
+    font-size: to_rem(28);
+    margin-bottom: $lineheight / 2;
+
+    .icon {
+      margin-right: 1rem;
+      position: relative;
+      top: -2px;
+      color: rgba($comp-teal-dark, .75);
+    }
+  }
+}
+
+.download__suggested {
+  text-align: center;
+  margin-bottom: $lineheight*2;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  &__subtitle {
+    margin-top: 0;
+    margin-bottom: $lineheight;
+    font-size: to_rem(13);
+  }
+
+  &__pitch {
+    font-size: to_rem(17);
+    font-weight: 300;
+    color: rgba($comp-teal-dark, .8);
+  }
+
+  .btn {
+    .icon {
+      font-size: 1.2em;
+      top: -.3ex;
+      height: 21px;
+    }
+  }
+}

@@ -1,0 +1,95 @@
+/* =SIGNUP EMAIL FORM
+
+A simple signup form with redirects to /register
+--------------------------------------------- */
+
+.signup-email-form {
+  display: flex;
+  justify-content: space-between;
+  max-width: 36rem;
+  width: 90%;
+  margin: 3.236rem auto 0;
+  font-size: 1.2em;
+  font-weight: 300;
+  box-shadow: $box-shadow-light 0 2px 30px;
+  will-change: box-shadow, transform;
+  transition: box-shadow .6s ease,
+              transform .8s ease-out;
+  border-radius: 2em;
+  transform: translate3d(0, -2px, 0);
+
+  &--focused {
+    box-shadow: none;
+    transform: none;
+  }
+
+  &__text {
+    position: relative;
+    flex: 1;
+  }
+
+  input[type="email"] {
+    border-radius: 2em 0 0 2em;
+    border: 1px solid rgba(darken($comp-blue-off, 20%), .3);
+    border-right-width: 0;
+    padding: .9em;
+    padding-left: 1.5em;
+    box-shadow: none;
+    width: 100%;
+    margin: 0;
+    color: $comp-teal-dark;
+    font-family: $serif;
+    -webkit-backdrop-filter: blur(4px);
+    transition: background-color .3s ease,
+                border-color .3s ease;
+
+    &:focus {
+      border-color: rgba(darken($comp-blue, 10%), .8);
+      box-shadow: rgba($comp-blue, .2) 0 2px 20px;
+    }
+  }
+
+  .icon {
+    left: 1em;
+    top: 17px;
+    color: $grey-dark;
+    font-size: 1.1em;
+    position: absolute;
+    transition: color .15s ease;
+  }
+
+  .btn {
+    border-radius: 0 2em 2em 0;
+  }
+
+  @include smaller-than(800px) {
+    flex-direction: column;
+
+    input[type="email"] {
+      border-radius: 6px 6px 0 0;
+      border-width: 1px 1px 0;
+
+      &:focus {
+        border-width: 1px 1px 0;
+      }
+    }
+
+    .btn {
+      border-radius: 0 0 6px 6px;
+      font-size: .9em;
+      padding-top: .8em;
+      padding-bottom: .8em;
+    }
+  }
+
+  @include handheld {
+    input[type='email'] {
+      font-size: 16px;
+    }
+
+    .icon {
+      left: 0.6em;
+      top: 13px;
+    }
+  }
+}

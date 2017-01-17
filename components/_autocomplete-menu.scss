@@ -1,0 +1,140 @@
+/* =AUTOCOMPLETE MENUS
+-------------------------- */
+
+.autocomplete-menu {
+  @include list-reset;
+  position: absolute;
+  background-color: #fff;
+  top: 100%;
+  left: 0;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: rgba(#000, .1) 0 1px 3px;
+  min-width: 160px;
+  margin-top: 3px;
+  // Caps to five items
+  max-height: 156px;
+  overflow: hidden;
+  overflow-y: scroll;
+
+  > li {
+    border-top: 1px solid #dfdfdf;
+
+    &:first-child {
+      border-top: 0;
+
+      a {
+        border-radius: 1px 1px 0 0;
+      }
+    }
+
+    &:last-child {
+      a {
+        border-radius: 0 1px 1px 0;
+      }
+    }
+
+    &:hover {
+      background: none;
+    }
+
+    &.active > a,
+    > a:hover,
+    > a:focus {
+      background-color: #f3f3f3;
+      text-decoration: none;
+      outline: 0;
+    }
+
+    > a {
+      cursor: pointer;
+      color: $text-color;
+      text-decoration: none;
+      padding: .35em .5em;
+      font-size: to_rem(13);
+      white-space: nowrap;
+      display: block;
+    }
+  }
+
+  .textcomplete-footer {
+    text-align: center;
+    padding: .35em .5em;
+    color: $grey-dark;
+  }
+
+  img {
+    display: inline-block;
+    height: 2.3ex;
+    width: auto;
+    margin: 0;
+    margin-right: .2em;
+    line-height: normal;
+    vertical-align: middle;
+  }
+
+  .avatar {
+    border-radius: 2px;
+    height: 3.2ex;
+    position: relative;
+    top: -1px;
+  }
+
+  .item-label {
+    font-weight: 600;
+  }
+
+  .emoji {
+    position: relative;
+    top: .3ex;
+    margin-right: .4em;
+  }
+
+  .item-description {
+    font-weight: normal;
+    color: #666;
+    margin-left: .1em;
+    font-size: .9em;
+  }
+}
+
+.autocomplete-menu-wide {
+  top: calc(100% - 3px) !important;
+  width: 100%;
+  box-shadow: rgba(#000, .2) 0 6px 10px;
+  border-radius: 0 0 4px 4px;
+  border-width: 1px 0 1px;
+  max-height: none;
+  border-bottom-color: #bbb;
+
+  > li {
+
+    &.active > a,
+    > a:hover,
+    > a:focus {
+      background-color: $comp-blue;
+      color: #fff;
+
+      .item-description {
+        color: #fff;
+      }
+    }
+
+    > a {
+      padding: 0.7em 1em;
+      font-weight: normal;
+      font-size: to_rem(16);
+      color: #555;
+    }
+  }
+
+  img {
+    height: 4ex;
+    margin-right: .4em;
+  }
+
+  .textcomplete-footer {
+    padding: .7em 1em;
+  }
+}

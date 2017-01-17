@@ -1,0 +1,31 @@
+/* =PUBLIC REEL
+--------------------------------------------- */
+
+.publichighlight {
+  background-color: $comp-blue-light;
+}
+
+.public-reel {
+  margin: 0 auto;
+  max-width: 960px;
+  width: 90%;
+
+  header {
+    margin: $lineheight 0 $lineheight*2;
+
+    h1 {
+      font-family: $sans;
+      color: $comp-teal-dark;
+      text-align: center;
+      font-size: to_rem(34);
+      font-weight: 300;
+      margin-left: -34px;
+
+      .icon {
+        position: relative;
+        top: -.1ex;
+        margin-right: .1em;
+      }
+    }
+  }
+}

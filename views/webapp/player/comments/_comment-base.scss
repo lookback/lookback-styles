@@ -1,0 +1,159 @@
+/*
+  # Base comment object.
+  Includes basic layout for different subcomponents.
+*/
+.comment-base {
+  display: flex;
+
+  &__modified {
+    margin-left: 1px;
+    font-size: .85em;
+    font-style: italic;
+    text-transform: lowercase;
+    color: lighten($grey-dark, 15%);
+
+    @include handheld {
+      display: none;
+    }
+  }
+
+  &__permalink {
+
+    &:hover {
+      .icon-link {
+        color: lighten($grey-dark, 5%);
+      }
+    }
+  }
+
+  &--inline {
+    .comment-base__meta {
+      time {
+        font-size: .9em;
+      }
+    }
+
+    .comment-base__text {
+      margin-right: 10%;
+      font-size: .9rem;
+
+      a:not(.timestamp-link) {
+        @include truncate(100%);
+        // Pixel fuuuucking! :D
+        line-height: 1;
+        position: relative;
+        top: 0.16em;
+      }
+    }
+
+    .comment-base__author {
+      @include truncate(110px);
+      // The 'inline-block' prop from truncate()
+      // screws up the vertical alignment.
+      vertical-align: bottom;
+    }
+  }
+
+  &__avatar {
+    margin-right: .6rem;
+
+    @include handheld {
+      .avatar {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__meta {
+    color: $grey-dark;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .comment-base__meta__icons {
+      a {
+        color: lighten($grey-dark, 10%);
+        transition: color .15s;
+        margin-left: .3em;
+        position: relative;
+        top: -3px;
+        font-size: 1.1em;
+
+        &:hover {
+          color: $grey-dark;
+          text-decoration: none;
+        }
+      }
+    }
+
+    strong {
+      color: $text-color;
+      margin-right: 1px;
+    }
+
+    a {
+      color: $grey-dark;
+
+      &:hover {
+        color: darken($grey-dark, 10%);
+      }
+    }
+  }
+
+  &__text {
+    font-size: 1rem;
+    color: lighten($text-color, 10%);
+
+    :last-child {
+      margin-bottom: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6, p, ul, ol, pre, blockquote, figure {
+      margin-bottom: 1rem;
+    }
+
+    blockquote {
+      color: #555;
+      font-style: italic;
+      padding-top: .5em;
+      padding-bottom: .5em;
+      border-left-color: #ccc;
+    }
+
+    h1 {
+      font-size: to_rem(24);
+    }
+
+    h2 {
+      font-size: to_rem(20);
+    }
+
+    h3 {
+      font-size: to_rem(18);
+    }
+
+    h4 {
+      font-size: to_rem(16);
+    }
+
+    h5 {
+      font-size: to_rem(14);
+      font-style: italic;
+    }
+  }
+
+  &__footer {
+    margin-top: $lineheight / 2;
+    color: $grey-dark;
+    font-size: .9em;
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+}

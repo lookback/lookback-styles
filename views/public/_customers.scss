@@ -1,0 +1,96 @@
+/* =CUSTOMERS
+--------------------------------------------- */
+
+.customers {
+  background-color: $comp-blue-light;
+
+  [role="banner"].background--solid {
+    box-shadow: none;
+  }
+}
+
+
+.customers-logo-grid {
+  @include list-reset;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  opacity: .7;
+  pointer-events: none;
+  max-width: 900px;
+  margin: $lineheight*2 auto;
+
+  .logo--thin {
+    padding: 0;
+  }
+
+  .logo--full {
+    .company-logo {
+      max-width: 150px;
+    }
+  }
+
+  li {
+    padding: 0 1rem;
+    margin-bottom: $lineheight*2;
+  }
+
+  .company-logo {
+    max-height: 40px;
+    max-width: 120px;
+    fill: rgba($comp-teal-dark, .6);
+  }
+
+  @include smaller-than($mobile-nav) {
+    li {
+      flex: 0;
+      flex-basis: 50%;
+      margin-bottom: $lineheight*2;
+    }
+  }
+}
+
+
+.customers-page {
+  text-align: center;
+  margin: $lineheight*2 0 $lineheight*4;
+
+  h1, h2 {
+    font-family: $sans;
+    color: $comp-teal-dark;
+    font-weight: 300;
+  }
+
+  h1 {
+    font-size: to_rem(36);
+  }
+
+  h2 {
+    margin-bottom: .5rem;
+  }
+
+  .subhead {
+    color: darken($comp-blue-faded, 20%);
+    margin-bottom: $lineheight*3;
+  }
+
+  .customers-logo-grid {
+
+    @include larger-than(1000px) {
+      // Shift the rows, to make things more dynamic
+      li {
+        transform: translate(40px, 0);
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4),
+        &:nth-child(5) {
+          transform: translate(-40px, 0);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,284 @@
+.home-header {
+  position: relative;
+  text-align: center;
+  color: lighten($text-color, 10%);
+}
+
+.home-header--default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $lineheight 5% $lineheight*2;
+
+  .home-header__graphic {
+    display: none;
+  }
+
+  @include larger-than(915px) {
+    margin-bottom: -150px;
+
+    .home-header__graphic {
+      display: block;
+    }
+  }
+
+  .home-header__intro {
+    margin-left: 5%;
+    text-align: left;
+    max-width: 40rem;
+    color: $comp-teal-dark;
+
+    &__text {
+      font-size: to_em(20);
+      font-weight: 300;
+      max-width: 38rem;
+    }
+  }
+
+  .signup-email-form {
+    width: auto;
+    margin: $lineheight*2 0 $lineheight / 2;
+    max-width: none;
+  }
+
+  h1 {
+    margin-bottom: $lineheight / 2;
+    letter-spacing: -1px;
+    font-size: to_em(42);
+    color: $comp-teal-dark;
+    line-height: 1.3;
+  }
+
+  @include smaller-than(915px) {
+
+    .home-header__intro {
+      margin-left: 0;
+      text-align: center;
+
+      &__text {
+        margin: $lineheight auto $lineheight*2;
+      }
+    }
+  }
+
+  @include smaller-than($mobile-nav) {
+    padding-top: $lineheight*4;
+    padding-bottom: $lineheight;
+  }
+
+  @include larger-than($laptop) {
+    .home-header__intro {
+      font-size: 1.1em;
+      max-width: 55rem;
+    }
+  }
+
+  @include smaller-than(800px) {
+    h1 {
+      font-size: 7vw;
+    }
+  }
+
+  @include handheld {
+    padding-top: $lineheight*2;
+
+    .home-header__intro__text {
+      font-size: to_em(16);
+    }
+  }
+
+  .home-header__terms {
+    background-color: transparent;
+    color: #777;
+    margin: 0 auto $lineheight;
+    margin-left: 1rem;
+    padding: 0;
+
+    a {
+      color: $comp-teal-dark;
+      font-weight: normal;
+    }
+  }
+
+  .home-header__platforms {
+    margin: 0;
+    margin-left: -1rem;
+    align-items: flex-start;
+    font-size: .7em;
+
+    @include smaller-than(915px) {
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    &__group {
+      margin: 0;
+    }
+
+    li {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      width: 7.5em;
+      text-align: center;
+    }
+
+    .platform__osx {
+      position: relative;
+      top: 1px;
+    }
+
+    .platform__marvel {
+      width: 90px;
+      position: relative;
+      top: 2px;
+    }
+
+    .platform__android {
+      width: 60px;
+    }
+
+    .platform__invision {
+      width: 60px;
+    }
+
+    svg {
+      fill: rgba($comp-teal-dark, .6);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.home-header__terms {
+  margin: $lineheight / 2 auto 0;
+  display: inline-block;
+  background-color: rgba(lighten(#F1F5F0, 10%), .6);
+  padding: 4px 10px;
+  font-size: .95em;
+  color: lighten($text-color, 20%);
+  font-weight: 300;
+  border-radius: 3px;
+  -webkit-backdrop-filter: blur(3px);
+  transition: opacity .2s .5s ease,
+              transform .2s .5s ease-out;
+
+  &--hide {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  a {
+    color: $text-color;
+    font-weight: 500;
+  }
+}
+
+.home-header__example {
+  margin: $lineheight*2 auto;
+
+  .btn {
+    padding-left: 2em;
+    padding-right: 2em;
+
+    .icon {
+      font-size: 1.1em;
+    }
+  }
+}
+
+.home-header__platforms {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: $lineheight / 2 auto;
+
+  &__group {
+    @include list-reset;
+    display: flex;
+    justify-content: space-around;
+    margin: $lineheight / 2 auto;
+    align-items: center;
+    font-size: 1.1em;
+
+    &--secondary {
+      font-size: .9em;
+
+      li {
+        margin: 0 1rem;
+      }
+    }
+
+    @include smaller-than($mobile-nav) {
+      flex-wrap: wrap;
+
+      li {
+        margin-bottom: 1.6em;
+      }
+    }
+  }
+
+  li {
+    $initial-delay: .5s;
+
+    transform: scale(.7);
+    opacity: 0;
+    width: 130px;
+    -webkit-backface-visibility: hidden;
+    transition: transform .5s $initial-delay cubic-bezier(0.23, 1.35, 0.42, 1.4),
+                opacity .4s $initial-delay ease;
+
+    &:nth-child(2) {
+      transition-delay: $initial-delay + .2s;
+    }
+    &:nth-child(3) {
+      transition-delay: $initial-delay + .35s;
+    }
+    &:nth-child(4) {
+      transition-delay: $initial-delay + .45s;
+    }
+    &:nth-child(5) {
+      transition-delay: $initial-delay + .55s;
+    }
+  }
+
+  .platform__apple {
+    width: 63px;
+    margin-left: -3px;
+  }
+  .platform__osx {
+    font-size: .95em;
+  }
+
+  svg {
+    fill: lighten($text-color, 15%);
+    opacity: .6;
+    max-width: 6em;
+    max-height: 2em;
+    transition: opacity .4s ease;
+    transform: translateZ(0);
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  .android__text {
+    font-size: 1.4em;
+  }
+  .android__symbol {
+    max-width: 3em;
+    font-size: 1.1em;
+  }
+  .apple__logo {
+    max-width: 3em;
+  }
+  .appletv__logo {
+    font-size: 1.05em;
+    position: relative;
+    top: -1px;
+  }
+}

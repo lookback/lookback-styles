@@ -1,0 +1,211 @@
+/* =PROJECTS DROPDOWN
+--------------------------------------------- */
+
+.add-projects-dropdown {
+
+  &.dropdown--menu {
+    width: 240px;
+    text-align: left;
+  }
+
+  .dropdown__menu {
+    max-height: 360px;
+    overflow-y: scroll;
+  }
+
+  [role="menuitem"] {
+    padding: 0 10px;
+    transition: color .15s ease;
+    color: rgba($comp-teal-dark, .85);
+
+    &:last-child {
+      // Add space so not bottom gradient blocks
+      margin-bottom: 30px;
+    }
+
+    &:hover {
+      background: $dropdown-hover-color;
+      color: $comp-teal-dark;
+
+      .projects-dropdown__view {
+        visibility: visible;
+        color: $link-color;
+      }
+    }
+
+    &.nav--current {
+      color: rgba($comp-teal-dark, .5);
+
+      label {
+        cursor: default;
+        font-weight: bold;
+      }
+    }
+
+    input[type='checkbox'] {
+      margin-right: 8px;
+      top: auto;
+    }
+
+    label {
+      margin: 0;
+      padding: 5px 0;
+      cursor: pointer;
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+    }
+
+    .fancy-radio {
+      padding: 0;
+      position: relative;
+      top: -0.2ex;
+      margin-right: 3px;
+    }
+  }
+
+  .projects-dropdown__add-form {
+    padding: 5px 10px;
+    background-color: #f9f9f9;
+    position: relative;
+    display: flex;
+
+    label {
+      margin-right: 7px;
+      color: $text-color;
+    }
+
+    .icon {
+      position: relative;
+      top: -2px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      margin: 0;
+    }
+  }
+
+  .projects-dropdown__name {
+    flex: 1;
+    @include truncate;
+
+    .icon-lock {
+      font-size: .7em;
+      top: -1px;
+      position: relative;
+    }
+  }
+
+  .projects-dropdown__view {
+    font-size: .9em;
+    color: #aaa;
+    visibility: hidden;
+
+    .icon {
+      position: relative;
+      top: -.2ex;
+    }
+  }
+
+  .new-project__cancel-btn {
+    $color: #ccc;
+
+    color: $color;
+    transition: color .15s ease;
+
+    &:hover {
+      color: darken($color, 20%);
+    }
+
+    .icon {
+      transform: rotate(45deg);
+    }
+  }
+
+  .projects-dropdown__add-new {
+    // pixelfucking
+    padding: 6px 10px 7px 8px;
+    font-size: .9em;
+    display: block;
+    font-weight: bold;
+    color: rgba($comp-teal-dark, .7);
+
+    &,
+    .icon {
+      transition: color .15s ease;
+    }
+
+    &:hover,
+    &.hover {
+      color: darken($comp-blue, 10%);
+      text-decoration: none;
+      background-color: #fafafa;
+    }
+
+    &.hover .icon {
+      transform: rotate(-720deg);
+    }
+
+    .icon {
+      transition: transform .8s ease-out;
+      font-size: 1.3em;
+      margin-right: 5px;
+      position: relative;
+      top: -1px;
+    }
+  }
+
+  .projects-dropdown__load-more {
+    font-style: italic;
+    color: rgba($comp-teal-dark, .7);
+  }
+
+  .projects-dropdown__action {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px 0;
+  }
+
+  .dropdown__footer.projects-dropdown__capped {
+    position: relative;
+    padding-top: 0;
+
+    &::before {
+      display: block;
+      position: absolute;
+      content: '';
+      left: 0;
+      right: 0;
+      top: -40px;
+      height: 40px;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(#fff, 0), #fff);
+      background-repeat: repeat-x;
+    }
+  }
+
+  .dropdown-actions {
+    display: flex;
+    padding: 0;
+
+    .btn {
+      flex: 1;
+      font-size: 1em;
+      padding: .5em;
+
+      &[disabled] {
+        border-top: 1px solid #e1e1e1;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .action-info {
+    font-size: .85em;
+    margin: 5px 0;
+    background-color: $comp-blue-light;
+    color: $comp-teal-dark;
+    padding: 5px 10px;
+  }
+}

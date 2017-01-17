@@ -1,0 +1,32 @@
+/* =USER LIST
+--------------------------------------------- */
+
+.user-selection-list {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__user {
+    display: flex;
+    align-items: center;
+    margin: 0 5px 5px 0;
+    border-radius: 4px;
+    border: 1px solid rgba(#000, .2);
+    background-color: #f8f8f8;;
+    padding: 3px 6px;
+    cursor: pointer;
+
+    &--active {
+      background-color: $comp-blue;
+      color: #fff;
+    }
+
+    .avatar {
+      margin-right: 4px;
+    }
+
+    &__name {
+      font-size: to_rem(13);
+    }
+  }
+}

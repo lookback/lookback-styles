@@ -1,0 +1,96 @@
+/* =Status page, like processing or permissions view.
+--------------------------------------------- */
+
+// Inline status, within the stage
+
+.player-stage-status {
+  @include center(all);
+  min-height: 100%;
+  font-size: 1.1rem;
+  color: #fff;
+
+  .sk-moving-cubes {
+    margin-bottom: $lineheight*2;
+    color: #fff;
+  }
+
+  h1 {
+    font-weight: 300;
+    margin-bottom: .5rem;
+  }
+
+  .status__content {
+    max-width: 30rem;
+    margin: 0 5%;
+    color: #ccc;
+  }
+
+  a, .btn.mode--link {
+    color: #fff;
+  }
+
+  .status__detail {
+    font-size: .8em;
+    color: #999;
+  }
+
+  .status__troubleshoot {
+    text-align: left;
+
+    ol, ul {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.player-status-view {
+  @include center(all);
+  background-color: $background-webapp;
+  height: calc(100vh - 60px);
+  font-size: 1.1rem;
+  color: $comp-blue-faded;
+
+  .icon {
+    margin-right: 3px;
+    font-size: .8em;
+    position: relative;
+    top: -1px;
+  }
+
+  .custom-icon--checkmark {
+    color: $comp-green;
+  }
+
+  .sk-folding-cube {
+    margin-bottom: $lineheight*2;
+  }
+
+  h1 {
+    font-weight: 300;
+    color: $comp-teal-dark;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: to_rem(22);
+    font-weight: normal;
+    @include smooth;
+  }
+
+  p {
+    margin-bottom: $lineheight * 2;
+  }
+
+  .status__content {
+    max-width: 29rem;
+    margin: 0 5%;
+  }
+
+  .status__troubleshoot {
+    text-align: left;
+
+    ol, ul {
+      margin-top: 0.5em;
+    }
+  }
+}

@@ -1,0 +1,158 @@
+/* =ELEMENTS
+
+Styling for plain HTML tags.
+--------------------------------------------- */
+
+::selection {
+  background-color: $comp-teal-dark;
+  color: #fff;
+}
+
+html {
+  background: $background;
+  color: $text-color;
+  font: normal #{$base-size}px/#{$leading / $base-size} $sans;
+  @include smooth;
+}
+
+body {
+  // Sticky footer with Flexbox
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  // end sticky footer
+}
+
+body.has-banner {
+  position: relative;
+  top: $banner-height;
+}
+
+[role="main"] {
+  flex: 1 0 auto;
+
+  &.push-down {
+    margin-top: 102px;
+  }
+}
+
+@include smaller-than($mobile-nav) {
+  [role="main"] {
+    padding-top: $header-mobile-height;
+  }
+
+  .main--full-height {
+    padding-top: 0;
+  }
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+p,
+ul,
+ol,
+blockquote,
+table,
+pre {
+  margin: 0 0 $lineheight;
+}
+
+nav ul {
+  @include list-reset;
+}
+
+figure {
+  margin: 0;
+}
+
+mark {
+  @include highlight;
+  color: #000;
+}
+
+img, object {
+  max-width: 100%;
+  height: auto;
+}
+
+abbr[title],
+abbr[data-tooltip] {
+  cursor: help;
+  border-bottom: 1px solid rgba($grey, .7);
+}
+
+th {
+  font-weight: bold;
+  text-align: left;
+  padding-right: 1.5em;
+}
+
+blockquote {
+  border-left: 2px solid $accent;
+  padding-left: 1rem;
+}
+
+dt {
+  font-weight: 600;
+  margin-bottom: $lineheight / 2;
+}
+
+dd {
+  margin: 0 0 $lineheight;
+}
+
+code,
+pre,
+tt {
+  font-family: $mono;
+}
+
+code {
+  font-size: 0.8em;
+  background-color: #f2f2f2;
+  padding: 0.3em 0.4em;
+  border-radius: 3px;
+}
+
+kbd {
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  border: 1px solid #B3B3B3;
+  font-family: $mono;
+  margin: 0 2px;
+  font-size: to_em(11);
+  background-color: #FDFDFD;
+  box-shadow: rgba(#000, 0.1) 0 1px 0;
+  position: relative;
+  top: -0.1em;
+}
+
+pre {
+  background-color: lighten($grey-light, 3%);
+  border-radius: $border-radius;
+  padding: $lineheight;
+  font-size: .8rem;
+
+  code {
+    font-size: inherit;
+    padding: 0;
+    background: none;
+    border: 0;
+    color: inherit;
+  }
+}
+
+@include handheld {
+  pre {
+    font-size: .9rem;
+    padding: $lineheight / 2;
+  }
+}

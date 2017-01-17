@@ -1,0 +1,96 @@
+/* =TEAM SELECTOR DROPDOWN
+---------------------------- */
+
+// Align to right
+.team-selector-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: $lineheight / 3;
+}
+
+// Too much spacing in get started pages
+&.getstarted .team-selector-container {
+  margin-bottom: -2.5rem;
+}
+
+.dropdown.team-selector {
+  width: 270px;
+  text-align: left;
+  font-size: 1rem; // Reset font size
+
+  .app__icon {
+    margin-right: .5rem;
+    vertical-align: text-top;
+    opacity: .8;
+    transition: opacity .2s ease-out;
+    box-shadow: rgba(#000, .3) 0 1px 1px;
+  }
+
+  &.dropdown--menu {
+    p {
+      padding: 0 .5rem;
+    }
+
+    .no-content-total {
+      font-size: 1rem;
+      color: darken($grey, 10%);
+      text-align: center;
+    }
+  }
+
+  [role="menuitem"] a {
+    &:hover {
+      .app__icon {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/* The trigger */
+.team-selector-trigger {
+  font-size: to_rem(12);
+  font-weight: bold;
+  color: lighten($text-color, 15%);
+  border-radius: 3px;
+  padding: 0.1rem 0.3rem .1rem .5rem;
+
+  .app__icon {
+    margin-left: .2rem;
+    vertical-align: text-bottom;
+    transition: opacity .2s;
+    opacity: .9;
+    box-shadow: rgba(#000, .3) 0 1px 1px;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: $text-color;
+    background-color: #f6f6f6;
+
+    .app__icon {
+      opacity: 1;
+    }
+    &:not(.active) .icon {
+      color: $accent;
+    }
+  }
+
+  .icon {
+    transition: transform .2s ease-out;
+  }
+
+  &:active {
+    background-color: #eaeaea;
+  }
+
+  &.active {
+    background-color: $comp-blue;
+    color: #fff;
+
+    .icon {
+      fill: #fff;
+      transform: rotateX(180deg);
+    }
+  }
+}

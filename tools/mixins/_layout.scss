@@ -1,0 +1,15 @@
+// Layout mixins with Flexbox
+
+@mixin center($direction) {
+  display: flex;
+
+  @if($direction == horizontal or $direction == all) {
+    text-align: center;
+    align-items: center;
+  }
+
+  @if($direction == vertical or $direction == all) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,107 @@
+/*
+ * FLOWER
+ */
+ /*
+  * Set up animation keyframe mixins for the "breathing flower".
+  * These mixins are then called twice, once for webkit and then once without prefixes
+  * (as of now, that's FF & IE10).
+  *
+  * This animates a flower with five leaves, all moving symmetrically in a breathing rhytm.
+  */
+ @keyframes breath1 {
+   0% {
+     transform: rotate(-35deg);
+   }
+   50% {
+     transform: rotate(-46deg);
+   }
+   100% {
+     transform: rotate(-35deg);
+   }
+ }
+
+ @keyframes breath2 {
+   0% {
+     transform: rotate(-18deg);
+   }
+   50% {
+     transform: rotate(-26deg);
+   }
+   100% {
+     transform: rotate(-18deg);
+   }
+ }
+
+ @keyframes breath4 {
+   0% {
+     transform: rotate(18deg);
+   }
+   50% {
+     transform: rotate(26deg);
+   }
+   100% {
+     transform: rotate(18deg);
+   }
+ }
+
+ @keyframes breath5 {
+   0% {
+     transform: rotate(35deg);
+   }
+   50% {
+     transform: rotate(46deg);
+   }
+   100% {
+     transform: rotate(35deg);
+   }
+ }
+
+
+#flower {
+  $leafWidth: 34px;
+  $flowerWidth: 125px;
+  $flowerHeight: $flowerWidth;
+  margin: 0 auto 40px;
+
+  width: $flowerWidth;
+  height: $flowerHeight;
+  position: relative;
+
+  img {
+    position: absolute;
+    transform-origin: 50% 87%;
+  }
+
+  #leaf1 {
+    left: 44px;
+    opacity: 0.3;
+    transform: rotate(-35deg);
+    animation: breath1 7s ease-in-out 1.4s infinite forwards;
+  }
+
+  #leaf2 {
+    left: 45px;
+    transform: rotate(-18deg);
+    opacity: 0.4;
+    animation: breath2 7s ease-in-out 1.4s infinite forwards;
+  }
+
+  #leaf3 {
+    left: ($flowerWidth/2) - ($leafWidth/2);
+    opacity: 0.5;
+  }
+
+  #leaf4 {
+    transform: rotate(18deg);
+    opacity: 0.4;
+    right: 45px;
+    animation: breath4 7s ease-in-out 1.4s infinite forwards;
+  }
+
+  #leaf5 {
+    right: 44px;
+    transform: rotate(35deg);
+    opacity: 0.3;
+    animation: breath5 7s ease-in-out 1.4s infinite forwards;
+  }
+}

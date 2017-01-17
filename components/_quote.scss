@@ -1,0 +1,70 @@
+// With avatar, text, company logo, and person + title.
+.component-quote {
+  display: flex;
+
+  // Reset
+  blockquote {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  cite {
+    font-style: normal;
+  }
+
+  &__avatar {
+    margin-right: 1.5rem;
+    max-width: 65px;
+
+    img {
+      border-radius: 100%;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    font-size: .85rem;
+    max-width: 35em;
+
+    &__text {
+      margin-bottom: $lineheight / 2;
+
+      p {
+        margin-bottom: $lineheight / 3;
+      }
+    }
+
+    &__footer {
+      display: flex;
+      align-items: center;
+      font-size: 1em;
+    }
+  }
+
+  &__source {
+    opacity: .6;
+
+    &::before {
+      content: "— ";
+    }
+  }
+
+  &__logo {
+    max-width: 6em;
+    margin-right: 5px;
+    transform: translateZ(0); // Safari flimmering
+  }
+
+  @include handheld {
+    text-align: center;
+
+    .component-quote__avatar {
+      display: none;
+    }
+
+    .component-quote__body__footer {
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,131 @@
+/* =PLAYER CONTROLS
+--------------------------------------------- */
+
+.player__controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform .15s .5s ease;
+
+  &--inactive:not(:hover) {
+    transform: translate3d(0, 70px, 0);
+  }
+
+  .player__play-pause {
+    margin-left: 0;
+
+    span {
+      opacity: .8;
+      transition: opacity .2s ease-out;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:active {
+        transform: scale(.97);
+      }
+    }
+
+    .icon {
+      font-size: $player-timeline-height + 3px;
+    }
+  }
+
+  @include handheld {
+    display: none;
+  }
+}
+
+.player__current-time,
+.player__duration {
+  color: darken($grey-dark, 10%);
+}
+
+.player__current-time {
+  margin-right: 1rem;
+
+  .dropdown__trigger {
+    cursor: pointer;
+    transition: color .15s ease-out;
+    min-width: 51px;
+    display: inline-block;
+    text-align: right;
+
+    &:hover {
+      color: $grey-dark;
+    }
+  }
+}
+
+.player__duration {
+  cursor: pointer;
+  margin-left: 1rem;
+
+  time {
+    display: inline-block;
+    min-width: 51px;
+  }
+}
+
+.player__control {
+  margin-left: 10px;
+  position: relative;
+  z-index: 201;
+
+  > span {
+    display: inline-block;
+    opacity: .8;
+    color: #fff;
+    transform: translateZ(0);
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 3px;
+  }
+
+  &:hover > span {
+    opacity: 1;
+  }
+
+  &:active > span {
+    opacity: .6;
+  }
+
+  .icon {
+    transition: transform .15s ease;
+    vertical-align: top;
+    font-size: 1.4rem;
+    transform: translateZ(0);
+  }
+
+  &--active {
+    > span {
+      opacity: 1;
+      color: $dark;
+      background-color: #fff;
+    }
+  }
+}
+
+.player__timeline + .player__control {
+  margin-left: 0;
+}
+
+.player__control--fullscreen {
+  .icon {
+    font-size: 1.5rem;
+  }
+}
+
+.player__control--volume {
+  .soundwave {
+    transition: opacity .1s ease-out;
+  }
+
+  &.muted {
+    .soundwave {
+      opacity: .2;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+/* =BACKDROP
+---------------------------------------- */
+
+.backdrop {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1001;
+  transition: opacity .4s ease;
+
+  &.backdrop--light {
+    background-color: #E9F5F7;
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  &.backdrop--normal {
+    background-color: $comp-teal-dark;
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  &.backdrop--dark {
+    background-color: $dark;
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  &--visible {
+    pointer-events: all;
+
+    &.backdrop--normal {
+      opacity: .5;
+    }
+    &.backdrop--light {
+      opacity: .3;
+    }
+    &.backdrop--dark {
+      opacity: .9;
+    }
+  }
+}

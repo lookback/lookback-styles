@@ -1,0 +1,108 @@
+/* =DESCRIPTIONBLOCK
+
+Used in About, Front page, and more.
+
+Has one spanning header and three subsections (most common number)
+--------------------------------------------- */
+
+.desc-block {
+  color: #fff;
+  background-color: $accent;
+}
+
+.desc-block__banner {
+  padding: 4rem 5%;
+  text-align: center;
+
+  .desc-block__heading {
+    font-size: to_rem(32);
+    color: rgba(#fff, .8);
+    margin: 0 auto;
+    max-width: 20em;
+
+    @include handheld {
+      font-size: to_rem(24);
+    }
+  }
+}
+
+.desc-block__children {
+  @include list-reset;
+  display: flex;
+  flex-direction: row;
+
+  h2 {
+    margin-bottom: $lineheight / 2;
+
+    @include handheld {
+      font-size: to_rem(22);
+    }
+  }
+
+  p {
+    color: rgba(#fff, .7);
+    font-size: .9rem;
+    width: 100%;    // IE fix.
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  figure {
+    width: 30%;
+    margin-bottom: $lineheight;
+
+    svg {
+      max-height: 8rem;
+    }
+
+    .icon {
+      font-size: 4rem;
+    }
+  }
+
+  .btn {
+    font-size: 1.1rem;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  > * {
+    @include center(all);
+    flex: 1;
+    padding: $lineheight*3 5%;
+
+    &:nth-child(1) {
+      background-color: darken($accent, 5%);
+    }
+    &:nth-child(2) {
+      background-color: darken(saturate($accent, 3%), 8%);
+    }
+    &:nth-child(3) {
+      background-color: darken(saturate($accent, 5%), 10%);
+    }
+  }
+
+  @include tablet {
+    flex-direction: column;
+
+    figure {
+      width: 10%;
+    }
+
+    p {
+      max-width: 20rem;
+    }
+
+    > * {
+      padding: $lineheight*2 10%;
+    }
+  }
+
+  @include handheld {
+    figure {
+      display: none;
+    }
+  }
+}

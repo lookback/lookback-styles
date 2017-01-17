@@ -1,0 +1,111 @@
+.changelog {
+
+  $break: 870px;
+
+  .changelog__header {
+    padding-top: $lineheight*5;
+    text-align: center;
+    background: transparent url('/images/phoenix/typewriter.jpg') no-repeat center;
+    background-size: cover;
+    height: $lineheight*15;
+    color: #fff;
+    margin-bottom: $lineheight*2;
+    position: relative;
+
+    &::after {
+      @include dark-overlay($opacity: .3);
+      z-index: 1;
+    }
+
+    @include handheld {
+      padding: 0;
+      @include center(all);
+      height: 30vh;
+    }
+
+    h1 {
+      margin-bottom: $lineheight*2;
+    }
+  }
+
+  [role="main"] {
+
+    .loading-container {
+      height: 20rem;
+    }
+
+    h1, h2, h3, h4,
+    .changelog__description {
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: normal;
+      font-style: italic;
+      font-size: to_rem(52);
+      text-transform: capitalize;
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 {
+      font-size: to_rem(36);
+      font-style: italic;
+    }
+
+    h3 {
+      font-size: to_rem(26);
+      margin-top: $lineheight*2;
+    }
+
+    h4 {
+      margin-bottom: $lineheight / 2;
+      font-family: $serif;
+    }
+  }
+
+  .changelog__nav {
+    position: relative;
+    z-index: 2;
+  }
+
+  .changelog__wrapper {
+    @include wrap($max-width: 35rem);
+
+    @include smaller-than(600px) {
+      // Truncate all <code> tags, but not those who
+      // are children of <pre> blocks.
+      p code,
+      a code,
+      li > code {
+        @include truncate;
+        padding: 0 5px;
+      }
+    }
+
+    ul {
+      padding: 0;
+
+      @include handheld {
+        padding-left: 1rem;
+      }
+    }
+
+    li {
+      margin-bottom: $lineheight / 2;
+    }
+
+    .changelog__description {
+      font-size: .9rem;
+      color: $grey-dark;
+    }
+  }
+
+}
+
+.changelog-entry {
+  // When highlighted through an anchor hash
+  .current {
+    text-decoration: underline;
+  }
+}

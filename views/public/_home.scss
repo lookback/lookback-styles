@@ -1,0 +1,582 @@
+/* =HOME
+
+    Landing page
+--------------------------------------------- */
+
+.home, .landing {
+
+  [role="banner"] {
+    box-shadow: none;
+
+    &.background--solid {
+      // Set..
+      background-color: transparent;
+
+      &.fixed-header {
+        // .. and reset.
+        background-color: rgba(#fff, .98);
+      }
+    }
+  }
+
+  body {
+    background-color: $comp-blue-light;
+  }
+
+  .notice-strip {
+    max-width: 720px;
+    width: 90%;
+    margin: $lineheight*2 auto;
+
+    @include smaller-than(768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: 5px;
+      border-top-left-radius: 0;
+      padding: .5em;
+      margin-bottom: $lineheight;
+
+      .notice-strip__badge {
+        margin-left: calc(-.5em - 1px);
+        margin-top: calc(-.5em - 1px);
+        border-radius: 0 0 5px 0;
+      }
+    }
+  }
+
+  h1 {
+    font-size: to_em(32);
+    margin-bottom: $lineheight / 2;
+    color: $comp-teal-dark;
+
+    @include smaller-than($tablet) {
+      font-size: to_em(28);
+    }
+
+    @include handheld {
+      font-size: to_em(22);
+    }
+  }
+
+  .layout-feature {
+    color: $comp-teal-dark;
+
+    &--vertical {
+      .layout-feature__text {
+        text-align: center;
+        align-items: center;
+      }
+    }
+
+    &--reverse {
+
+      .layout-feature__text {
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+
+    &__figure {
+      flex: 5;
+      display: block;
+
+      video {
+        display: block;
+        max-width: 100%;
+        transition: opacity .5s ease;
+
+        &.paused {
+          opacity: 0;
+        }
+      }
+
+      img {
+        margin: 0 auto $lineheight;
+        width: 90%;
+      }
+    }
+
+    &__text {
+      text-align: right;
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      flex: 4;
+
+      &__content {
+        font-size: to_em(17);
+        font-weight: 300;
+      }
+    }
+
+    .btn {
+      font-size: to_rem(18);
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+
+    @include larger-than($laptop) {
+      .layout-feature__text {
+        font-size: 1.3em;
+
+        &__content {
+          max-width: to_rem(600);
+        }
+      }
+    }
+
+    @include larger-than(860px) {
+      &__figure {
+        img {
+          display: none;
+        }
+      }
+    }
+
+    @include smaller-than(860px) {
+      flex-direction: column-reverse;
+
+      &--reverse {
+        .layout-feature__text {
+          text-align: center;
+          align-items: center;
+        }
+      }
+
+      &__text {
+        text-align: center;
+        align-items: center;
+
+        &__content {
+          font-size: 1.1em;
+          width: 90%;
+        }
+      }
+
+      &__figure {
+        text-align: center;
+
+        video {
+          display: none;
+        }
+      }
+    }
+  }
+
+
+  .navigation {
+    animation: slideMenuDown .4s 1s ease-out both;
+  }
+
+  .fixed-header {
+    background-color: #fff;
+    box-shadow: rgba(#000, .15) 0 1px 1px;
+
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background-color: rgba(#fff, .85);
+    }
+
+    .navigation {
+      padding: 0 1rem;
+    }
+  }
+
+  @include handheld {
+    [role="main"] {
+      margin-top: 0;
+    }
+  }
+}
+
+
+.home-capture {
+  padding: $lineheight 5%;
+
+  @include larger-than(915px) {
+    padding: $lineheight*10 0 0;
+  }
+
+  .layout-feature__figure {
+    overflow: hidden;
+    transition: transform .2s ease;
+
+    video {
+      margin-right: -100px;
+      max-width: calc(100% + 100px);
+    }
+  }
+}
+
+.home-recordings {
+  padding: $lineheight*2 0;
+  justify-content: center;
+
+  .layout-feature__figure {
+    min-width: 0; // http://stackoverflow.com/questions/28710379/firefox-flexbox-image-width
+  }
+
+  @include larger-than($tablet) {
+    padding: $lineheight*8 0;
+  }
+
+  @include smaller-than(1070px) {
+    .layout-feature__figure video {
+      max-width: 500px;
+    }
+  }
+}
+
+.home-player {
+  margin-bottom: $lineheight*2;
+  padding: $lineheight*2 0;
+
+  .layout-feature__text__content {
+    max-width: 750px;
+  }
+
+  .layout-feature__figure {
+    video {
+      max-width: 699px; // Pixelfucking. 700px will cause black border fragment in Safari. Huge lol.
+    }
+  }
+
+  @include larger-than(1000px) {
+    margin-bottom: $lineheight*10;
+    padding: 0;
+  }
+
+  @include handheld {
+    padding: 0 5%;
+  }
+}
+
+.home-case-study {
+  @include center(all);
+  background: transparent url('/images/banners/lyft-team-laughing.jpg') no-repeat center 70%;
+  background-size: cover;
+  height: $lineheight*20;
+  color: #fff;
+  position: relative;
+
+  &.animate--out {
+    .home__container {
+      opacity: 0;
+      transform: scale(.98);
+    }
+  }
+
+  .home__container {
+    transition: transform 4s cubic-bezier(0.160, 0.975, 0.280, 1.005),
+                opacity 3s cubic-bezier(0.160, 0.975, 0.280, 1.005);
+  }
+
+  h1 {
+    color: #fff;
+    font-size: to_em(42);
+    margin-bottom: 1rem;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  @include handheld {
+    padding: $lineheight*2 10%;
+    height: auto;
+    background-image: url('/images/banners/lyft-team-laughing-mobile.jpg');
+
+    h1 {
+      font-size: to_em(32);
+    }
+  }
+
+  .btn {
+    $color: #ea0b8d;
+
+    transition-duration: .2s;
+    background-color: $color;
+    padding-left: 2em;
+    padding-right: 2em;
+    box-shadow: rgba(#000, 0.1) 0 1px 5px;
+
+    &:hover {
+      background-color: lighten(saturate($color, 15%), 10%);
+    }
+
+    &:active,
+    &:focus {
+      background-color: darken($color, 5%);
+      box-shadow: none;
+    }
+  }
+}
+
+.home-logos-section {
+  text-align: center;
+
+  p {
+    margin-top: $lineheight*2;
+    opacity: .4;
+    transition: opacity .3s ease;
+  }
+
+  &:hover {
+    p {
+      opacity: 1;
+    }
+  }
+}
+
+.home-logos {
+  @include list-reset;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  padding: $lineheight*2 2.5% 0;
+  opacity: .6;
+  pointer-events: none;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  .logo--thin {
+    padding: 0;
+  }
+
+  .logo--full {
+    .company-logo {
+      width: 100%;
+      max-width: none;
+    }
+  }
+
+  li {
+    flex: 1;
+    padding: 0 2rem;
+  }
+
+  .company-logo {
+    max-height: 40px;
+    max-width: 90px;
+    fill: rgba($comp-teal-dark, .6);
+  }
+
+  @include smaller-than($mobile-nav) {
+    flex-wrap: wrap;
+
+    li {
+      flex: 0;
+      flex-basis: 50%;
+      margin-bottom: $lineheight*2;
+    }
+  }
+}
+
+.home-quotes {
+  padding: $lineheight*3 5%;
+  text-align: center;
+
+  @include larger-than($handheld) {
+    h1 {
+      margin-bottom: $lineheight*3;
+    }
+  }
+
+  &__list {
+    @include list-reset;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 840px;
+    margin: 0 auto;
+
+    li {
+      flex: 1;
+      max-width: 360px;
+      flex-basis: 50%;
+      margin-bottom: $lineheight*2;
+
+      @include larger-than(961px) {
+        &:nth-child(1),
+        &:nth-child(3) {
+          text-align: right;
+        }
+        &:nth-child(2),
+        &:nth-child(4) {
+          text-align: left;
+        }
+      }
+    }
+
+    @include smaller-than(960px) {
+      flex-wrap: wrap;
+
+      li {
+        max-width: none;
+      }
+    }
+
+    @include handheld {
+      flex-direction: column;
+      flex-basis: auto;
+    }
+  }
+
+  .home-quote {
+
+    &__text {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: $lineheight / 2;
+    }
+
+    blockquote {
+      line-height: 1.4;
+      @include smooth;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      color: $comp-teal-dark;
+
+      footer {
+        color: $grey-tint;
+      }
+
+      cite,
+      strong {
+        color: darken(desaturate($grey-tint, 10%), 20%);
+      }
+
+      strong {
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.home-slack-integration {
+  background: $comp-teal url('/images/crystal-hero.jpg') no-repeat center;
+  padding: $lineheight*2 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .slack-logo {
+    width: 150px;
+  }
+
+  h1 {
+    font-size: to_em(32);
+    color: #fff;
+  }
+
+  @include smaller-than($mobile-nav) {
+    font-size: .9em;
+
+    .slack-logo {
+      width: 100px;
+    }
+
+    h1 {
+      font-size: to_em(24);
+    }
+  }
+
+  @include larger-than(710px) {
+    h1 {
+      margin: 0 3em 0 1em;
+      border-left: 1px solid rgba(#fff, .7);
+      padding: $lineheight / 2 0;
+      padding-left: 1em;
+    }
+  }
+
+  @include smaller-than(710px) {
+    text-align: center;
+    flex-direction: column;
+    font-size: 1em;
+
+    .slack-logo {
+      width: 150px;
+    }
+
+    h1 {
+      margin: $lineheight auto;
+      font-size: to_em(26)
+    }
+  }
+}
+
+.home-slack {
+  $spacing: 4%;
+
+  background: $dark url('/images/crystal-banner-dark.jpg') no-repeat center;
+  background-size: cover;
+  color: #fff;
+
+  display: flex;
+  justify-content: center;
+  padding: 11vw 5%;
+
+  a {
+    color: #fff;
+  }
+
+  input[type="email"] {
+    color: $text-color;
+  }
+
+  .home-slack__pane {
+    flex: 1;
+    max-width: 33rem;
+
+    &:first-child {
+      padding-right: $spacing;
+    }
+    &:last-child {
+      padding-left: $spacing;
+    }
+  }
+
+  @include smaller-than($mobile-nav) {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    .slack-logo {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    input[type="submit"] {
+      padding: .6em;
+    }
+
+    .input-row {
+      flex-direction: column;
+
+      input[type="submit"],
+      .btn {
+        border-radius: 0 0 $border-radius $border-radius;
+      }
+
+      .input-row__item {
+        border-top-right-radius: 3px;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    .home-slack__pane {
+      margin-bottom: $lineheight;
+
+      &:first-child, &:last-child {
+        padding: 0;
+      }
+    }
+  }
+}
+
+@import "home-header";
+@import "home-reel";

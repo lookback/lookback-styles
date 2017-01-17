@@ -1,0 +1,659 @@
+/* =BUTTONS
+--------------------------------------------- */
+
+@mixin disabled($background, $foreground: #fff) {
+  background-color: rgba(lighten(desaturate($background, 20%), 10%), .8);
+  color: rgba($foreground, .7);
+  box-shadow: none;
+}
+
+@mixin push-button-mode($bg, $offset) {
+  background-color: $bg;
+  // Fancy ass shadow
+  box-shadow: darken($bg, 10%) 0 1px 0,
+              darken($bg, 20%) 0 $offset 0;
+
+  @if(lightness($bg) < 50%) {
+    color: rgba(#fff, .9);
+
+    &:hover,
+    &:focus {
+      color: #fff;
+    }
+  }
+  @else {
+    color: lighten($text-color, 5%);
+
+    &:hover,
+    &:focus {
+      color: $text-color;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: lighten(saturate($bg, 4%), 1%);
+  }
+
+  &:active {
+    box-shadow: darken($bg, 10%) 0 1px 0;
+  }
+}
+
+/* A regular fucking button */
+.btn {
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+
+  font: bold 1em/1.4 $sans;
+  text-align: center;
+  padding: .6em 1.2em;
+
+  border: 0;
+  border-radius: 3em;
+
+  color: #fff;
+  background-color: $btn-color;
+
+  box-shadow: rgba($btn-color, .3) 0 3px 16px;
+
+  transition: background-color .2s ease-out,
+              box-shadow .2s ease-out;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: lighten(saturate($btn-color, 8%), 1%);
+    box-shadow: rgba(saturate($btn-color, 10%), .4) 0 3px 20px;
+  }
+
+  &:active {
+    transition: none;
+    background-color: darken($btn-color, 10%);
+    box-shadow: none;
+    color: rgba(#fff, .75);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: .35;
+    pointer-events: none;
+    filter: grayscale(.5);
+
+    &:hover,
+    &:active {
+      background-color: $btn-color;
+    }
+  }
+
+  .spinner-circular {
+    position: relative;
+    top: -.4em;
+    margin-right: .25em;
+    font-size: .5em;
+  }
+
+  &.mode--primary {
+    background-color: $btn-color-primary;
+    box-shadow: rgba($btn-color-primary, .3) 0 3px 16px;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+      background-color: saturate($btn-color-primary, 10%);
+      box-shadow: rgba(saturate($btn-color-primary, 10%), .4) 0 3px 20px;
+    }
+
+    &:active {
+      background-color: darken($btn-color-primary, 8%);
+      box-shadow: none;
+    }
+  }
+
+  &.mode--attention {
+    font-weight: bold;
+    background-color: $btn-color-attention;
+    box-shadow: rgba($btn-color-attention, .3) 0 3px 16px;
+
+    &:hover,
+    &:focus {
+      background-color: saturate($btn-color-attention, 10%);
+      box-shadow: rgba(saturate($btn-color-attention, 10%), .4) 0 3px 20px;
+    }
+
+    &:active {
+      background-color: darken($btn-color-attention, 8%);
+      box-shadow: none;
+    }
+  }
+
+  &.mode--danger {
+    font-weight: bold;
+    background-color: $btn-color-danger;
+    box-shadow: rgba($btn-color-danger, .3) 0 3px 16px;
+
+    &:hover,
+    &:focus {
+      background-color: lighten(saturate($btn-color-danger, 20%), 2%);
+      box-shadow: rgba(saturate($btn-color-danger, 10%), .4) 0 3px 20px;
+    }
+
+    &:active {
+      background-color: darken($btn-color-danger, 6%);
+      box-shadow: none;
+    }
+  }
+
+  &.mode--dark {
+    background-color: #000;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(#000, .7);
+    }
+
+    &:active {
+      color: rgba(#fff, .8);
+      background-color: rgba(#000, .9);
+    }
+  }
+
+  &.mode--light {
+    background-color: darken($light, 3%);
+    color: lighten($text-color, 10%);
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      background-color: $light;
+    }
+
+    &:active {
+      background-color: darken($light, 5%);
+    }
+  }
+
+  &.mode--transparent {
+    background: transparent;
+    color: $text-color;
+    transition: color .2s ease-out;
+    box-shadow: none;
+
+    &:active,
+    &:focus,
+    &[disabled] {
+      background-color: transparent;
+      color: inherit;
+      box-shadow: none;
+    }
+
+    &:hover {
+      background-color: transparent;
+      color: lighten($text-color, 15%);
+    }
+  }
+
+  &.mode--link {
+    color: $comp-blue;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+
+    .custom-icon--arrow-right {
+      margin-left: .5rem;
+    }
+
+    &:active,
+    &:focus {
+      background-color: transparent;
+      color: darken($comp-blue, 12%);
+      box-shadow: none;
+    }
+
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:hover {
+      background-color: transparent;
+      color: $comp-blue;
+    }
+
+    &[disabled] {
+      background-color: transparent;
+      color: $grey-tint;
+      box-shadow: none;
+
+      &:hover {
+        color: $grey-tint;
+        text-decoration: none;
+      }
+    }
+
+    &.faded:hover {
+      color: rgba($text-color, .8);
+    }
+
+    &.size--large {
+      font-weight: bold;
+      font-style: 1.2em;
+    }
+
+    &--dark {
+      font-weight: bold;
+      color: $comp-teal-dark;
+    }
+
+    &--primary {
+      color: $comp-green;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: darken(saturate($comp-green, 10%), 13%);
+      }
+    }
+
+    &--attention {
+      color: $btn-color-attention;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: darken(saturate($btn-color-attention, 10%), 8%);
+      }
+    }
+
+    &--danger {
+      color: $negative;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: saturate($negative, 20%);
+      }
+    }
+  }
+
+  &.mode--gray {
+    background-color: $grey-dark;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      background-color: lighten($grey-dark, 5%);
+    }
+
+    &:active {
+      background-color: darken($grey-dark, 3%);
+    }
+  }
+
+  &.mode--subtle {
+    border: 1px solid #D6D6D6;
+    background-color: #fefefe;
+    color: #666;
+    box-shadow: rgba(0, 0, 0, .05) 0 1px 1px;
+
+    &:hover {
+      background-color: #fff;
+      border-color: #c9c9c9;
+    }
+
+    &:active,
+    &:focus {
+      box-shadow: none;
+      color: #555;
+      background-color: #fafafa;
+    }
+
+    &[disabled] {
+      box-shadow: none;
+      background-color: #f5f5f5;
+      color: #aaa;
+    }
+  }
+
+  &.mode--subtle--primary:hover,
+  &.mode--subtle--danger:hover {
+    color: #fff;
+    box-shadow: none;
+  }
+
+  // Positive subtle button on hover
+  &.mode--subtle--primary {
+    transition: none;
+
+    &:hover {
+      background-color: $btn-color-primary;
+      border-color: $btn-color-primary;
+    }
+
+    &:active {
+      background-color: darken($btn-color-primary, 10%);
+      border-color: darken($btn-color-primary, 10%);
+    }
+  }
+
+  // Positive subtle button on hover
+  &.mode--subtle--danger {
+    transition: none;
+
+    &:hover {
+      background-color: $btn-color-danger;
+      border-color: $btn-color-danger;
+    }
+
+    &:active {
+      background-color: darken($btn-color-danger, 10%);
+      border-color: darken($btn-color-danger, 10%);
+    }
+  }
+
+  &.mode--loader {
+    &[disabled] {
+      opacity: .65;
+    }
+
+    .spinner-circular {
+      margin-right: 1em;
+    }
+  }
+
+  // A relief button, with more "push affordance".
+  &.style--push {
+    $offset: 3px;
+
+    border-radius: 4px;
+    position: relative;
+    padding: .7em 1.4em;
+    font-weight: 300;
+    top: -$offset;
+    margin-top: $offset;  // Accomodate for offset
+    transition: color .2s ease,
+                background-color .1s ease-out;
+
+    // White is default.
+    @include push-button-mode(#fefefe, $offset);
+
+    &:active {
+      top: -1px;
+    }
+
+    &.mode--primary {
+      @include push-button-mode($accent, $offset);
+    }
+  }
+
+  &.style--square {
+    border-radius: $border-radius;
+  }
+
+  &.style--ghost {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px currentColor;
+    color: $btn-color;
+    transition: none;
+    font-weight: bold;
+    transition: box-shadow .2s ease;
+
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      color: darken($btn-color, 10%);
+    }
+
+    &:active {
+      color: darken($btn-color, 20%);
+    }
+
+    &[disabled] {
+      background: transparent;
+      color: desaturate($btn-color, 20%);
+      opacity: .5;
+      box-shadow: inset 0 0 0 2px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: transparent;
+      }
+    }
+
+    &.mode--primary {
+      color: darken($comp-green, 5%);
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: darken($comp-green, 10%);
+        box-shadow: inset 0 0 0 2px currentColor;
+      }
+
+      &:active {
+        color: darken($comp-green, 20%);
+      }
+    }
+
+    &.mode--dark {
+      color: $dark;
+      transition: box-shadow .2s ease-out, color .2s ease-out;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        box-shadow: inset currentColor 0 0 0 1px;
+        color: rgba($dark, .6);
+      }
+    }
+
+    &.mode--steel {
+      color: darken($grey-tint, 10%);
+      transition: none;
+      box-shadow: inset 0 0 0 2px lighten($grey-tint, 5%);
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 2px darken($grey-tint, 10%);
+        color: darken($grey-tint, 20%);
+      }
+
+      &:active {
+        color: darken($grey-tint, 20%);
+      }
+    }
+
+    &.mode--attention {
+      color: $btn-color-attention;
+      transition: none;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 2px currentColor;
+        color: darken($btn-color-attention, 5%);
+      }
+
+      &:active {
+        color: darken($btn-color-attention, 10%);
+      }
+    }
+
+    &.mode--gray {
+      color: #888;
+      box-shadow: inset 0 0 0 2px #bbb;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: #6A6A6A;
+        box-shadow: inset 0 0 0 2px #9A9A9A;
+      }
+
+      &:active {
+        box-shadow: inset 0 0 0 2px #8a8a8a;
+      }
+    }
+
+    &.mode--danger {
+      color: $btn-color-danger;
+      transition: none;
+
+      &:hover,
+      &:focus {
+        background-color: darken($btn-color-danger, 10%);
+        color: #fff;
+        box-shadow: none;
+      }
+
+      &:active {
+        background-color: darken($btn-color-danger, 20%);
+      }
+    }
+
+    &.mode--light {
+      color: $light;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: $light;
+      }
+
+      &:active {
+        color: rgba($light, .8);
+      }
+    }
+  }
+
+  /* Modifiers */
+
+  &.btn--round {
+    border-radius: 100%;
+    padding: 0;
+    width: 1em;
+    height: 1em;
+  }
+
+  &.rounded--left {
+    border-radius: 2em 0 0 2em;
+    margin-right: -0.1em;
+    padding-left: 1.5em;
+    padding-right: 1em;
+  }
+
+  &.rounded--right {
+    border-radius: 0 2em 2em 0;
+    margin-left: -0.1em;
+    padding-right: 1.5em;
+    padding-left: 1em;
+  }
+
+  &.size--mini {
+    padding: .3em .7em;
+    font-size: .8rem;
+    border-radius: 3px;
+  }
+
+  &.size--large {
+    font-size: 1.1rem;
+    padding: .6em 1.3em;
+  }
+
+  &.size--larger {
+    font-size: 1.3rem;
+    padding: .7em 2em;
+
+    @include handheld {
+      font-size: 1rem;
+    }
+  }
+
+  &.style--wide {
+    padding-left: 2.8em;
+    padding-right: 2.8em;
+  }
+
+  // Icons
+
+  .icon {
+    position: relative;
+    top: -.2ex;
+
+    &:first-child {
+      margin-right: .3em;
+    }
+  }
+}
+
+.button-bar {
+  display: flex;
+
+  .btn {
+    border-radius: 0;
+    flex: 1;
+    margin-right: 1px;
+
+    // Ghost buttons have outlines, and need
+    // a negative margin to remove whitespace
+    // in between them.
+    &.style--ghost {
+      margin-right: -1px;
+    }
+    // Gray ghost buttons have *double* outlines! :D
+    &.style--ghost.mode--gray {
+      margin-right: -2px;
+    }
+  }
+
+  :first-child {
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    padding-left: .5em;
+    padding-right: 0;
+
+    &.size--mini {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+  }
+  :last-child {
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+    margin-right: 0;
+    padding-right: .5em;
+    padding-left: 0;
+
+    &.size--mini {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+}
+
+// A button with just an icon
+.btn-icon {
+  margin: 0 .5em;
+  display: inline-block;
+
+  .icon {
+    font-size: to_rem(20);
+  }
+}

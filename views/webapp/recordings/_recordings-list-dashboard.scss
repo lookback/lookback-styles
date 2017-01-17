@@ -1,0 +1,380 @@
+$table-text-color: darken($grey-dark, 10%);
+$table-highlight: $accent;
+
+.recordings-list-dashboard {
+  padding: 0 0 20px 0;
+
+  .mention {
+
+    &--you {
+      background-color: transparent;
+      box-shadow: none;
+      display: inline;
+      padding: 0;
+      color: saturate(darken($grey-tint, 13%), 28%);
+    }
+  }
+
+  table {
+    width: 100%;
+
+    th {
+      color: $table-text-color;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      font-size: 12px;
+      white-space: nowrap;
+      cursor: default;
+      padding: 0;
+      padding-bottom: 12px;
+      border-bottom: 0;
+      transition: color 100ms linear;
+      font-weight: 500;
+
+      .icon {
+        font-size: 1.1rem;
+      }
+
+      &:first-child {
+        padding-left: 15px;
+      }
+
+      &.sortable {
+        cursor: pointer;
+
+        /*
+         * An entypo icon representing a title, such as 'seen'
+         */
+        .title {
+          font-size: 17px;
+          color: $table-text-color;
+          font-weight: normal;
+
+          &:hover {
+            color: $table-highlight;
+          }
+          &:active {
+            color: darken($table-highlight, 15%);
+          }
+        }
+
+        .title + .sort-arrow {
+          margin-left: 0;
+          top: 10px;
+          left: -2px;
+        }
+
+        .sort-arrow {
+          line-height: 14px;
+          top: 0;
+          color: lighten(#73796D, 11%);
+          margin-left: 2px;
+
+          svg {
+            font-size: 11px;
+          }
+        }
+
+        &:hover {
+          color: darken($table-text-color, 10%);
+        }
+
+        &:active {
+          color: darken($table-text-color, 20%);
+        }
+      }
+    }
+
+    td {
+      background-color: #fff;
+      padding: 7px 4px;
+      border-bottom: 1px solid hsl(120, 9.1%, 95%);
+      color: $table-text-color;
+      white-space: nowrap;
+      vertical-align: middle;
+
+      &:first-child {
+        border-top-left-radius: 4px;
+        padding: 7px 0;
+        padding-left: 15px;
+      }
+    }
+
+    tr {
+      &.rec-row {
+        border-left: 3px solid transparent;
+        background-color: #fff;
+
+        &.streaming {
+
+          &.selected {
+            border-left-color: darken($comp-green, 10%);
+
+            td {
+              background-color: #e1f9ed;
+              color: darken($comp-green, 15%);
+            }
+          }
+
+          td {
+            color: darken($comp-green, 10%);
+          }
+        }
+
+        &:hover:not(.selected) {
+          background-color: #fbfbfb;
+
+          .rec-row__thumbs {
+            opacity: 1;
+          }
+
+          td {
+            background-color: #fbfbfb;
+          }
+
+          .rec-row__user {
+            opacity: 1;
+          }
+        }
+      }
+
+      &.selected {
+        border-left-color: $comp-blue;
+
+        .rec-row__name {
+          a {
+            color: currentColor;
+          }
+        }
+
+        td {
+          color: #4C6C82;
+          background: #F0F9FF;
+          border-bottom-color: #DFECF5;
+
+          &.info-text .relative {
+            padding-left: 6px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.rec-row {
+  input[type="text"] {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border: 0;
+    background-color: transparent;
+    flex: 1;
+    padding-right: 25%;
+  }
+
+  .comments-bubble {
+    font-weight: 500;
+    background-color: #e9e9e9;
+    color: #666;
+    display: inline-block;
+    border-radius: 4em;
+    padding: 0 0.5em;
+    font-size: .9em;
+    line-height: 19px;
+  }
+
+  .rec-row__user {
+    opacity: .8;
+  }
+
+  .unknown-user {
+    @include truncate($max: 100px);
+    vertical-align: middle;
+  }
+
+  &.streaming {
+    .rec-row__name .rec-row__link {
+      font-weight: bold;
+      color: darken($comp-green, 10%);
+    }
+  }
+}
+
+.rec-row__name {
+  display: flex;
+  align-items: center;
+  padding-right: 2px;
+
+  a {
+    color: darken($table-text-color, 10%);
+  }
+
+  &.new {
+    .rec-row__link {
+      color: desaturate(darken($table-text-color, 25%), 10%);
+      font-weight: bold;
+    }
+  }
+}
+
+.rec-row__link {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.rec-row__thumbs {
+  width: 42px;
+  height: 27px;
+  box-shadow: rgba(#000, .2) 0 1px 2px;
+
+  // Hide overflow since thumbnails vary in height
+  overflow: hidden;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  opacity: .9;
+
+  img {
+    vertical-align: top;
+  }
+}
+
+// The inline single recording actions that appear on hover
+.rec-row__actions {
+  position: absolute;
+  right: 5px;
+  top: 1px;
+
+  .component-subscription {
+    // Weird Safari click event glitch.
+    position: relative;
+    z-index: 20;
+  }
+
+  &--rename {
+
+  }
+
+  .rec-row__action {
+    cursor: pointer;
+    transition: color 150ms ease-out;
+    color: $table-text-color;
+
+    &:hover {
+      color: darken($table-text-color, 10%);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.rec-row__actions--tools {
+  font-size: 15px;
+
+  .rec-row__action {
+    display: none;
+    margin-right: 5px;
+
+    &.favorite.active {
+      color: $comp-yellow;
+      display: inline-block;
+    }
+  }
+}
+
+tr.selected,
+tr.selected:hover {
+  .rec-row__thumbs {
+    opacity: 1;
+  }
+}
+
+tr:hover .rec-row__actions--tools {
+  .rec-row__action {
+    display: inline-block;
+  }
+}
+
+.rec-row__app {
+  width: 34px;
+  height: 42px;
+
+  img {
+    vertical-align: middle;
+    margin-right: 8px;
+    height: 27px;
+    width: 27px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    min-width: 27px;
+
+    &.unrendered {
+      border-radius: 6px;
+    }
+  }
+}
+
+.rec-row__device {
+  .icon {
+    font-size: 1.1rem;
+    margin-right: 4px;
+    vertical-align: sub;
+  }
+}
+
+.rec-row__device__type {
+  display: none;
+}
+
+@media only screen and (max-width: 1281px) {
+  .rec-row__device__type {
+    display: inline;
+  }
+  .rec-row__device__name {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .rec-row__device__type,
+  .rec-row__device__name {
+    display: none;
+  }
+
+  .rec-row__device {
+    text-align: center;
+
+    .icon {
+      margin-right: 0;
+    }
+  }
+}
+
+.rec-row__tags__item {
+  color: #fff;
+
+  background-image: linear-gradient(#D1DDAF, #C5D390);
+  box-shadow: inset 0 -1px 0px darken(#C5D390, 7%),
+              0 1px 1px rgba(#000, .1);
+
+  display: inline-block;
+  margin: 1px 5px 0 0;
+  padding: 1px 6px 2px;
+  border-radius: 4px;
+
+  // Dont show more than three tags in the list view.
+  &:nth-child(n+4) {
+    display: none;
+  }
+}
+
+// Show "and more" if there are too many tags
+.rec-row__tags__more {
+  display: none;
+  &:nth-child(n+5) {
+    display: inline-block;
+  }
+}

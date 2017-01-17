@@ -1,0 +1,76 @@
+.webapplayout {
+  background-color: $background-webapp;
+
+  [role="main"] {
+    // Make text smaller in webapp.
+    font-size: to_rem(13);
+  }
+}
+
+.accountslayout {
+  background-color: $comp-blue-light;
+
+  [role="banner"] {
+    padding: $lineheight*2 5% $lineheight*2;
+    box-shadow: none;
+    text-align: center;
+    position: static;
+    height: auto;
+
+    .lookback-logo {
+      font-size: 1.2rem;
+    }
+
+    @include handheld {
+      padding: $lineheight 5% $lineheight*2;
+    }
+  }
+
+  [role="main"] {
+    text-align: center;
+
+    h1, h2 {
+      font-family: $sans;
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+    h1 {
+      font-size: to_rem(32);
+      font-weight: 300;
+      margin-bottom: $lineheight*3;
+      color: $comp-teal-dark;
+
+      @include handheld {
+        margin-bottom: $lineheight*2;
+        font-size: to_rem(28);
+      }
+    }
+
+    h2 {
+      color: $comp-blue-faded;
+    }
+
+    .heading-group {
+      margin-bottom: 0;
+
+      & + h2 {
+        font-size: to_rem(16);
+        margin-bottom: $lineheight*3;
+
+        @include handheld {
+          font-size: to_rem(15);
+        }
+      }
+    }
+  }
+}
+
+
+.fullpagelayout {
+  background-color: $background-webapp;
+
+  [role="main"] {
+    @include center(all);
+  }
+}

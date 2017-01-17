@@ -1,0 +1,16 @@
+@mixin overlay {
+  position: absolute;
+  display: block;
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  @content;
+}
+
+@mixin dark-overlay($opacity: .6, $color: #000) {
+  @include overlay;
+  background-color: $color;
+  opacity: $opacity;
+}

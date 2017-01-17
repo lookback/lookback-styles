@@ -1,0 +1,28 @@
+/* =LIVE COMMENTS
+--------------------------------------------- */
+
+.player-comments-container {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 340px;
+  z-index: 201;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.player-live-comment {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(#000, .4) 0 1px 10px;
+  margin-bottom: 5px;
+  padding: .4rem;
+
+  &--fade-out {
+    transition: opacity 2s 1s, transform 2s 1.6s;
+    opacity: 0 !important;
+    transform: scale(.85) !important;
+  }
+}

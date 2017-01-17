@@ -1,0 +1,195 @@
+// Root node
+.player--live {
+
+  // Put Intercom stuff to the right to not obscure comment field.
+  #intercom-container .intercom-launcher-frame,
+  #intercom-container .intercom-app-launcher-enabled .intercom-messenger-frame {
+    left: 20px;
+    right: auto;
+  }
+
+  [role="main"] {
+    display: flex;
+  }
+
+  video {
+    max-width: 100%;
+    transition: opacity .15s ease;
+
+    &.stream-loading {
+      opacity: 0;
+    }
+
+    &.stream-offline {
+      opacity: .3;
+    }
+  }
+}
+
+.live-player__duration {
+  font-size: .8em;
+  color: $comp-blue;
+}
+
+.live-player__infobox {
+  background-color: #fff;
+  box-shadow: $box-shadow-light 0 1px 10px;
+  border-radius: 8px;
+  padding: .5rem .8rem;
+  margin-bottom: $lineheight / 2;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  h2 {
+    font-size: to_rem(16);
+    font-weight: 300;
+    color: $comp-teal-dark;
+    margin-bottom: .5rem;
+  }
+
+  &__recording-name {
+    @include truncate($max: 95%, $display: block);
+  }
+
+  // Button at the bottom
+  &__cat {
+    border-radius: 0 0 8px 8px;
+    text-transform: lowercase;
+    margin: 1rem 0rem -0.5rem -.8rem;
+    font-weight: bold;
+    padding: .7em;
+    width: 110.5%;
+  }
+
+  .live-player__recording-details {
+    border-top: 1px solid rgba($comp-teal-dark, .12);
+    padding-top: .25rem;
+  }
+}
+
+.live-player__recording-details {
+  @include list-reset;
+  font-size: .9em;
+  color: darken($comp-blue-light, 50%);
+  font-weight: 300;
+
+  .list-icon {
+    margin: 0 .5rem;
+    opacity: .6;
+    font-size: 1.1em;
+    position: relative;
+    top: -1px; // #pixelfucking
+  }
+}
+
+.live-player-container {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: rgb(8, 43, 56);
+  color: rgba($comp-teal-light, .7);
+  font-size: .9rem; // Notch up the font size a bit on detail text.
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $sans;
+    font-weight: 300;
+    color: $comp-teal-light;
+  }
+}
+
+.player-live-dropdown {
+  width: 280px;
+  border-radius: 7px;
+  background-color: $comp-blue-light;
+  border: 0;
+  font-size: .9em;
+  box-shadow: rgba(#000, .2) 0 10px 30px;
+  padding: .7rem;
+
+  .btn.size--large {
+    border-radius: 7px;
+    width: 100%;
+  }
+
+  .live-player__users {
+    h2 {
+      margin-left: 0;
+    }
+  }
+
+  &[data-dropdown-align="right"] {
+    text-align: left;
+  }
+}
+
+@keyframes creditIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.live-player-credits {
+  color: #fff;
+  font-size: 1.1em;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  @include center(all);
+
+  .icon {
+    font-size: 10rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: creditIn .4s ease both;
+  }
+
+  h1 {
+    color: #fff;
+  }
+
+  &__list {
+    @include list-reset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      min-width: 100px;
+      opacity: 0;
+      animation: creditIn .4s ease both;
+
+      &:nth-child(2) { animation-delay: .1s; }
+      &:nth-child(3) { animation-delay: .1s; }
+      &:nth-child(4) { animation-delay: .1s; }
+    }
+
+    img {
+      border-radius: 100%;
+      width: 60px;
+      display: block;
+      margin: 0 auto .5rem;
+    }
+  }
+}
+
+@import "live/live-player";
+@import "live/live-player-lobby";
+@import "live/live-player-userlist";
+@import "live/live-modal";

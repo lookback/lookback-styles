@@ -1,0 +1,108 @@
+/* =CHANGELOG DROPDOWN
+--------------------------------------------- */
+
+.dropdown-changelog {
+  $side-padding: 1rem;
+
+  min-width: 400px;
+  padding: .25rem $side-padding .75rem;
+
+  .dropdown__heading {
+    padding-left: 0;
+    margin: 0 0 5px;
+    position: relative;
+
+    span {
+      background-color: #fff;
+      padding-right: 10px;
+      position: relative;
+      z-index: 10;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      display: block;
+      top: 13px;
+      right: -$side-padding;
+      left: 0;
+      background-color: $grey-light;
+    }
+  }
+
+  .spinner-circular {
+    margin-left: 5px;
+    position: relative;
+    top: -2px;
+  }
+
+  &__list {
+    @include list-reset;
+    margin-bottom: 1em;
+
+    li {
+      margin-left: -$side-padding;
+      margin-right: -$side-padding;
+    }
+
+    a {
+      position: relative;
+      color: $grey-dark;
+      padding: .4em $side-padding;
+      @include truncate($max: 398px); // #pixelfucking
+      display: block;
+
+      &:hover {
+        text-decoration: none;
+        background-color: #f7f7f7;
+      }
+
+      .badge {
+        margin-right: .5rem;
+        text-transform: none;
+        border-color: #ccc;
+        color: #aaa;
+      }
+    }
+
+    &--is-new {
+      a {
+        color: darken($grey-dark, 20%);
+        font-weight: bold;
+      }
+
+      .badge {
+        position: relative;
+        border-color: #aaa;
+        color: gray;
+
+        &::before {
+          content: '';
+          display: block;
+          border-radius: 100%;
+          background-color: $comp-blue;
+          position: absolute;
+          width: 7px;
+          height: 7px;
+          right: -4px;
+          top: -3px;
+        }
+      }
+    }
+  }
+
+  &__links {
+    margin-top: .5rem;
+    font-size: .85em;
+
+    a {
+      margin-right: 5px;
+    }
+  }
+
+  // Overrriiiide.
+  &[data-dropdown-align="right"] {
+    text-align: left;
+  }
+}

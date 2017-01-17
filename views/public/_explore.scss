@@ -1,0 +1,40 @@
+.explore {
+  background: $accent;
+  color: #fff;
+
+  [role="main"] {
+    @include wrap;
+    @include center(all);
+    max-width: 30rem;
+    text-align: center;
+    padding: $lineheight 0 $lineheight*2;
+
+    a:not(.btn) {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .btn {
+      padding-left: 4em;
+      padding-right: 4em;
+    }
+
+    h1 {
+      font-size: 6rem;
+      margin: $lineheight*2 0;
+
+      strong, span {
+        display: block;
+        line-height: 1;
+      }
+
+      span {
+        font-size: .7em;
+      }
+    }
+  }
+
+  [role="contentinfo"] {
+    @include footer-style($accent);
+  }
+}

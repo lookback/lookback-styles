@@ -1,0 +1,84 @@
+/* Not found
+------------------------------------------------- */
+
+.not-found {
+  min-height: 82vh;
+  color: rgba($comp-teal-dark, .7);
+  background-color: $comp-blue-light;
+  @include center(all);
+
+  h1 {
+    font-weight: 300;
+    font-size: to_rem(40);
+    font-family: $sans;
+    text-align: center;
+    color: $comp-teal-dark;
+  }
+
+  &__content {
+    @include wrap($max-width: to_rem(500));
+    font-size: 1rem;
+  }
+}
+
+.not-found-teams-list {
+  @include list-reset;
+  text-align: left;
+  margin: 0 auto $lineheight;
+  max-width: to_rem(300);
+
+  > li {
+    &:first-child a {
+      border-radius: $border-radius $border-radius 0 0;
+    }
+    &:last-child a {
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $background-webapp;
+    }
+  }
+
+  .team__name {
+    color: $link-color;
+    margin-bottom: 0;
+  }
+
+  a {
+    display: block;
+    background-color: #fff;
+    padding: .4em .8em;
+
+    &:hover {
+      text-decoration: none;
+      background-color: rgba(#fff, .8);
+    }
+  }
+
+  .team__members {
+    font-size: .85em;
+
+    small {
+      color: $text-color;
+    }
+  }
+
+  .team__members-list {
+    @include list-reset;
+    display: inline;
+    color: #888;
+
+    li {
+      display: inline;
+    }
+
+    &.has-additional {
+      li {
+        &:not(:last-child)::after {
+          content: ', ';
+        }
+      }
+    }
+  }
+}

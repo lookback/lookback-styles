@@ -1,0 +1,27 @@
+/* =RECORDING CONTROLS
+
+  These are the controls user can manipulate recordings
+  in the dashboard with, after selecting them.
+--------------------------------------------- */
+
+.dashboard-rec-ctrl {
+  display: flex;
+  align-items: center;
+  font-size: .95em;
+  transition: opacity .2s ease;
+
+  &--inactive {
+    pointer-events: none;
+    opacity: .5;
+  }
+
+  &__action {
+    &:not(:first-child) {
+      margin-left: 5px;
+    }
+
+    .icon {
+      font-size: 1.2em;
+    }
+  }
+}

@@ -1,0 +1,134 @@
+/* =BILLING SETTINGS
+--------------------------------------------- */
+
+.settings-billing {
+
+  &__upgrade-notice {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: $lineheight 0;
+    font-weight: 300;
+    color: $comp-teal-dark;
+    font-size: to_em(20);
+    text-align: center;
+
+    h1 {
+      font-weight: 300;
+      font-size: to_rem(40);
+      // text-align: center;
+    }
+
+    .btn {
+      min-width: 150px;
+    }
+
+    p {
+      margin-bottom: $lineheight / 2;
+
+      &:last-child {
+        // text-align: center;
+        margin-top: $lineheight * 2;
+      }
+    }
+
+    a {
+      margin-bottom: $lineheight;
+    }
+
+    .small-print {
+      font-size: to_rem(14);
+    }
+  }
+}
+
+// Settings box with payment details
+.billing-payment-info {
+  justify-content: space-between;
+  align-items: center;
+  font-size: to_em(17);
+  color: $grey-tint;
+  max-width: 400px;
+  width: 100%;
+
+  &__card {
+    margin-right: 1rem;
+  }
+
+  &__digits {
+    color: $comp-teal-dark;
+  }
+
+  .btn {
+    // For some weird reason, .btn isn't perfectly aligned.
+    vertical-align: inherit;
+  }
+
+  &__overdue {
+    border-color: red;
+  }
+}
+
+// Le Modal
+.modal.modal-billing-plans {
+  // Don't use flexbox here, as it screws up the vertical
+  // scrolling when the content is overflowing the viewport.
+  display: block;
+
+  .modal__inner {
+    margin: $lineheight*2 auto;
+    width: 90%;
+    max-width: 880px;
+  }
+
+  h1 {
+    font-size: to_rem(40);
+    margin-bottom: 0;
+  }
+
+  .pricing-table {
+    font-size: .9em;
+  }
+
+  .modal-billing-plans__pricing-summary {
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: $box-shadow-light 0 5px 30px;
+    overflow: hidden;
+    background-color: #fff;
+    color: $comp-teal-dark;
+    padding: $lineheight 30%;
+
+    .settings-form__summary-list {
+      margin: 0 0 $lineheight*2;
+    }
+
+    .pricing-table__column__header {
+      border-bottom: 1px solid $main-border-color;
+      padding-bottom: $lineheight;
+      margin-bottom: $lineheight;
+    }
+
+    // We need to override this ..
+    .pricing-table__plan-name {
+      font-weight: bold;
+      font-size: to_rem(20);
+      margin-bottom: 0;
+    }
+
+    .btn {
+      min-width: 200px;
+    }
+
+    .pricing-summary__terms {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      label:not(.switch) {
+        margin-left: 1rem;
+        font-weight: normal;
+        color: rgba($comp-teal-dark, .7);
+      }
+    }
+  }
+}

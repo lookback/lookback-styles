@@ -1,0 +1,125 @@
+.player-comment-form {
+  margin-top: $lineheight;
+  display: flex;
+
+  .comment-form__avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 18px;
+
+    @include handheld {
+      display: none;
+    }
+  }
+
+  .comment-form__header {
+    display: flex;
+    justify-content: space-between;
+
+    label {
+      flex: 1;
+      color: $comp-teal-dark;
+    }
+
+    @include handheld {
+      padding-left: $player-side-padding;
+      padding-right: $player-side-padding;
+    }
+  }
+
+  .comment-form__content {
+    flex: 1;
+  }
+
+  .markdown-link {
+    opacity: .6;
+    transition: opacity .15s ease-out;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .markdown-icon {
+      height: 12px;
+      width: 20px;
+      top: auto;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    height: $lineheight*3;
+    transition: height .15s;
+
+    // Disable iOS zoom.
+
+    @include handheld {
+      font-size: 16px;
+      border-radius: 0;
+      border-width: 1px 0 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .comment-form__content__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
+      font-size: .9em;
+      color: $grey-dark;
+
+      a, strong {
+        color: $text-color;
+      }
+    }
+
+    @include handheld {
+
+      input[type="submit"].btn {
+        width: 100%;
+        border-radius: 0;
+        border-width: 0 0 1px;
+        padding: .8em 1em;
+      }
+    }
+  }
+}
+
+.player-comment-form__blank {
+  margin-left: 65px;
+  text-align: center;
+  font-size: .9rem;
+  color: #888;
+  background-color: rgba(#000, .02);
+  border-radius: 5px;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  box-shadow: inset rgba(#000, .04) 0 0 2px;
+  border: 1px solid rgba(#000, 0.08);
+
+  h2 {
+    @include player-heading;
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+  }
+
+  .btn {
+    padding: .5em 2em;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  @include handheld {
+    margin-left: 0;
+  }
+}

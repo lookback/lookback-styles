@@ -1,0 +1,125 @@
+/* =TERMS
+--------------------------------------------- */
+
+@keyframes TargetAppear {
+  0% {
+    color: $accent;
+  }
+  100% {
+    color: $text-color;
+  }
+}
+
+.acceptnewterms,
+.terms,
+.privacypolicy,
+.serviceagreement,
+.dmca {
+
+  .legal-content {
+    margin-bottom: $lineheight*4;
+
+    // Starker headings!
+    h2, h3, h4, h5 {
+      color: $text-color;
+    }
+
+    h2 {
+      text-align: center;
+      @include has-separator; // ::after
+      margin-top: $lineheight*4;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &::before {
+        counter-increment: h2;
+        content: counter(h2) '. ';
+        color: $accent;
+      }
+
+      &:hover,
+      &.target {
+        .anchor-link {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      &.target {
+        animation: TargetAppear 2s 400ms ease;
+      }
+    }
+
+    ol {
+      list-style-type: upper-roman;
+    }
+  }
+
+  .subheading {
+    font-family: $serif;
+    text-align: center;
+    position: relative;
+
+    &::before,
+    &::after {
+      height: 1px;
+      background-color: $accent;
+      display: block;
+      content: '';
+      position: absolute;
+      top: .9rem;
+      width: 2rem;
+    }
+
+    &::before {
+      left: -3rem;
+    }
+    &::after {
+      right: -3rem;
+    }
+  }
+
+  .accept-terms-controls {
+    margin-bottom: 2em;
+    text-align: center;
+  }
+
+  [role="main"] {
+    counter-reset: h2;
+
+    header {
+      @include center(all);
+      height: $lineheight*10;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+    }
+  }
+
+  // Super small, mostly embedded screens
+  @include smaller-than(319px) {
+    .legal-content {
+      font-size: .9rem;
+    }
+
+    [role="main"] {
+      h1 {
+        font-size: to_em(24);
+        margin-bottom: .5rem;
+      }
+
+      .subheading::before,
+      .subheading::after {
+        display: none;
+      }
+    }
+  }
+
+  [role="contentinfo"] {
+    @include footer-style($accent);
+  }
+}

@@ -1,0 +1,97 @@
+/* =RADIO BUTTON (custom, stylable)
+--------------------------------------------- */
+
+.fancy-radio {
+  $size: 13px;
+  $bullet-size: 5px;
+  $highlight-color: $comp-green;
+  $base-shadowing: inset rgba(#000, .15) 0 0px 0px 1px,
+              inset rgba(#000, .1) 0 1px 2px;
+
+  display: inline-block;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0,0,0, 0);
+  user-select: none;
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    left: -999px;
+
+    &:active + span {
+      background-color: #eee;
+    }
+
+    &:checked + span {
+      background-color: $highlight-color;
+      box-shadow: none;
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    &:checked:active + span {
+      background-color: darken($highlight-color, 10%);
+
+      &::after {
+        background-color: #eee;
+      }
+    }
+
+    &:focus + span {
+      box-shadow: inset $highlight-color 0 0 0 1px,
+                  inset rgba(#000, .1) 0 1px 2px;
+    }
+
+    &[disabled] {
+      & + span {
+        opacity: .6;
+      }
+
+      &:checked + span {
+        background-color: #f5f5f5;
+        box-shadow: inset rgba(#000, .25) 0 0 0 1px,
+                    rgba(#000, .1) 0 0 2px;
+
+        &::after {
+          background-color: #6F6F6F;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  span {
+    border-radius: 100%;
+    display: inline-block;
+    box-shadow: $base-shadowing;
+    width: $size;
+    height: $size;
+    position: relative;
+    margin-right: 5px;
+    top: 2px;
+    transition: box-shadow .15s ease-out;
+
+    // Knob
+
+    &::after {
+      // Hide initially
+      opacity: 0;
+      transform: scale(0);
+      transition: transform .15s ease-out;
+
+      pointer-events: none;
+      content: '';
+      border-radius: 100%;
+      position: absolute;
+      top: calc(50% - #{$bullet-size / 2});  // Center
+      left: calc(50% - #{$bullet-size / 2}); // Center
+      display: inline-block;
+      width: $bullet-size;
+      height: $bullet-size;
+      background-color: #fff;
+    }
+  }
+}

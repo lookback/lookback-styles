@@ -1,0 +1,22 @@
+/* =USER LIST
+
+See client/components/horizontal-user-list
+--------------------------------------------- */
+
+.horizontal-user-list {
+  @include list-reset;
+
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: -15px;
+      transform: translate(0, 0); // Fix weird z-index layering
+    }
+  }
+
+  .avatar {
+    box-shadow: #fff 0 0 0 2px;
+    background-color: #fff;
+  }
+}

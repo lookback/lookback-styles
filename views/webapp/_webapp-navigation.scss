@@ -1,0 +1,122 @@
+/* =WEBAPP NAV
+---------------------------------------- */
+
+.webapplayout {
+
+  [role="banner"] {
+    padding: 0 .8rem 0 calc(#{$webapp-sidebar-spacing} + 2px);
+    background-color: #fff;
+    box-shadow: inset $webapp-border 0 -1px 0;
+  }
+
+  .navigation {
+
+    .navigation__main {
+      .logo {
+        padding-right: 1rem;
+      }
+    }
+
+    .navigation__misc {
+      .dropdown {
+        min-width: 10rem;
+        text-align: left;
+      }
+    }
+
+    .navigation__teams {
+
+      .dropdown__trigger {
+        font-weight: normal;
+        font-size: .9rem;
+
+        &.dropdown--open {
+          color: $text-color;
+        }
+
+        @include handheld {
+          .icon {
+            position: relative;
+            top: -2px;
+          }
+        }
+      }
+
+      .team__name {
+        @include truncate();
+        vertical-align: bottom;
+
+        @include smaller-than(950px) {
+          max-width: 100px;
+        }
+
+        @include handheld {
+          display: none;
+        }
+      }
+
+      .team__role__preposition {
+        color: $grey-tint;
+      }
+
+      .teams__add-new {
+
+        .btn {
+          width: 100%;
+          padding: .4em;
+        }
+      }
+    }
+
+    .navigation__mobile {
+      .navigation__teams {
+        padding-top: 0;
+        padding-bottom: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      // Increase tap area
+      .dropdown__trigger {
+        padding: 1em .5em;
+      }
+
+      .add-member-trigger {
+        margin: 0;
+      }
+    }
+  }
+
+  .navigation__settings {
+    padding: 15px 10px;
+  }
+}
+
+.add-new-user-dropdown {
+  padding: 10px 0;
+  max-width: 350px;
+
+  form {
+    display: flex;
+  }
+
+  input[type="submit"] {
+    min-width: 122px;
+    text-align: right;
+  }
+
+  input[type="email"] {
+    flex: 1;
+    padding-left: 10px;
+    margin: 0;
+    font-size: to_rem(14);
+  }
+
+  &__explanation {
+    color: $grey-dark;
+    font-size: to_em(13);
+    padding: 5px 10px 0;
+    margin: 10px 0 0;
+    border-top: 1px solid $grey-light;
+  }
+}

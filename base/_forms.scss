@@ -1,0 +1,488 @@
+/* =FORMS
+--------------------------------------------- */
+
+select {
+  padding: .2em .6em;
+  font-size: 1.1em;
+  border: 1px solid lighten($grey-tint, 10%);
+  color: $comp-teal-dark;
+  border-radius: 4px;
+  box-shadow: rgba($grey-tint, .3) 0 1px 1px;
+  transition: box-shadow .2s ease;
+  background-color: #fff;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &:hover {
+    border-color: lighten($grey-tint, 5%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &.style--bare {
+    border: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  &.size--mini {
+    padding: .1em .5em;
+    font-size: .9rem;
+  }
+}
+
+// Since <select> doesn't support ::after, we wrap it in a label
+// and use that instead.
+label.select {
+  position: relative;
+  font-weight: normal;
+  display: inline-block;
+
+  select {
+    // MAKE WAY
+    padding-right: 1em;
+  }
+
+  &::after {
+    $size: 4px;
+
+    content: '';
+    display: inline-block;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: calc(50% - #{$size / 2});
+    @include arrow($size, $color: #999, $direction: down);
+  }
+
+  &:hover::after {
+    border-top-color: #555;
+  }
+}
+
+%form-read-only {
+  font-family: $mono;
+  font-size: to_em(13);
+  padding: 6px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+textarea,
+.text-field {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  height: auto;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid darken($main-border-color, 5%);
+  border-radius: 4px;
+  padding: .6em;
+  background-color: #fefefe;
+  box-shadow: inset rgba(#000, .05) 0 1px 2px;
+  transition: color .15s ease-out,
+              opacity .15s ease-out;
+
+  &:focus {
+    outline: 0;
+    color: $text-color;
+    border-color: $comp-green;
+    background-color: #fff;
+    box-shadow: none;
+  }
+
+  /* Placeholder styling */
+  @include placeholder {
+    color: #999;
+    @include smooth;
+  }
+
+  &[disabled] {
+    color: $grey;
+    cursor: not-allowed;
+    box-shadow: rgba(#000, .1) 0 0 1px;
+    opacity: .8;
+  }
+
+  /* Modifiers */
+
+  &.size--mini {
+    font-size: .8rem;
+    padding: 6px;
+  }
+
+  &.size--large {
+    font-size: 1.1rem;
+    width: 30rem;
+  }
+
+  &.mode--negative {
+    color: $negative;
+    box-shadow: inset $negative 0 -2px 0;
+  }
+
+  &.mode--positive {
+    color: $positive;
+    box-shadow: inset $positive 0 -2px 0 0;
+  }
+
+  &.style--code {
+    font-family: $mono;
+    font-size: to_em(12);
+    color: #666;
+  }
+
+  &.style--bare {
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  &.style--flat {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: inset $grey-tint-light 0 -1px 0;
+    padding: 5px 0;
+    max-width: 100%;
+    color: rgba($text-color, .8);
+    transition: color .2s ease-out, box-shadow .1s ease-out;
+
+    @include placeholder {
+      color: rgba($grey-tint, .8);
+    }
+
+    &:focus {
+      background: transparent;
+      box-shadow: inset $comp-green 0 -2px 0;
+    }
+
+    &.mode--negative {
+      box-shadow: inset $negative 0 -2px 0;
+    }
+
+    &.size--large {
+      font-weight: 300;
+      padding: 5px 0 .8rem .5rem;
+      font-size: to_rem(24);
+    }
+  }
+
+  &.style--read-only {
+    @extend %form-read-only;
+  }
+
+  &.style--flat--read-only {
+    @extend %form-read-only;
+    border-width: 0 0 1px;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: to_rem(10);
+  }
+
+  &.mode--selectable {
+    cursor: pointer;
+    -webkit-user-select: text;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  &.style--pill {
+    background-color: #fff;
+    color: $comp-blue;
+    border: 1px solid $webapp-border;
+    box-shadow: none;
+    border-radius: 3em;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.4em 1em;
+
+    &:focus {
+      background-color: rgba(#fff, .9);
+    }
+
+    &.mode--primary {
+      color: $comp-green;
+    }
+
+    &.mode--attention {
+      color: $comp-orange;
+    }
+
+    &.size--large {
+      font-size: 1.1em;
+      padding: 0.6em 2em;
+    }
+  }
+}
+
+input[type="date"],
+input[type="number"] {
+  padding: 0.6em;
+}
+
+input[type="search"] {
+  border-radius: 3em;
+  padding: .5em;
+  padding-left: 2em;
+  background-image: url('/images/search.svg');
+  background-repeat: no-repeat;
+  background-position: 9px center;
+  background-size: 15px 15px;
+
+  &.size--mini {
+    padding-left: 2em;
+    background-size: 12px 12px;
+    background-position: 7px center;
+  }
+}
+
+input[type="number"] {
+  width: 5em;
+}
+
+textarea {
+  display: block;
+  resize: vertical;
+
+  &.size--short {
+    height: $lineheight*3;
+    min-height: $lineheight*3;
+  }
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  font-size: .9rem;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: 5px;
+    position: relative;
+    top: -1px;
+  }
+
+  &.inline {
+    display: inline-block;
+
+    & + input {
+      margin-left: 5px;
+      margin-right: 15px;
+    }
+  }
+
+  &[for] {
+    cursor: pointer;
+  }
+}
+
+.short-form {
+  max-width: 40rem;
+}
+
+.input-row {
+  display: flex;
+
+  label.input-row__label {
+    margin-right: 2rem;
+    align-self: center;
+  }
+
+  &.input-row--centered {
+    align-items: center;
+  }
+
+  &.input-row--top {
+    align-items: flex-start;
+  }
+
+  .input-row__item {
+    flex: 1;
+    margin: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+  }
+
+  input[type="submit"],
+  .btn {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
+}
+
+.form-label {
+  font-family: $sans;
+  display: block;
+  color: darken($grey-dark, 10%);
+  font-size: to_rem(12);
+  font-weight: normal;
+  line-height: 1.2;
+  margin-bottom: 5px;
+
+  &__description {
+    color: darken($grey, 10%);
+    margin-left: 3px;
+  }
+}
+
+.inline-label {
+  display: inline-block;
+  font-weight: 300;
+  font-size: to_em(22);
+
+  @include handheld {
+    font-size: to_em(18);
+  }
+}
+
+.form-list {
+  @include list-reset;
+  margin-top: 5px;
+
+  li:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  &--horizontal {
+    li {
+      display: inline-block;
+      margin-right: 2rem;
+
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Range input
+
+@mixin range-track {
+  &::-webkit-slider-runnable-track {
+    @content;
+  }
+  &::-moz-range-track {
+    @content;
+  }
+  &::-ms-track {
+    @content;
+  }
+}
+
+@mixin range-thumb {
+  &::-webkit-slider-thumb {
+    @content;
+  }
+  &::-moz-range-thumb {
+    @content;
+  }
+  &::-ms-thumb {
+    @content;
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+
+    @include range-thumb {
+      background-color: #fff;
+    }
+  }
+
+  &::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+
+  @include range-thumb {
+    -webkit-appearance: none;
+    background-color: darken(#fff, 2%);
+    cursor: pointer;
+    box-shadow: rgba(#000, .2) 0 1px 1px, rgba(#000, .3) 0 0 1px, rgba(#000, .2) 0 1px 5px;
+    border-radius: 100%;
+    width: 17px;
+    height: 17px;
+    position: relative;
+    top: -4.5px;
+    transition: background-color .2s ease-out;
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  @include range-track {
+    background-color: $comp-green;
+    border-radius: 2em;
+    height: 8px;
+    cursor: pointer;
+  }
+}
+
+// Bar for the step indicators for a range input.
+.range-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  color: #777;
+  font-size: 0.8em;
+
+  .range__step--mark {
+    height: 5px;
+    width: 1px;
+    background-color: #ccc;
+  }
+}
+
+// Options bar for switching context flow in a form
+.form__flow-switcher {
+  $accent-color: $comp-blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: inline-block;
+    padding: .4em 1rem;
+    font-size: to_em(18);
+    font-weight: 300;
+    color: darken($grey-tint, 10%);
+    transition: color .2s, box-shadow .2s;
+
+    &:hover {
+      text-decoration: none;
+      color: $text-color;
+    }
+
+    &.link-current {
+      @include arrow-box($color: #ececec, $offset: -17px, $padding: .4em 1rem);
+
+      color: $comp-blue;
+    }
+  }
+}

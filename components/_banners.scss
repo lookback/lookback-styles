@@ -1,0 +1,49 @@
+.notice-banner {
+  font-size: 0.9em;
+
+  display: flex !important; // Because of Momentum adding display: block.
+  align-items: center;
+  justify-content: center;
+
+  background-color: $comp-teal;
+  text-align: center;
+  color: rgba(#fff, .9);
+  padding: .4rem 1rem;
+  height: $banner-height;
+  transition: box-shadow .2s ease-out;
+
+  &.scrolling {
+    box-shadow: rgba(#000, .1) 0 2px 0 1px;
+  }
+
+  &--warning {
+    background-color: $comp-orange;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .trial__days-left {
+    font-size: 1.1em;
+    color: #fff;
+  }
+
+  .trial__upgrade-btn {
+    margin-left: 1em;
+
+    &.size--mini {
+      border-radius: 3em;
+      padding: .4em 1.1em;
+    }
+
+    &.mode--light {
+      opacity: .9;
+      transition: opacity .2s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

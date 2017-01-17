@@ -1,0 +1,39 @@
+/* =OPEN SOURCE
+--------------------------------------------- */
+
+// Root node
+.opensource {
+  background-color: $comp-blue-light;
+
+  [role="banner"].background--solid {
+    box-shadow: none;
+  }
+}
+
+.open-source-page {
+  text-align: center;
+  margin: $lineheight*2 0 $lineheight*4;
+
+  h1, h2 {
+    font-family: $sans;
+    color: $comp-teal-dark;
+    font-weight: 300;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .subhead {
+    color: darken($comp-blue-faded, 20%);
+    margin-bottom: $lineheight*2;
+  }
+
+  .btn {
+    padding-left: 1.6em;
+
+    .icon {
+      font-size: 1.3em;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+/* =LOGO as SVG
+--------------------------------------------- */
+
+.lookback-logo {
+  width: 7.8em;
+  height: 1.25em;
+
+  .logo__swirl {
+    fill: $logo-color;
+    transition: fill .5s;
+  }
+
+  &:hover {
+    .logo__swirl {
+      fill: rgba($logo-color, .6);
+    }
+  }
+
+  .logo__text {
+    fill: $comp-teal-dark;
+  }
+}
+
+.lookback-mark {
+  fill: $logo-color;
+  width: 7em;  // Resizable with rem units on parent
+  height: 3.2em;
+  transition: fill .5s;
+}

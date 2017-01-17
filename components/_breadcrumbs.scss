@@ -1,0 +1,17 @@
+/* =BREADCRUMBS
+--------------------------------------------- */
+
+.breadcrumb {
+  @include list-reset;
+  margin-bottom: $lineheight;
+
+  li {
+    display: inline;
+
+    &:not(:last-child)::after {
+      content: '›';
+      color: $grey-dark;
+      padding: 0 3px 0 6px;
+    }
+  }
+}

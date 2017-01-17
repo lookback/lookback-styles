@@ -1,0 +1,22 @@
+/* =TESTERS OVERVIEW
+------------------------------------ */
+
+.tests__main {
+  &--deprecated {
+    height: 80vh;
+    @include center(all);
+    color: $comp-blue-faded;
+
+    h1 {
+      font-family: $sans;
+      font-weight: 300;
+      color: $comp-teal-dark;
+    }
+
+    p {
+      max-width: 580px;
+      font-size: 1.2em;
+      margin: 0 auto $lineheight;
+    }
+  }
+}

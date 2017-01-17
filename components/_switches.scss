@@ -1,0 +1,180 @@
+// iOS style checkbox switches
+
+label.switch {
+  $height: 1.45em;
+  $knob-size: $height;
+  $width: $knob-size*2;
+  $width-wide: $knob-size*4;
+  $offset: .3em;
+
+  $duration: .35s;
+
+  $background-color: darken($grey-tint-light, 8%);
+  $toggle-background: $comp-blue;
+  $base-shadowing: inset $background-color 0 0 0 0;            // transitioning solid
+  $checked-shadow: inset $comp-green 0 0 0 15px;
+
+  position: relative;
+  display: inline-block;
+  -webkit-tap-highlight-color: rgba(0,0,0, 0);
+  user-select: none;
+
+  &.switch--wide {
+    font-size: 1rem;
+
+    .switch__knob {
+      transition-timing-function: ease;
+      transition-duration: .2s;
+    }
+
+    .switch__track {
+      transition-property: background-color, opacity;
+    }
+
+    input[type="checkbox"]:checked + .switch__track {
+      .switch__knob {
+        transform: translate3d($width-wide - $knob-size, 0, 0);
+      }
+    }
+  }
+
+  &.switch--toggle {
+    .switch__track {
+      background-color: $toggle-background;
+    }
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    left: -999em;
+
+    // Checked state, knob to the right
+    &:checked {
+
+      & + .switch__track {
+        box-shadow: $checked-shadow;
+        opacity: 1;
+
+        .switch__knob {
+          transform: translate3d($width - $knob-size, 0, 0);
+          box-shadow: rgba(#000, .4) 0 1px 4px;
+        }
+
+        .switch__label {
+          &--on {
+            opacity: 1;
+          }
+          &--off {
+            opacity: 0;
+            transform: translate(0, 0);
+          }
+        }
+      }
+
+      &:focus {
+        & + .switch__track {
+          box-shadow: #{$checked-shadow}, lighten($comp-green, 15%) 0 0 5px;
+        }
+      }
+
+      &:focus,
+      &:hover {
+        & + .switch__track {
+          .switch__knob {
+            box-shadow: rgba(#000, .45) 0 1px 5px;
+          }
+        }
+      }
+    }
+
+    &:focus + .switch__track {
+      box-shadow: #{$base-shadowing}, rgba(157, 157, 157, .3) 0 0 5px;
+    }
+
+    &:focus,
+    &:hover {
+      & + .switch__track {
+        opacity: 1;
+
+        .switch__knob {
+          background-color: #fff;
+          box-shadow: rgba(#000, .35) 0 1px 5px;
+        }
+      }
+    }
+
+    &[disabled] {
+
+      & + .switch__track {
+        opacity: .7;
+        cursor: default;
+        background-color: lighten($background-color, 5%);
+
+        .switch__knob {
+          box-shadow: rgba(#000, .2) 0 1px 2px;
+        }
+      }
+    }
+  }
+
+  // Track
+  .switch__track {
+    opacity: .9;
+    cursor: pointer;
+    display: block;
+    vertical-align: middle;
+    width: $width;
+    height: $height;
+    border-radius: 999px;
+    background-color: $background-color;
+    transition-duration: $duration;
+    transition-property: background-color, box-shadow, opacity;
+    box-shadow: $base-shadowing;
+  }
+
+  &--wide {
+    .switch__track {
+      width: $width-wide;
+    }
+  }
+
+  // Knob
+  .switch__knob {
+    float: left;
+    width: calc(#{$knob-size} - 2px);
+    height: calc(#{$knob-size} - 2px);
+    border-radius: inherit;
+    background: #fdfdfd;
+    transition-timing-function: cubic-bezier(.54,1.85,.5,1);
+    transition-duration: $duration;
+    transition-property: transform, background-color, box-shadow;
+    pointer-events: none;
+    margin-top: 1px;
+    margin-left: 1px;
+    box-shadow: rgba(#000, .3) 0 1px 3px;
+  }
+
+  .switch__label {
+    position: absolute;
+    font-size: .9em;
+    width: calc(100% - (#{$knob-size} / 2) - #{$offset});
+    text-align: center;
+    color: #fff;
+    transition: opacity .1s ease;
+    line-height: 1.6;
+    bottom: 0;
+    top: 0;
+
+    // Default state
+    &--on {
+      opacity: 0;
+    }
+
+    &--off {
+      transform: translate($knob-size - $offset, 0);
+      transition: opacity .1s ease,
+                  transform .1s ease;
+    }
+  }
+}

@@ -1,0 +1,231 @@
+/* =LAYOUT GUIDES
+
+Reference: https://lookback-public.s3.amazonaws.com/layout-guide.png
+
+---------------------------------------- */
+
+// Implements BEM pattern, with layout- prefix. Every top level class adheres to the
+// layout guide in the document linked above.
+
+.layout-hero {
+  padding: $lineheight*7 2%;
+  text-align: center;
+
+  h1 {
+    font-size: to_rem(48);
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: to_rem(24);
+  }
+
+  &__actions {
+    margin: 0;
+    font-size: 1.1em;
+
+    &__detail {
+      font-size: .9rem;
+    }
+  }
+
+  @include handheld {
+    padding: $lineheight*2 5%;
+
+    h1, h2 {
+      padding: 0 5%;
+    }
+
+    h1 {
+      font-size: 10vw;
+      line-height: 1.4;
+      margin-bottom: $lineheight / 2;
+    }
+
+    h2 {
+      font-size: 6vw;
+      line-height: 1.4;
+    }
+  }
+}
+
+// A feature in detail. Can be mirrored.
+
+.layout-feature {
+  display: flex;
+  align-items: center;
+
+  h1 {
+    line-height: 1.4;
+  }
+
+  &--vertical {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    .layout-feature__text,
+    .layout-feature__figure {
+      flex: 1;
+      padding: 0;
+    }
+
+    .layout-feature__text__content {
+      margin: 0 auto;
+    }
+  }
+
+  &--reverse {
+    flex-direction: row-reverse;
+
+    .layout-feature__figure {
+      justify-content: flex-start;
+    }
+
+    .layout-feature__text {
+      padding-left: 2vw;
+      padding-right: 6vw;
+    }
+  }
+
+  &__text {
+    flex: 5;
+    padding-left: 6vw;
+    padding-right: 2vw;
+
+    &__content {
+      max-width: to_rem(500);
+    }
+  }
+
+  &__figure {
+    flex: 7;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  // A subtle note, probably including/is a <small> element.
+  &__note {
+    color: darken($grey-tint, 5%);
+  }
+
+  &__list {
+    @include list-reset;
+    color: $comp-teal-dark;
+    font-weight: bold;
+    
+    &--right {
+      text-align: right;
+      
+      .icon {
+        margin-left: 1.5rem;
+      }
+    }
+
+    li {
+      margin-bottom: $lineheight / 2;
+    }
+
+    .icon {
+      margin-right: 1.5rem;
+      font-size: 1.2em;
+      position: relative;
+      top: -1px;
+    }
+
+    @include handheld {
+      .icon {
+        display: none;
+      }
+    }
+  }
+
+  @include handheld {
+    flex-direction: column;
+
+    &--reverse,
+    &--vertical {
+      flex-direction: column;
+
+      .layout-feature__text {
+        padding: $lineheight 8%;
+      }
+    }
+
+    &__text,
+    &__figure {
+      flex: 1;
+    }
+
+    &__text {
+      padding: $lineheight 8%;
+    }
+  }
+}
+
+// Overview 3.1 & 3.2.
+// Implement as ordered or unordered list with <li> child elements.
+
+.layout-overview {
+  @include list-reset;
+  display: flex;
+
+  li {
+    flex: 0 1 50%;
+    display: flex;
+  }
+
+  figure {
+    color: #555;
+  }
+
+  // 3.1
+  &--grid {
+    flex-wrap: wrap;
+
+    li {
+      margin-bottom: $lineheight;
+      align-items: flex-end;
+    }
+
+    figure {
+      font-size: 2.3em;
+      margin-right: 8%;
+    }
+
+    .layout-overview__module {
+      flex: 1;
+      margin-bottom: 0;
+    }
+  }
+
+  // 3.2
+  &--row {
+    text-align: center;
+    justify-content: space-around;
+    align-items: flex-end;
+
+    li {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+// Outro, as a footer.
+
+.layout-outro {
+  padding: $lineheight*3 5%;
+  text-align: center;
+
+  h1 {
+    font-size: to_rem(36);
+    margin-bottom: .5rem;
+  }
+
+  @include handheld {
+    h1 {
+      font-size: to_rem(24);
+    }
+  }
+}

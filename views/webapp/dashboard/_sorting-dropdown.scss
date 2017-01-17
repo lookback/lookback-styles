@@ -1,0 +1,41 @@
+/* =RECORINGS SORTING DROPDOWN
+--------------------------------------------- */
+
+.recordings-sort-btn {
+  .icon {
+    margin-right: 0;
+  }
+}
+
+.recordings-sort-arrow {
+  transition: transform .3s cubic-bezier(0.250, 0.100, 0.130, 1.400);
+  display: inline-block;
+  width: 1em;
+
+  .icon {
+    font-size: 1em;
+  }
+
+  &--up {
+    transform: rotate(180deg);
+  }
+}
+
+.sorting-dropdown.dropdown--menu {
+  min-width: 130px;
+
+  [role="menuitem"] a {
+    padding-left: 1.5rem;
+
+    .icon.icon-check {
+      margin-left: -1.1rem;
+      margin-right: 0;
+      font-size: .9em;
+      top: -.4ex;
+    }
+
+    [class*="icon-arrow"] {
+      font-size: .7em;
+    }
+  }
+}

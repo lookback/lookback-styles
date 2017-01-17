@@ -1,0 +1,552 @@
+/* =HELPER CLASSES
+--------------------------------------------- */
+
+.highlight {
+  @include highlight;
+  color: #000;
+}
+
+.text-color {
+  color: $text-color;
+}
+
+.wrapper {
+  @include wrap;
+  margin-bottom: $lineheight;
+}
+
+.group {
+  @include clearfix;
+}
+
+.anchor-link {
+  font-weight: normal;
+  display: inline-block;
+  margin: 0 5px;
+  font-family: $sans;
+  font-size: to_rem(20);
+  vertical-align: middle;
+  line-height: 1;
+  padding: 2px 3px;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity .1s ease-out,
+  transform .15s ease-out;
+  transform: scale(.8);
+
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: $accent;
+  }
+}
+
+.subtitle {
+  font-weight: bold;
+  color: darken($grey-tint, 10%);
+  font-size: to_rem(11);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.subhead {
+  font-size: to_rem(20);
+  font-weight: 300;
+  max-width: 55rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-heading {
+  @extend .subtitle;
+  letter-spacing: 2px;
+  font-size: to_rem(12);
+  @include has-separator($position: before, $spacing: 1, $width: 100px, $color: rgba($grey-tint, .3));
+}
+
+// Use Entypo's help-with-circle icon inside this tag.
+.help-link {
+  $color: $grey-tint;
+
+  .icon {
+    color: $color;
+    pointer-events: all;
+  }
+
+  .custom-icon--help-circle {
+    font-size: 1.3em;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    .icon {
+      color: darken($color, 10%);
+    }
+  }
+}
+
+a.help-link:active {
+  .icon-help-with-circle {
+    color: darken(#afafaf, 20%);
+  }
+}
+
+.badge {
+  border-radius: 3em;
+  text-align: center;
+  padding: .5em 1.3em;
+  text-transform: uppercase;
+  font-size: to_rem(11);
+  font-family: $sans;
+  color: $comp-blue;
+  border: 1px solid;
+  font-weight: bold;
+  cursor: default;
+  white-space: nowrap;
+
+  &.mode--gray {
+    color: darken($grey-dark, 10%);
+    border-color: lighten($grey-dark, 10%);
+  }
+
+  &.size--mini {
+    border-radius: 2px;
+    padding: 2px 4px;
+  }
+
+  &.style--filled {
+    border: 0;
+    background-color: $comp-blue;
+    color: #fff;
+
+    &.mode--primary {
+      background-color: $comp-green;
+    }
+
+    &.mode--gray {
+      background-color: darken($grey-dark, 10%);
+    }
+  }
+}
+
+.team__token {
+  font-weight: bold;
+  border-bottom: 1px dotted #888;
+}
+
+// Fast click effect
+.touch {
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .1s ease-out;
+  display: inline-block;
+}
+
+.tap {
+  transform: scale(.9);
+}
+
+/* Lists */
+
+.upper-roman {
+  list-style-type: upper-roman;
+}
+
+.list {
+  @include list-reset;
+}
+
+.horizontal-list {
+  @extend .list;
+
+  & > li {
+    display: inline;
+  }
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+
+  &.bar--right {
+    justify-content: flex-end;
+  }
+
+  &.bar--middle {
+    justify-content: center;
+  }
+
+  &.bar--edge-to-edge {
+    justify-content: space-between;
+  }
+
+  &.bar--distribute {
+    justify-content: space-around;
+  }
+}
+
+ul.bar,
+ol.bar {
+  @include list-reset;
+}
+
+.round {
+  border-radius: 100%;
+}
+
+/* Colouring helpers */
+
+.faded {
+  color: rgba($text-color, .5);
+}
+
+.subtle {
+  color: darken($grey-tint, 5%);
+}
+
+/* Global state modifiers */
+
+.mode--negative {
+  color: $negative;
+}
+
+.mode--info {
+  color: $comp-blue;
+}
+
+.mode--positive {
+  color: $positive;
+}
+
+.app__icon {
+  width: 1.2em; // ~18px
+  height: 1.2em;
+  border-radius: 3px;
+}
+
+/* Arrows */
+
+.arrow-up {
+  @include arrow(20px, $dark, up);
+}
+.arrow-down {
+  @include arrow(20px, $dark, down);
+}
+.arrow-right {
+  @include arrow(20px, $dark, right);
+}
+.arrow-left {
+  @include arrow(20px, $dark, left);
+}
+
+/* Visiblity */
+
+// Hide but not remove
+.visually-hidden {
+  position: absolute;
+  left: -999em;
+}
+
+/* Icons */
+
+.icon {
+  fill: currentColor;  // Will be inherited from parent's 'color' property.
+  width: $default-icon-size;
+  height: $default-icon-size;
+  vertical-align: middle;
+}
+
+a .icon {
+  cursor: pointer;
+}
+
+.timestamp-link {
+  color: darken($comp-blue, 10%);
+  font-weight: bold;
+}
+
+.link-branded {
+  color: $accent;
+}
+
+.timestamp-link-current {
+  font-weight: bold;
+  color: #fff;
+  background-color: $comp-blue;
+  border-radius: 3px;
+  padding: 0 3px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* Viewport modifier classes */
+
+.hide--handheld {
+  @include handheld {
+    display: none;
+  }
+}
+
+.show--handheld {
+  @include larger-than($handheld) {
+    display: none;
+  }
+}
+
+/* Special text formatting classes */
+
+.text-block {
+  // Tighter column for readability.
+  @include wrap($max-width: 40rem);
+  // For legibility
+  line-height: 1.7;
+  font-size: to_em(16);
+  color: lighten($text-color, 15%);
+
+  li ul {
+    margin-left: 2em;
+    margin-top: $lineheight;
+  }
+
+  pre {
+    margin: #{$lineheight} -3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    @include handheld {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: $lineheight / 2;
+      padding-right: $lineheight / 2;
+    }
+  }
+
+  // Decrease top margin when pre tag is below a selector
+  .team-selector-container + pre {
+    margin-top: 0;
+  }
+
+  /*
+    Seamless, spanning, responsive images with CSS. Boo-yeah.
+  */
+  figure.image--full {
+    margin-left: -14vw;
+    margin-right: -14vw;
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    @include smaller-than(960px) {
+      // Edge-to-edge pixelfucking.
+      margin-left: -9%;
+      width: 114.6%;
+      margin-right: 0;
+    }
+
+    @include handheld {
+      margin-top: $lineheight;
+      margin-bottom: $lineheight;
+      width: 117.9%;
+    }
+  }
+
+  figure.image--shadow {
+    img {
+      box-shadow: rgba(#000, .1) 0 1px 10px,
+                  rgba(#000, .15) 0 1px 2px;
+    }
+  }
+
+  figcaption {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 2rem;
+    color: $grey-dark;
+  }
+
+  // Moar spacing.
+
+  table {
+    margin: $lineheight*2 auto;
+
+    tr:nth-child(even) {
+      background-color: rgba($grey-light, .6);
+    }
+    tr:last-child td {
+      border-bottom: 1px solid $grey-light;
+    }
+  }
+
+  th, td {
+    padding: .4em 1em;
+    border: 0;
+  }
+
+  th {
+    border-bottom: 1px solid $grey-light;
+  }
+
+  dl {
+    margin-top: $lineheight*2;
+    margin-bottom: $lineheight*2;
+  }
+
+  figure {
+    margin-top: $lineheight*3;
+    margin-bottom: $lineheight*3;
+  }
+
+  // Group code blocks together.
+  pre + pre {
+    margin-top: -$lineheight*2;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    display: block;
+    margin: $lineheight*3 auto;
+    width: 50%;
+    max-width: 15rem;
+    background-color: $text-color;
+  }
+
+  // Custom class styling
+
+  .paragraph--intro {
+    font-size: 1.2em;
+    line-height: 1.8;
+    font-family: $serif;
+    text-align: center;
+    @include smooth(false);
+    margin: 0 -2rem $lineheight*2;
+
+    @include smaller-than(45rem) {
+      font-size: 1.1em;
+      text-align: left;
+      margin: 0 0 $lineheight;
+    }
+  }
+
+  // Centered, italic, large Playfair.
+  .fancy-quote {
+    border: 0;
+    padding: 0;
+    margin: $lineheight*3 -8vw;
+    font-family: $serif;
+    font-style: italic;
+    font-size: 1.6em;
+    text-align: center;
+    color: #5d5d5d;
+    line-height: 1.9;
+
+    @include smaller-than(960px) {
+      margin-left: 0;
+      margin-right: 0;
+      font-size: 1.2em;
+      color: #444;
+    }
+  }
+
+  .centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .vertical-margin {
+    margin-top: $lineheight*3;
+    margin-bottom: $lineheight*3;
+  }
+
+  .vertical-margin-mini {
+    margin-top: $lineheight*2;
+    margin-bottom: $lineheight*2;
+  }
+
+  .list--fancy-numbered {
+    list-style: none;
+    padding: 0;
+    counter-reset: li;
+
+    li {
+      padding-left: 3em;
+      position: relative;
+      margin-bottom: $lineheight / 2;
+
+      &::before {
+        font-family: $serif;
+        font-weight: bold;
+        counter-increment: li;
+        content: counter(li);
+        font-size: 1.8em;
+        position: absolute;
+        left: 0;
+        top: -0.2em;
+        line-height: 1;
+        text-align: center;
+        width: 1em;
+      }
+    }
+  }
+}
+
+.markdown-icon {
+  width: 25px;
+  display: inline-block;
+  height: 13px;
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+}
+
+// Mentions
+
+.mention {
+  font-weight: bold;
+
+  &--you {
+    $base-color: lighten($comp-blue, 34%);
+
+    display: inline-block;
+    background-color: $base-color;
+    border-radius: 3px;
+    padding: 0 4px;
+    box-shadow: desaturate(darken($base-color, 13%), 30%) 0 1px 0;
+  }
+}
+
+// Emojis
+
+img.emoji {
+  /* Emoji Sizing */
+  font-size: inherit;
+  height: 2.7ex;
+  min-width: 15px;
+  min-height: 15px;
+
+  /* Inline alignment adjust the margins  */
+  display: inline-block;
+  margin: -0.4ex .15em 0;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+// Emojis in headings
+
+h1, h2, h3, h4, h5 {
+  img.emoji {
+    font-size: .8em;
+    margin-left: -.1em;
+    margin-right: -.1em;
+  }
+
+  span.emoji {
+    position: relative;
+    top: .2ex;
+  }
+}

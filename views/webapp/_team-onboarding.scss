@@ -1,0 +1,147 @@
+/* =ONBOARDING
+
+  Views for the onboarding flow, i.e.
+  creating a team and adding people to it.
+--------------------------------------------- */
+
+.introductioninvite,
+.newteam,
+.introductiongetstarted {
+  background-color: $comp-blue-light;
+
+  [role="main"] {
+    margin-top: $lineheight*3;
+    text-align: center;
+    color: $comp-teal-dark;
+
+    h1 {
+      font-family: $sans;
+      font-weight: 300;
+      color: $comp-teal-dark;
+      margin-bottom: 0;
+    }
+
+    .subhead {
+      color: $comp-blue-faded;
+      font-size: to_em(22);
+      margin-bottom: $lineheight*3;
+    }
+  }
+
+}
+
+/* =INVITE TO TEAM
+--------------------------------------------- */
+
+.introductioninvite {
+
+  [role="main"] {
+    .invite-team-form {
+      margin-top: 0;
+    }
+
+    .subhead {
+      margin-bottom: $lineheight;
+    }
+  }
+
+  .introduction__invited {
+    height: 4rem;
+    margin-bottom: $lineheight;
+
+    // The momentum container ..
+    > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    figure {
+      margin: 0 4px 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 100%;
+      // I'm so sorry..
+      width: 48px !important;
+
+      &:hover {
+
+        .user__remove {
+          background-color: rgba(#000, .4);
+
+          .icon {
+            transform: scale(1) translateZ(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .avatar {
+      width: 48px;
+      vertical-align: middle;
+      display: block;
+      position: relative;
+      z-index: 1;
+      transform: translateZ(0);
+      border-radius: 100%;
+    }
+
+    .user__remove {
+      position: absolute;
+      border-radius: 100%;
+      z-index: 2;
+      color: #fff;
+      background-color: rgba(#000, 0);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 2rem;
+      transition: background-color .2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .icon {
+        transition: transform .15s ease,
+                    opacity .15s ease;
+        transform: scale(.3);
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.intro-get-started {
+  position: relative;
+
+  .pointing-arrow {
+    position: absolute;
+    left: 175px;
+    top: -50px;
+    opacity: .4;
+
+    @include smaller-than(1230px) {
+      display: none;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    color: $grey-dark;
+  }
+
+  figure {
+    margin: $lineheight*2 auto $lineheight;
+    max-width: 357px;
+
+    img {
+      border-radius: 3px;
+      box-shadow: rgba(#000, .06) 0 5px 15px;
+    }
+  }
+}

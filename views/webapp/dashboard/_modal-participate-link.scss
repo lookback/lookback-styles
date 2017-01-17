@@ -1,0 +1,122 @@
+/* =PARTICIPATE LINK MODAL
+--------------------------------------------- */
+
+.modal.modal-participate-link {
+  color: $comp-teal-dark;
+
+  &.modal--frame {
+    padding: $lineheight*2 $lineheight*4;
+  }
+
+  .modal__inner {
+    max-width: 470px;
+  }
+
+  h1 {
+    margin-bottom: 0;
+    font-size: to_rem(32);
+  }
+
+  .subtle {
+    font-size: to_rem(14);
+    line-height: 1.5;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.modal-participate-link {
+
+  .subtitle {
+    .custom-icon--help-circle {
+      font-size: 1.4em;
+      position: relative;
+      top: -2px;
+      margin: 0 3px;
+    }
+  }
+
+  input[type="url"] {
+    text-align: center;
+  }
+
+  &__more-info {
+    margin: $lineheight auto;
+    color: rgba(darken($comp-blue, 15%), .7);
+
+    a {
+      font-weight: bold;
+      color: $comp-blue;
+    }
+  }
+
+  &__url-area {
+    text-align: center;
+
+    input[type="url"] {
+      margin: 0;
+      min-width: 410px;
+    }
+
+    .subtitle {
+      margin-bottom: .8em;
+      margin-left: -1em;   // Nudge to the left bcs of the icon.
+
+      .custom-icon {
+        top: -0.3ex;
+        position: relative;
+        margin-right: .3em;
+        font-size: 1.4em;
+      }
+
+      .custom-icon--flash {
+        color: $comp-green;
+      }
+
+      .custom-icon--participate {
+        color: $comp-orange;
+      }
+    }
+  }
+
+  &__submit {
+    margin-top: $lineheight*2;
+  }
+
+  &__nav {
+    margin: $lineheight auto 1em;
+    width: 100%;
+
+    li {
+      flex: 1;
+
+      a {
+        width: 100%;
+      }
+    }
+  }
+
+  &__panes {
+    margin: $lineheight 0;
+
+    input[type="text"] {
+      margin-top: 0;
+    }
+
+    .subtitle {
+      font-size: to_rem(11);
+    }
+
+    .subtitle {
+      margin-left: 1.2rem;
+    }
+  }
+
+  .project-observer-url {
+    text-align: center;
+    font-weight: bold;
+    color: $comp-blue;
+  }
+}

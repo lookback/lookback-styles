@@ -1,0 +1,35 @@
+$form-highlight-border:         1px solid $main-border-color;
+$form-highlight-border-hover:   $comp-green;
+
+.form-highlight {
+  .form__highlight {
+    transition: border-color .1s ease-out;
+    border-top: $form-highlight-border;
+
+    &.form__highlight--last {
+      border-bottom: $form-highlight-border;
+    }
+
+    &:not(.form__highlight--hover) input.style--flat {
+      box-shadow: none;
+    }
+  }
+  .form__highlight--hover {
+    border-top-color: $form-highlight-border-hover;
+    background-color: lighten($comp-blue-light, 1.5%);
+
+    &.form__highlight--last {
+      border-bottom-color: $form-highlight-border-hover;
+    }
+
+    & + .form__highlight {
+      border-top-color: $form-highlight-border-hover;
+    }
+  }
+
+  .form__highlight--error {
+    input.style--flat {
+      color: $negative;
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Lookback Styles
 
+[![CircleCI](https://circleci.com/gh/lookback/lookback-styles.svg?style=shield&circle-token=647054ef54fe6d852b8a19d7e80ebf65285c74cc)](https://circleci.com/gh/lookback/lookback-styles)
+
 Shared SCSS styles for Lookback's web projects. Includes variables, components, mixins, and other reusable patterns.
 
 ## Setup

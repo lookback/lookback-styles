@@ -247,19 +247,6 @@ ol.bar {
   left: -999em;
 }
 
-/* Icons */
-
-.icon {
-  fill: currentColor;  // Will be inherited from parent's 'color' property.
-  width: $default-icon-size;
-  height: $default-icon-size;
-  vertical-align: middle;
-}
-
-a .icon {
-  cursor: pointer;
-}
-
 .timestamp-link {
   color: darken($comp-blue, 10%);
   font-weight: bold;
@@ -517,36 +504,5 @@ a .icon {
     border-radius: 3px;
     padding: 0 4px;
     box-shadow: desaturate(darken($base-color, 13%), 30%) 0 1px 0;
-  }
-}
-
-// Emojis
-
-img.emoji {
-  /* Emoji Sizing */
-  font-size: inherit;
-  height: 2.7ex;
-  min-width: 15px;
-  min-height: 15px;
-
-  /* Inline alignment adjust the margins  */
-  display: inline-block;
-  margin: -0.4ex .15em 0;
-  line-height: normal;
-  vertical-align: middle;
-}
-
-// Emojis in headings
-
-h1, h2, h3, h4, h5 {
-  img.emoji {
-    font-size: .8em;
-    margin-left: -.1em;
-    margin-right: -.1em;
-  }
-
-  span.emoji {
-    position: relative;
-    top: .2ex;
   }
 }

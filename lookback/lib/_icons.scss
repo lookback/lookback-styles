@@ -1,0 +1,13 @@
+/* =ICONS
+--------------------------------------------- */
+
+.icon {
+  fill: currentColor;  // Will be inherited from parent's 'color' property.
+  width: $default-icon-size;
+  height: $default-icon-size;
+  vertical-align: middle;
+}
+
+a .icon {
+  cursor: pointer;
+}

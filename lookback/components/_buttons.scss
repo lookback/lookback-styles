@@ -596,9 +596,17 @@
   .icon {
     position: relative;
     top: -.2ex;
+  }
 
-    &:first-child {
-      margin-right: .3em;
+  &.mode--icon-right {
+    .icon {
+      margin-left: .4em;
+    }
+  }
+
+  &.mode--icon-left {
+    .icon {
+      margin-right: .4em;
     }
   }
 }

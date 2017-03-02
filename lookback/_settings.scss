@@ -37,7 +37,7 @@ $background-webapp:  $comp-blue-light;
 $webapp-border:      rgba(saturate($comp-blue-off, 3%), .3);
 
 $text-color:         #222;
-$link-color:         darken(desaturate($comp-blue, 7%), 14%);
+$link-color:         darken($comp-blue, 8%);
 
 $btn-color:          $comp-blue;
 $btn-color-primary:  $comp-green;

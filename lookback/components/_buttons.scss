@@ -218,6 +218,10 @@
       margin-left: .5rem;
     }
 
+    .icon {
+      top: 0;
+    }
+
     &:active,
     &:focus {
       background-color: transparent;
@@ -248,6 +252,11 @@
 
     &.faded:hover {
       color: rgba($text-color, .8);
+    }
+
+    &.size--large,
+    &.size--larger {
+      padding: 0;
     }
 
     &.size--large {

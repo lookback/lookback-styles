@@ -36,16 +36,6 @@ body.has-banner {
   }
 }
 
-@include smaller-than($mobile-nav) {
-  [role="main"] {
-    padding-top: $header-mobile-height;
-  }
-
-  .main--full-height {
-    padding-top: 0;
-  }
-}
-
 a {
   color: $link-color;
   text-decoration: none;

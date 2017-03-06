@@ -269,6 +269,16 @@
       color: $comp-teal-dark;
     }
 
+    &--light {
+      color: $light;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $light;
+      }
+    }
+
     &--primary {
       color: $comp-green;
 

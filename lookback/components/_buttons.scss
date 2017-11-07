@@ -424,6 +424,14 @@
       }
     }
 
+    &.mode--secondary {
+      color: $comp-blue;
+
+      &:hover {
+        color: saturate($comp-blue, 30%);
+      }
+    }
+
     &.mode--primary {
       color: $comp-green;
 

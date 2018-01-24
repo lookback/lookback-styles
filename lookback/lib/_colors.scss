@@ -1,0 +1,51 @@
+/* =COLOUR HELPERS
+Inspired by Tachyons (http://tachyons.io/#style)
+--------------------------------------------- */
+
+.text-color {
+  color: $text-color;
+}
+
+.comp-blue {
+  color: $comp-blue;
+}
+
+.bg-blue {
+  background-color: $comp-blue;
+}
+
+.comp-green {
+  color: $comp-green;
+}
+
+.comp-purple-f {
+  color: $comp-purple-faded;
+}
+
+.grey-t {
+  color: $grey-tint;
+}
+
+.comp-orange {
+  color: $comp-orange;
+}
+
+.comp-teal-d {
+  color: $comp-teal-dark;
+}
+
+.comp-teal-dd {
+  color: $comp-teal-darker;
+}
+
+.comp-blue-f {
+  color: $comp-blue-faded;
+}
+
+.dark {
+  color: $dark;
+}
+
+.light {
+  color: $light;
+}

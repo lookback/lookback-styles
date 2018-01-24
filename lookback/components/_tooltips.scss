@@ -3,6 +3,7 @@
 
 .tooltip {
   $arrow-size: 5px;
+  $tooltip-color: rgba($comp-teal-dark, .9);
 
   position: absolute;
   z-index: 1003;

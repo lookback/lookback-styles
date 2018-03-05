@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/lookback/lookback-styles#readme",
   "devDependencies": {
-    "ava": "^0.18.1",
-    "node-sass": "^4.5.0"
+    "ava": "^0.25.0",
+    "node-sass": "^4.7.2"
   }
 }

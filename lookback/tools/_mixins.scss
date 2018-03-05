@@ -2,14 +2,8 @@
 
 // Import mixin libraries into this file.
 
-@import "mixins/images";
-@import "mixins/underlines";
 @import "mixins/viewports";
 @import "mixins/layout";
-
-@mixin highlight {
-  @include underline;
-}
 
 @mixin absolute-header($position: absolute) {
   top: 0;
@@ -145,28 +139,6 @@
   }
 }
 
-@mixin icon($icon: false, $size: inherit) {
-  font-family: 'entypo';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  vertical-align: middle;
-  line-height: 1;
-  font-size: $size;
-  user-select: none;
-  cursor: default;
-
-  @if($icon) {
-    content: $icon;
-  }
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 @mixin setButtonIconSize($size) {
   width: $size;
   height: $size;
@@ -260,14 +232,6 @@
   &:fullscreen {
     @content;
   }
-}
-
-@mixin thin-heading {
-  font-family: $sans;
-  font-weight: 300;
-  font-size: to_rem(32);
-  color: darken($grey-dark, 10%);
-  letter-spacing: -.5px;
 }
 
 @mixin diagonal-border {

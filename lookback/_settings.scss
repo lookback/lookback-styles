@@ -39,6 +39,10 @@ $background:         $light;
 $background-webapp:  $comp-blue-light;
 $webapp-border:      rgba(saturate($comp-blue-off, 3%), .3);
 
+$live-player-background:            #062939;
+$live-player-background-light:      #0F3B4E;
+$live-player-background-lightest:   #124C63;
+
 $text-color:         $comp-teal-dark;
 $link-color:         darken($comp-blue, 7%);
 

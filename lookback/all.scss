@@ -30,11 +30,7 @@ Base file for including in markup.
 @import "base/forms";
 
 // Partials layer
-//   Not as general as objects, but affects larger
-//   chunks of UI than components.
-@import "partials/get-started-section";
-@import "partials/download-section";
-@import "partials/nav-overlay";
+// ...
 
 // Components layer
 //   Small, reusable UI components.

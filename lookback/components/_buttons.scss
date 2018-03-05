@@ -7,37 +7,9 @@
   box-shadow: none;
 }
 
-@mixin push-button-mode($bg, $offset) {
-  background-color: $bg;
-  // Fancy ass shadow
-  box-shadow: darken($bg, 10%) 0 1px 0,
-              darken($bg, 20%) 0 $offset 0;
-
-  @if(lightness($bg) < 50%) {
-    color: rgba(#fff, .9);
-
-    &:hover,
-    &:focus {
-      color: #fff;
-    }
-  }
-  @else {
-    color: lighten($text-color, 5%);
-
-    &:hover,
-    &:focus {
-      color: $text-color;
-    }
-  }
-
-  &:hover,
-  &:focus {
-    background-color: lighten(saturate($bg, 4%), 1%);
-  }
-
-  &:active {
-    box-shadow: darken($bg, 10%) 0 1px 0;
-  }
+@mixin focused($base-color) {
+  box-shadow: #fff 0 0 0 2px,
+              rgba($base-color, .3) 0 0 0 4px;
 }
 
 /* A regular fucking button */
@@ -229,6 +201,10 @@
       box-shadow: none;
     }
 
+    &:active {
+      transform: perspective(1px) translateZ(-.04px);
+    }
+
     &:focus,
     &:hover {
       text-decoration: underline;
@@ -307,6 +283,85 @@
       &:focus {
         color: saturate($negative, 20%);
       }
+    }
+
+    &--faded {
+      color: rgba($comp-blue-faded, .8);
+
+      &:hover,
+      &:focus {
+        color: darken($comp-blue-faded, 10%);
+      }
+
+      &:active {
+        color: darken($comp-blue-faded, 20%);
+      }
+    }
+  }
+
+  &.mode--tint {
+    background-color: lighten($comp-blue-faded, 30%);
+    color: darken($comp-blue-faded, 10%);
+    box-shadow: none;
+    transition: none;
+
+    &:focus,
+    &.focus {
+      color: #fff;
+      @include focused($btn-color);
+    }
+
+    &:hover {
+      background-color: $comp-blue;
+      color: #fff;
+    }
+
+    &:active,
+    &:focus {
+      background-color: lighten(saturate($btn-color, 8%), 1%);
+    }
+
+    &[disabled] {
+      background-color: lighten($comp-blue-faded, 40%);
+      color: $comp-blue-faded;
+    }
+  }
+
+  &.mode--tint-dark {
+    background-color: lighten($live-player-background-light, 12%);
+    color: $comp-teal-light;
+    box-shadow: none;
+
+    &:focus,
+    &.focus,
+    &:hover {
+      color: lighten(saturate($comp-teal-light, 15%), 8%);
+      background-color: lighten($live-player-background-light, 16%);
+    }
+
+    &:active {
+      background-color: darken($live-player-background-light, 3%);
+      color: rgba($comp-teal-light, .8);
+    }
+
+    &[disabled] {
+      background-color: desaturate(lighten($live-player-background-light, 5%), 20%);
+      color: rgba($comp-teal-light, .7);
+    }
+  }
+
+  &.mode--flat {
+    background-color: $comp-blue-light;
+    color: $comp-teal-dark-soft;
+    box-shadow: inset darken($comp-blue-light, 10%) 0 0 0 1px;
+
+    &:hover {
+      box-shadow: inset darken(desaturate($comp-blue-light, 20%), 20%) 0 0 0 1px;
+    }
+
+    &:active {
+      box-shadow: inset darken(desaturate($comp-blue-light, 20%), 25%) 0 0 0 1px;
+      background-color: darken($comp-blue-light, 3%);
     }
   }
 
@@ -446,31 +501,6 @@
       &:hover {
         color: saturate(darken(#f9494c, 2%), 40%);
       }
-    }
-  }
-
-  // A relief button, with more "push affordance".
-  &.style--push {
-    $offset: 3px;
-
-    border-radius: 4px;
-    position: relative;
-    padding: .7em 1.4em;
-    font-weight: 300;
-    top: -$offset;
-    margin-top: $offset;  // Accomodate for offset
-    transition: color .2s ease,
-                background-color .1s ease-out;
-
-    // White is default.
-    @include push-button-mode(#fefefe, $offset);
-
-    &:active {
-      top: -1px;
-    }
-
-    &.mode--primary {
-      @include push-button-mode($accent, $offset);
     }
   }
 
@@ -687,51 +717,6 @@
 .mode--icon-left {
   .icon {
     margin-right: .4em;
-  }
-}
-
-.button-bar {
-  display: flex;
-
-  .btn {
-    border-radius: 0;
-    flex: 1;
-    margin-right: 1px;
-
-    // Ghost buttons have outlines, and need
-    // a negative margin to remove whitespace
-    // in between them.
-    &.style--ghost {
-      margin-right: -1px;
-    }
-    // Gray ghost buttons have *double* outlines! :D
-    &.style--ghost.mode--gray {
-      margin-right: -2px;
-    }
-  }
-
-  :first-child {
-    border-top-left-radius: 2em;
-    border-bottom-left-radius: 2em;
-    padding-left: .5em;
-    padding-right: 0;
-
-    &.size--mini {
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px;
-    }
-  }
-  :last-child {
-    border-top-right-radius: 2em;
-    border-bottom-right-radius: 2em;
-    margin-right: 0;
-    padding-right: .5em;
-    padding-left: 0;
-
-    &.size--mini {
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
-    }
   }
 }
 

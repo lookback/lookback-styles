@@ -1,20 +1,6 @@
 /* =HELPER CLASSES
 --------------------------------------------- */
 
-.highlight {
-  @include highlight;
-  color: #000;
-}
-
-.wrapper {
-  @include wrap;
-  margin-bottom: $lineheight;
-}
-
-.group {
-  @include clearfix;
-}
-
 .anchor-link {
   font-weight: normal;
   display: inline-block;
@@ -126,11 +112,6 @@ a.help-link:active {
   }
 }
 
-.team__token {
-  font-weight: bold;
-  border-bottom: 1px dotted #888;
-}
-
 // Fast click effect
 .touch {
   -webkit-tap-highlight-color: transparent;
@@ -144,9 +125,6 @@ a.help-link:active {
 
 /* Lists */
 
-.upper-roman {
-  list-style-type: upper-roman;
-}
 
 .list {
   @include list-reset;
@@ -158,32 +136,6 @@ a.help-link:active {
   & > li {
     display: inline;
   }
-}
-
-.bar {
-  display: flex;
-  flex-direction: row;
-
-  &.bar--right {
-    justify-content: flex-end;
-  }
-
-  &.bar--middle {
-    justify-content: center;
-  }
-
-  &.bar--edge-to-edge {
-    justify-content: space-between;
-  }
-
-  &.bar--distribute {
-    justify-content: space-around;
-  }
-}
-
-ul.bar,
-ol.bar {
-  @include list-reset;
 }
 
 .round {
@@ -220,20 +172,6 @@ ol.bar {
   border-radius: 3px;
 }
 
-/* Arrows */
-
-.arrow-up {
-  @include arrow(20px, $dark, up);
-}
-.arrow-down {
-  @include arrow(20px, $dark, down);
-}
-.arrow-right {
-  @include arrow(20px, $dark, right);
-}
-.arrow-left {
-  @include arrow(20px, $dark, left);
-}
 
 /* Visiblity */
 
@@ -241,27 +179,6 @@ ol.bar {
 .visually-hidden {
   position: absolute;
   left: -999em;
-}
-
-.timestamp-link {
-  color: darken($comp-blue, 10%);
-  font-weight: bold;
-}
-
-.link-branded {
-  color: $accent;
-}
-
-.timestamp-link-current {
-  font-weight: bold;
-  color: #fff;
-  background-color: $comp-blue;
-  border-radius: 3px;
-  padding: 0 3px;
-
-  &:hover {
-    text-decoration: none;
-  }
 }
 
 /* Viewport modifier classes */
@@ -278,206 +195,6 @@ ol.bar {
   }
 }
 
-/* Special text formatting classes */
-
-.text-block {
-  // Tighter column for readability.
-  @include wrap($max-width: 40rem);
-  // For legibility
-  line-height: 1.7;
-  font-size: to_em(16);
-  color: lighten($text-color, 15%);
-
-  li ul {
-    margin-left: 2em;
-    margin-top: $lineheight;
-  }
-
-  pre {
-    margin: #{$lineheight} -3rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-
-    @include handheld {
-      margin-left: 0;
-      margin-right: 0;
-      padding-left: $lineheight / 2;
-      padding-right: $lineheight / 2;
-    }
-  }
-
-  // Decrease top margin when pre tag is below a selector
-  .team-selector-container + pre {
-    margin-top: 0;
-  }
-
-  /*
-    Seamless, spanning, responsive images with CSS. Boo-yeah.
-  */
-  figure.image--full {
-    margin-left: -14vw;
-    margin-right: -14vw;
-
-    img {
-      display: block;
-      margin: 0 auto;
-    }
-
-    @include smaller-than(960px) {
-      // Edge-to-edge pixelfucking.
-      margin-left: -9%;
-      width: 114.6%;
-      margin-right: 0;
-    }
-
-    @include handheld {
-      margin-top: $lineheight;
-      margin-bottom: $lineheight;
-      width: 117.9%;
-    }
-  }
-
-  figure.image--shadow {
-    img {
-      box-shadow: rgba(#000, .1) 0 1px 10px,
-                  rgba(#000, .15) 0 1px 2px;
-    }
-  }
-
-  figcaption {
-    text-align: center;
-    font-size: 1.2em;
-    margin-top: 2rem;
-    color: $grey-dark;
-  }
-
-  // Moar spacing.
-
-  table {
-    margin: $lineheight*2 auto;
-
-    tr:nth-child(even) {
-      background-color: rgba($grey-light, .6);
-    }
-    tr:last-child td {
-      border-bottom: 1px solid $grey-light;
-    }
-  }
-
-  th, td {
-    padding: .4em 1em;
-    border: 0;
-  }
-
-  th {
-    border-bottom: 1px solid $grey-light;
-  }
-
-  dl {
-    margin-top: $lineheight*2;
-    margin-bottom: $lineheight*2;
-  }
-
-  figure {
-    margin-top: $lineheight*3;
-    margin-bottom: $lineheight*3;
-  }
-
-  // Group code blocks together.
-  pre + pre {
-    margin-top: -$lineheight*2;
-  }
-
-  hr {
-    border: 0;
-    height: 1px;
-    display: block;
-    margin: $lineheight*3 auto;
-    width: 50%;
-    max-width: 15rem;
-    background-color: $text-color;
-  }
-
-  // Custom class styling
-
-  .paragraph--intro {
-    font-size: 1.2em;
-    line-height: 1.8;
-    font-family: $serif;
-    text-align: center;
-    @include smooth(false);
-    margin: 0 -2rem $lineheight*2;
-
-    @include smaller-than(45rem) {
-      font-size: 1.1em;
-      text-align: left;
-      margin: 0 0 $lineheight;
-    }
-  }
-
-  // Centered, italic, large Playfair.
-  .fancy-quote {
-    border: 0;
-    padding: 0;
-    margin: $lineheight*3 -8vw;
-    font-family: $serif;
-    font-style: italic;
-    font-size: 1.6em;
-    text-align: center;
-    color: #5d5d5d;
-    line-height: 1.9;
-
-    @include smaller-than(960px) {
-      margin-left: 0;
-      margin-right: 0;
-      font-size: 1.2em;
-      color: #444;
-    }
-  }
-
-  .centered {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .vertical-margin {
-    margin-top: $lineheight*3;
-    margin-bottom: $lineheight*3;
-  }
-
-  .vertical-margin-mini {
-    margin-top: $lineheight*2;
-    margin-bottom: $lineheight*2;
-  }
-
-  .list--fancy-numbered {
-    list-style: none;
-    padding: 0;
-    counter-reset: li;
-
-    li {
-      padding-left: 3em;
-      position: relative;
-      margin-bottom: $lineheight / 2;
-
-      &::before {
-        font-family: $serif;
-        font-weight: bold;
-        counter-increment: li;
-        content: counter(li);
-        font-size: 1.8em;
-        position: absolute;
-        left: 0;
-        top: -0.2em;
-        line-height: 1;
-        text-align: center;
-        width: 1em;
-      }
-    }
-  }
-}
-
 .markdown-icon {
   width: 25px;
   display: inline-block;
@@ -485,20 +202,4 @@ ol.bar {
   position: relative;
   top: -1px;
   vertical-align: middle;
-}
-
-// Mentions
-
-.mention {
-  font-weight: bold;
-
-  &--you {
-    $base-color: lighten($comp-blue, 34%);
-
-    display: inline-block;
-    background-color: $base-color;
-    border-radius: 3px;
-    padding: 0 4px;
-    box-shadow: desaturate(darken($base-color, 13%), 30%) 0 1px 0;
-  }
 }

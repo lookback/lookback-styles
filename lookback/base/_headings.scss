@@ -2,28 +2,14 @@
 --------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $serif;
-  margin: 0 0 $lineheight;
+  font-family: $sans;
+  margin: 0 0 $lineheight / 2;
   font-weight: normal;
-
-  .highlight {
-    @include underline-size(6);
-    @include underline-offset(.26em);
-  }
-
-  &.heading--strong,
-  strong {
-    font-weight: bold;
-  }
 }
 
 .huge {
   line-height: 1.2;
   font-weight: bold;
-
-  .highlight {
-    @include underline-size(7);
-  }
 }
 
 h1 {

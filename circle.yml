@@ -1,6 +1,0 @@
-machine:
-  node:
-    version: 8.9.4
-dependencies:
-  cache_directories:
-    - "~/.npm"

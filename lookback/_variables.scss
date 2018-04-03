@@ -1,0 +1,160 @@
+// Here goes *only* variables and other things that don't generate CSS
+
+// Colours
+// ------------------------------------------------------------------
+
+$logo-color:         #ED213E;
+
+$accent:             #C0392B;  // red
+$dark:               #191E22;  // black-ish
+$light:              #fff;     // white
+
+$comp-blue:          #1DABF2;
+$comp-green:         #3BD788;
+$comp-yellow:        #F1C330;
+$comp-teal:          #20B8D1;
+$comp-orange:        #F3B109;
+$comp-blue-off:      #72B6EA;
+$comp-purple:        #8289ef;
+
+$comp-teal-dark:     rgb(32, 78, 87);
+$comp-teal-darker:   #1E4E58;
+$comp-teal-dark-soft: #22606C;
+$comp-teal-light:    #9dddea;
+$comp-blue-light:    rgb(246, 250, 251);
+$comp-blue-faded:    #668ea7;
+$comp-blue-faded-soft: rgba($comp-blue-faded, .7);
+$comp-purple-faded:  #8FA1F2;
+
+$off-white:          #f5f5f5;
+$grey:               #c3c3c3;
+$grey-dark:          #999;
+$grey-tint:          #8FB1C7;
+$grey-tint-light:    #E4EAEB;
+$grey-light:         #eee;
+
+$positive:           $comp-green;
+$negative:           #FF6E70;
+
+$background:         $light;
+$background-webapp:  $comp-blue-light;
+$webapp-border:      rgba(saturate($comp-blue-off, 3%), .3);
+
+$live-player-background:            #062939;
+$live-player-background-light:      #0F3B4E;
+$live-player-background-lightest:   #124C63;
+
+$text-color:         $comp-teal-dark;
+$link-color:         darken($comp-blue, 7%);
+
+$btn-color:          $comp-blue;
+$btn-color-primary:  $comp-green;
+$btn-color-danger:   $negative;
+$btn-color-attention: $comp-orange;
+
+$box-shadow-light:  rgba($comp-blue-off, .2);
+
+$main-border-color: darken(saturate($comp-blue-light, 8%), 10%);
+
+// Typography
+// ------------------------------------------------------------------
+
+$sans-serif: Lato, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif !default;
+$serif: georgia, serif !default;
+$mono: Menlo, Consolas, "Liberation Mono", Courier, monospace !default;
+
+$font-size-base: 15;
+$leading:        24.27;
+$lineheight: ($leading / $font-size-base) * 1rem;
+
+$font-size-headline: 6rem !default;
+$font-size-subheadline: 5rem !default;
+
+$font-size-1: 3rem !default;
+$font-size-2: 2.25rem !default;
+$font-size-3: 1.5rem !default;
+$font-size-4: 1.25rem !default;
+$font-size-5: 1rem !default;
+$font-size-6: .875rem !default;
+$font-size-7: .75rem !default;
+
+$letter-spacing-tight: -.05em !default;
+$letter-spacing-1: .1em !default;
+$letter-spacing-2: .25em !default;
+
+$line-height-solid: 1 !default;
+$line-height-title: 1.25 !default;
+$line-height-copy: 1.5 !default;
+
+$default-icon-size: 1em !default;
+
+// Measures
+// ------------------------------------------------------------------
+
+$measure: 30em !default;
+$measure-narrow: 20em !default;
+$measure-wide: 34em !default;
+$spacing-none: 0 !default;
+$spacing-extra-small: .25rem !default;
+$spacing-small: .5rem !default;
+$spacing-medium: 1rem !default;
+$spacing-large: 2rem !default;
+$spacing-extra-large: 4rem !default;
+$spacing-extra-extra-large: 8rem !default;
+$spacing-extra-extra-extra-large: 16rem !default;
+$spacing-copy-separator: 1.5em !default;
+
+$height-1: 1rem !default;
+$height-2: 2rem !default;
+$height-3: 4rem !default;
+$height-4: 8rem !default;
+$height-5: 16rem !default;
+
+$width-1: 1rem !default;
+$width-2: 2rem !default;
+$width-3: 4rem !default;
+$width-4: 8rem !default;
+$width-5: 16rem !default;
+
+$max-width-1: 1rem !default;
+$max-width-2: 2rem !default;
+$max-width-3: 4rem !default;
+$max-width-4: 8rem !default;
+$max-width-5: 16rem !default;
+$max-width-6: 32rem !default;
+$max-width-7: 48rem !default;
+$max-width-8: 64rem !default;
+$max-width-9: 96rem !default;
+
+$border-radius-none: 0 !default;
+$border-radius-1: .125rem !default;
+$border-radius-2: .25rem !default;
+$border-radius-3: .5rem !default;
+$border-radius-4: 1rem !default;
+$border-radius-circle: 100% !default;
+$border-radius-pill: 9999px !default;
+
+$border-width-none: 0 !default;
+$border-width-1: .125rem !default;
+$border-width-2: .3rem !default;
+$border-width-3: .5rem !default;
+$border-width-4: 1rem !default;
+$border-width-5: 2rem !default;
+
+$box-shadow-1: 0px 0px 4px 2px $box-shadow-light !default;
+$box-shadow-2: 0px 0px 8px 2px $box-shadow-light !default;
+$box-shadow-3: 2px 2px 4px 2px $box-shadow-light !default;
+$box-shadow-4: 2px 2px 8px 0px $box-shadow-light !default;
+$box-shadow-5: 4px 4px 8px 0px $box-shadow-light !default;
+
+// Breakpoints
+// ------------------------------------------------------------------
+
+$desktop:           1700px;
+$laptop:            1281px;
+$tablet:            768px;
+$handheld:          481px;
+
+$breakpoint-not-small: 'screen and (min-width: #{$handheld})' !default;
+$breakpoint-medium: 'screen and (min-width: 30em) and (max-width: 60em)' !default;
+$breakpoint-large: 'screen and (min-width: 60em)' !default;

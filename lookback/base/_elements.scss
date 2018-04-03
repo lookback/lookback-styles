@@ -8,19 +8,11 @@ Styling for plain HTML tags.
   color: #fff;
 }
 
-html {
+html, body {
   background: $background;
   color: $text-color;
-  font: normal #{$base-size}px/#{$leading / $base-size} $sans;
+  font: normal #{$font-size-base}px/#{$leading / $font-size-base} $sans-serif;
   @include smooth;
-}
-
-body {
-  // Sticky footer with Flexbox
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  // end sticky footer
 }
 
 [role="main"] {
@@ -121,7 +113,7 @@ kbd {
 
 pre {
   background-color: lighten($grey-light, 3%);
-  border-radius: $border-radius;
+  border-radius: $border-radius-3;
   padding: $lineheight;
   font-size: .8rem;
 

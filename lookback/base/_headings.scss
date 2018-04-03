@@ -2,118 +2,58 @@
 --------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $sans;
+  font-family: $sans-serif;
   margin: 0 0 $lineheight / 2;
   font-weight: normal;
 }
 
-.huge {
-  line-height: 1.2;
-  font-weight: bold;
-}
-
 h1 {
   font-size: to_rem(42);
-
-  &.huge {
-    font-size: to_rem(60);
-  }
 }
 
 h2 {
   font-size: to_rem(32);
-
-  &.huge {
-    font-size: to_rem(32 * $golden);
-  }
 }
 
 h3 {
   font-size: to_rem(24);
-
-  &.huge {
-    font-size: to_rem(24 * $golden);
-  }
-}
-
-h4, h5, h6 {
-  font-family: $sans;
-  font-weight: bold;
 }
 
 h4 {
   font-size: to_rem(18);
-
-  &.huge {
-    font-size: to_rem(18 * $golden);
-  }
 }
 
 h5 {
   font-size: to_rem(16);
-
-  &.huge {
-    font-size: to_rem(16 * $golden);
-  }
 }
 
 h6 {
   font-size: 1rem;
-
-  &.huge {
-    font-size: to_rem(15 * $golden);
-  }
 }
 
 @include handheld {
 
-  $ratio: $golden * 0.8;
-
   h1 {
     font-size: to_rem(32);
-
-    &.huge {
-      font-size: to_rem(32 * $ratio);
-    }
   }
 
   h2 {
     font-size: to_rem(22);
-
-    &.huge {
-      font-size: to_rem(22 * $ratio);
-    }
   }
 
   h3 {
     font-size: to_rem(24);
-
-    &.huge {
-      font-size: to_rem(24 * $ratio);
-    }
   }
 
   h4 {
     font-size: to_rem(20);
-
-    &.huge {
-      font-size: to_rem(20 * $ratio);
-    }
   }
 
   h5 {
     font-size: to_rem(18);
-
-    &.huge {
-      font-size: to_rem(18 * $ratio);
-    }
   }
 
   h6 {
     font-size: 1rem;
-
-    &.huge {
-      font-size: $golden * 1rem;
-    }
   }
 }

@@ -684,10 +684,6 @@ $button-border-radius: 4px;
   &.size--larger {
     font-size: 1.3rem;
     padding: .7em 2em;
-
-    @include handheld {
-      font-size: 1rem;
-    }
   }
 
   &.size--larger {

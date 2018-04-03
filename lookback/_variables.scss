@@ -63,8 +63,8 @@ $sans-serif: Lato, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui'
 $serif: georgia, serif !default;
 $mono: Menlo, Consolas, "Liberation Mono", Courier, monospace !default;
 
-$font-size-base: 15;
-$leading:        24.27;
+$font-size-base: 15 !default;
+$leading:        24.27 !default;
 $lineheight: ($leading / $font-size-base) * 1rem;
 
 $font-size-headline: 6rem !default;
@@ -128,7 +128,7 @@ $max-width-9: 96rem !default;
 
 $border-radius-none: 0 !default;
 $border-radius-1: .125rem !default;
-$border-radius-2: .25rem !default;
+$border-radius-2: .3rem !default;
 $border-radius-3: .5rem !default;
 $border-radius-4: 1rem !default;
 $border-radius-circle: 100% !default;
@@ -136,7 +136,7 @@ $border-radius-pill: 9999px !default;
 
 $border-width-none: 0 !default;
 $border-width-1: .125rem !default;
-$border-width-2: .3rem !default;
+$border-width-2: .25rem !default;
 $border-width-3: .5rem !default;
 $border-width-4: 1rem !default;
 $border-width-5: 2rem !default;

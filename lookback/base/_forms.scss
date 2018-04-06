@@ -2,23 +2,31 @@
 --------------------------------------------- */
 
 select {
-  padding: .2em .6em;
-  font-size: 1.1em;
-  border: 1px solid lighten($grey-tint, 10%);
-  color: $comp-teal-dark;
-  border-radius: 4px;
-  box-shadow: rgba($grey-tint, .3) 0 1px 1px;
-  transition: box-shadow .2s ease;
-  background-color: #fff;
   -webkit-appearance: none;
-  appearance: none;
+  font-family: $sans-serif;
+  padding: .4em .7em;
+  font-size: .9rem;
+  padding-right: 1.5em;
+  border: 1px solid $main-border-color;
+  color: $comp-teal-dark;
+  border-radius: $border-radius-2;
+  cursor: pointer;
+  transition: box-shadow .2s ease, border-color .2s ease;
+  background-color: #fff;
 
-  &:hover {
-    border-color: lighten($grey-tint, 5%);
-  }
+  background-repeat: no-repeat;
+  background-size: 1.5em;
+  background-position: right center;
+  background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+ y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+<path fill="#{rgba($comp-blue-faded, .6)}" d="M13.418,7.859c0.271-0.268,0.709-0.268,0.978,0c0.27,0.268,0.272,0.701,0,0.969l-3.908,3.83
+c-0.27,0.268-0.707,0.268-0.979,0l-3.908-3.83c-0.27-0.267-0.27-0.701,0-0.969c0.271-0.268,0.709-0.268,0.978,0L10,11L13.418,7.859z
+"/></svg>');
 
+  &:hover,
   &:focus {
     outline: 0;
+    border-color: darken($main-border-color, 10%);
   }
 
   &.style--bare {
@@ -27,6 +35,7 @@ select {
     -webkit-appearance: none;
     outline: none;
     box-shadow: none;
+    background-image: none;
   }
 
   &.size--mini {
@@ -41,27 +50,6 @@ label.select {
   position: relative;
   font-weight: normal;
   display: inline-block;
-
-  select {
-    // MAKE WAY
-    padding-right: 1em;
-  }
-
-  &::after {
-    $size: 4px;
-
-    content: '';
-    display: inline-block;
-    pointer-events: none;
-    position: absolute;
-    right: 10px;
-    top: calc(50% - #{$size / 2});
-    @include arrow($size, $color: #999, $direction: down);
-  }
-
-  &:hover::after {
-    border-top-color: #555;
-  }
 }
 
 %form-read-only {
@@ -79,7 +67,7 @@ input[type="search"],
 input[type="number"],
 textarea,
 .text-field {
-  box-sizing: border-box;
+  font-family: $sans-serif;
   -webkit-appearance: none;
   height: auto;
   margin: 5px 0;

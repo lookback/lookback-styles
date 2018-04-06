@@ -38,6 +38,7 @@ $negative:           #FF6E70;
 
 $background:         $light;
 $background-webapp:  $comp-blue-light;
+$main-border-color: darken(saturate($comp-blue-light, 8%), 10%);
 $webapp-border:      rgba(saturate($comp-blue-off, 3%), .3);
 
 $live-player-background:            #062939;
@@ -53,8 +54,6 @@ $btn-color-danger:   $negative;
 $btn-color-attention: $comp-orange;
 
 $box-shadow-light:  rgba($comp-blue-off, .2);
-
-$main-border-color: darken(saturate($comp-blue-light, 8%), 10%);
 
 // Typography
 // ------------------------------------------------------------------
@@ -141,11 +140,11 @@ $border-width-3: .5rem !default;
 $border-width-4: 1rem !default;
 $border-width-5: 2rem !default;
 
-$box-shadow-1: 0px 0px 4px 2px $box-shadow-light !default;
-$box-shadow-2: 0px 0px 8px 2px $box-shadow-light !default;
-$box-shadow-3: 2px 2px 4px 2px $box-shadow-light !default;
-$box-shadow-4: 2px 2px 8px 0px $box-shadow-light !default;
-$box-shadow-5: 4px 4px 8px 0px $box-shadow-light !default;
+$box-shadow-1: 0 1px 4px $box-shadow-light !default;
+$box-shadow-2: 0 1px 8px $box-shadow-light !default;
+$box-shadow-3: 0 2px 4px $box-shadow-light !default;
+$box-shadow-4: 0 2px 8px $box-shadow-light !default;
+$box-shadow-5: 0 4px 8px $box-shadow-light !default;
 
 // Breakpoints
 // ------------------------------------------------------------------

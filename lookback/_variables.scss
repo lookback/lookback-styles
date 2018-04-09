@@ -36,17 +36,17 @@ $grey-light:         #eee;
 $positive:           $comp-green;
 $negative:           #FF6E70;
 
-$background:         $light;
+$background:         $light !default;
 $background-webapp:  $comp-blue-light;
-$main-border-color: darken(saturate($comp-blue-light, 8%), 10%);
+$main-border-color: darken(saturate($comp-blue-light, 8%), 10%) !default;
 $webapp-border:      rgba(saturate($comp-blue-off, 3%), .3);
 
 $live-player-background:            #062939;
 $live-player-background-light:      #0F3B4E;
 $live-player-background-lightest:   #124C63;
 
-$text-color:         $comp-teal-dark;
-$link-color:         darken($comp-blue, 7%);
+$text-color:         $comp-teal-dark !default;
+$link-color:         darken($comp-blue, 7%) !default;
 
 $btn-color:          $comp-blue;
 $btn-color-primary:  $comp-green;

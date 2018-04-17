@@ -20,8 +20,9 @@ $comp-purple:        #8289ef;
 $comp-teal-dark:     rgb(32, 78, 87);
 $comp-teal-darker:   #1E4E58;
 $comp-teal-dark-soft: #22606C;
+$comp-teal-dark-saturated: #006E8E;
 $comp-teal-light:    #9dddea;
-$comp-blue-light:    rgb(246, 250, 251);
+$comp-blue-light:    #F6FBFD;
 $comp-blue-faded:    #668ea7;
 $comp-blue-faded-soft: rgba($comp-blue-faded, .7);
 $comp-purple-faded:  #8FA1F2;
@@ -38,7 +39,7 @@ $negative:           #FF6E70;
 
 $background:         $light !default;
 $background-webapp:  $comp-blue-light;
-$main-border-color: darken(saturate($comp-blue-light, 8%), 10%) !default;
+$main-border-color:  darken(saturate($comp-blue-light, 8%), 10%) !default;
 $webapp-border:      rgba(saturate($comp-blue-off, 3%), .3);
 
 $live-player-background:            #062939;

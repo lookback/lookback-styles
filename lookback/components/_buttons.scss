@@ -406,41 +406,41 @@ $button-border-radius: 4px;
       background-color: rgba($grey-tint-light, .6);
       color: rgba($comp-teal-dark-saturated, .7);
     }
-  }
 
-  &.mode--subtle--primary:hover,
-  &.mode--subtle--danger:hover {
-    color: #fff;
-    box-shadow: none;
-  }
-
-  // Positive subtle button on hover
-  &.mode--subtle--primary {
-    transition: none;
-
-    &:hover {
-      background-color: $btn-color-primary;
-      border-color: $btn-color-primary;
+    &.mode--primary:hover,
+    &.mode--danger:hover {
+      color: #fff;
+      box-shadow: none;
     }
 
-    &:active {
-      background-color: darken($btn-color-primary, 10%);
-      border-color: darken($btn-color-primary, 10%);
+    // Positive subtle button on hover
+    &.mode--primary {
+      transition: none;
+
+      &:hover {
+        background-color: $btn-color-primary;
+        border-color: $btn-color-primary;
+      }
+
+      &:active {
+        background-color: darken($btn-color-primary, 10%);
+        border-color: darken($btn-color-primary, 10%);
+      }
     }
-  }
 
-  // Positive subtle button on hover
-  &.mode--subtle--danger {
-    transition: none;
+    // Negative subtle button on hover
+    &.mode--danger {
+      transition: none;
 
-    &:hover {
-      background-color: $btn-color-danger;
-      border-color: $btn-color-danger;
-    }
+      &:hover {
+        background-color: $btn-color-danger;
+        border-color: $btn-color-danger;
+      }
 
-    &:active {
-      background-color: darken($btn-color-danger, 10%);
-      border-color: darken($btn-color-danger, 10%);
+      &:active {
+        background-color: darken($btn-color-danger, 10%);
+        border-color: darken($btn-color-danger, 10%);
+      }
     }
   }
 

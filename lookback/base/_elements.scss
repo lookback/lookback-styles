@@ -126,6 +126,16 @@ pre {
   }
 }
 
+
+details summary {
+  margin-bottom: $spacing-small;
+  cursor: pointer;
+
+  &, &:focus {
+    outline: 0;
+  }
+}
+
 @include handheld {
   pre {
     font-size: .9rem;

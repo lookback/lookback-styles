@@ -1,9 +1,10 @@
 {
   "name": "lookback-styles",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "Shared SCSS components and variables for Lookback's web products.",
+  "style": "lookback/base.scss",
   "scripts": {
-    "test": "ava"
+    "test": "node test/compile.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,6 @@
   },
   "homepage": "https://github.com/lookback/lookback-styles#readme",
   "devDependencies": {
-    "ava": "^0.25.0",
     "node-sass": "^4.7.2"
   }
 }

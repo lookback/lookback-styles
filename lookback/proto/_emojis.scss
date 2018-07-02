@@ -1,6 +1,8 @@
-// Emojis
+/*
+      Emojis
+*/
 
-img.emoji {
+.emoji {
   /* Emoji Sizing */
   font-size: inherit;
   height: 2.7ex;
@@ -12,19 +14,4 @@ img.emoji {
   margin: -0.4ex .15em 0;
   line-height: normal;
   vertical-align: middle;
-}
-
-// Emojis in headings
-
-h1, h2, h3, h4, h5 {
-  img.emoji {
-    font-size: .8em;
-    margin-left: -.1em;
-    margin-right: -.1em;
-  }
-
-  span.emoji {
-    position: relative;
-    top: .2ex;
-  }
 }

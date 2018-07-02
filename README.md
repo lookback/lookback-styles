@@ -34,12 +34,12 @@ gulp.src('./src/stylesheets')
 3. Import the files you need, or import all:
 
   ```
-@import "lookback/settings";
+@import "lookback/variables";
 # etc..
 
-# or import all files in the `lookback` directory:
+# or import the minimal foundation needed to get started:
 
-@import "lookback/all";
+@import "lookback/base";
 
 # your code ..
 ```

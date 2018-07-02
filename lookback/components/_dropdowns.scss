@@ -12,7 +12,7 @@ $dropdown-border: darken($webapp-border, 5%);
 
 .dropdown {
 
-  border-radius: $border-radius;
+  border-radius: $border-radius-3;
   white-space: normal;
   background-color: #fff;
   position: absolute;
@@ -138,7 +138,7 @@ $dropdown-border: darken($webapp-border, 5%);
     @include smooth(false);
     cursor: default;
     user-select: none;
-    font-family: $sans;
+    font-family: $sans-serif;
     margin: .2rem 0 0;
     padding: 0.3rem $dropdown-item-padding .2rem;
     text-align: left;
@@ -165,7 +165,7 @@ $dropdown-border: darken($webapp-border, 5%);
 
     .btn {
       width: 100%;
-      border-radius: 0 0 $border-radius $border-radius;
+      border-radius: 0 0 $border-radius-3 $border-radius-3;
 
       &[disabled] {
         box-shadow: inset rgba(51, 51, 51, 0.1) 0 1px 0;

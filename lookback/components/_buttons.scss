@@ -462,10 +462,10 @@ $button-border-radius: 4px;
   }
 
   &.style--cotton {
-    color: $comp-teal-dark;
+    color: $comp-teal-dark-saturated;
     border-radius: $button-border-radius;
     background-color: #fdfdfd;
-    box-shadow: rgba(#000, .15) 0 2px 10px;
+    box-shadow: rgba($comp-teal-dark-saturated, .15) 0 2px 10px;
     transition: box-shadow .3s ease,
                 background-color .3s ease,
                 transform .2s ease,
@@ -474,11 +474,11 @@ $button-border-radius: 4px;
     &:hover,
     &:focus {
       background-color: #fff;
-      box-shadow: rgba(#000, .15) 0 2px 15px;
+      box-shadow: rgba($comp-teal-dark-saturated, .15) 0 2px 15px;
     }
 
     &:active {
-      box-shadow: rgba(#000, .15) 0 0 5px;
+      box-shadow: rgba($comp-teal-dark-saturated, .15) 0 0 5px;
       transform: scale(.99);
     }
 

@@ -19,3 +19,6 @@ Base file for including in markup.
 // Reset layer
 
 @import "lib/normalize";
+
+// Don't forget box sizing! So easy to miss
+@import "proto/box-sizing";

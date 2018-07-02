@@ -3,8 +3,6 @@
 // Colours
 // ------------------------------------------------------------------
 
-$logo-color:         #ED213E;
-
 $accent:             #C0392B;  // red
 $dark:               #191E22;  // black-ish
 $light:              #fff;     // white
@@ -12,7 +10,7 @@ $light:              #fff;     // white
 $comp-blue:          #1DABF2;
 $comp-green:         #00DE87;
 $comp-yellow:        #F1C330;
-$comp-teal:          #20B8D1;
+$comp-teal:          rgb(33, 161, 203);
 $comp-orange:        #F3B109;
 $comp-blue-off:      #72B6EA;
 $comp-purple:        #8289ef;
@@ -20,7 +18,7 @@ $comp-purple:        #8289ef;
 $comp-teal-dark:     rgb(32, 78, 87);
 $comp-teal-darker:   #1E4E58;
 $comp-teal-dark-soft: #22606C;
-$comp-teal-dark-saturated: #006E8E;
+$comp-teal-dark-saturated: rgb(0, 92, 129);
 $comp-teal-light:    #9dddea;
 $comp-blue-light:    #F6FBFD;
 $comp-blue-faded:    #668ea7;
@@ -49,6 +47,10 @@ $live-player-background-lightest:   #124C63;
 
 $text-color:         $comp-teal-dark !default;
 $link-color:         darken($comp-blue, 7%) !default;
+$heading-color:      $comp-teal-dark-saturated !default;
+
+$logo-color:         rgb(255, 96, 106);
+$logo-text-color:    $comp-teal-dark-soft;
 
 $btn-color:          $comp-blue;
 $btn-color-primary:  $comp-green;
@@ -65,8 +67,9 @@ $serif: georgia, serif !default;
 $mono: Menlo, Consolas, "Liberation Mono", Courier, monospace !default;
 
 $font-size-base: 15 !default;
-$leading:        24.27 !default;
-$lineheight: ($leading / $font-size-base) * 1rem;
+$leading-factor: 1.618 !default;
+$leading:        $font-size-base * $leading-factor !default;
+$lineheight:     $leading-factor * 1rem;
 
 $font-size-headline: 6rem !default;
 $font-size-subheadline: 5rem !default;
@@ -74,7 +77,7 @@ $font-size-subheadline: 5rem !default;
 $font-size-1: 3rem !default;
 $font-size-2: 2.25rem !default;
 $font-size-3: 1.5rem !default;
-$font-size-4: 1.25rem !default;
+$font-size-4: 1.1rem !default;
 $font-size-5: 1rem !default;
 $font-size-6: .875rem !default;
 $font-size-7: .75rem !default;
@@ -98,6 +101,7 @@ $measure-wide: 34em !default;
 $spacing-none: 0 !default;
 $spacing-extra-small: .25rem !default;
 $spacing-small: .5rem !default;
+$spacing-base: $leading-factor * 1rem !default;
 $spacing-medium: 1rem !default;
 $spacing-large: 2rem !default;
 $spacing-extra-large: 4rem !default;

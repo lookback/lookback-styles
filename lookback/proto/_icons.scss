@@ -2,7 +2,8 @@
 --------------------------------------------- */
 
 .icon {
-  fill: currentColor;  // Will be inherited from parent's 'color' property.
+  fill: currentColor;   // Will be inherited from parent's 'color' property.
+  stroke: currentColor; // In case the icon is of paths only
   width: $default-icon-size;
   height: $default-icon-size;
   vertical-align: middle;

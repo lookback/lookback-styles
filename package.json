@@ -1,6 +1,6 @@
 {
   "name": "lookback-styles",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "Shared SCSS components and variables for Lookback's web products.",
   "style": "lookback/base.scss",
   "scripts": {

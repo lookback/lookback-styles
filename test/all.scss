@@ -16,7 +16,6 @@
 @import "lookback/components/company-logos";
 @import "lookback/components/dialogs";
 @import "lookback/components/dropdowns";
-@import "lookback/components/footer";
 @import "lookback/components/header";
 @import "lookback/components/horizontal-user-list";
 @import "lookback/components/loading";
@@ -36,3 +35,6 @@
 @import "lookback/components/url-box";
 @import "lookback/components/user-selector";
 @import "lookback/components/user-selection-list";
+
+@import "lookback/lib/normalize";
+@import "lookback/lib/helpers";

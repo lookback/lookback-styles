@@ -3,6 +3,7 @@
 // Colours
 // ------------------------------------------------------------------
 
+// Base colours
 $accent:             #C0392B;  // red
 $dark:               #191E22;  // black-ish
 $light:              #fff;     // white
@@ -19,6 +20,7 @@ $comp-teal-dark:     rgb(32, 78, 87);
 $comp-teal-darker:   #1E4E58;
 $comp-teal-dark-soft: #22606C;
 $comp-teal-dark-saturated: rgb(0, 92, 129);
+$comp-teal-darkest: #062939;
 $comp-teal-faded:    #4D9FC7;
 $comp-teal-light:    #9dddea;
 $comp-blue-light:    #F6FBFD;
@@ -37,15 +39,20 @@ $positive:           $comp-green;
 $warning:            $comp-orange;
 $negative:           #FF6E70;
 
+// Re-used background colours
 $background:         $light !default;
+$background-dark:    $comp-teal-darkest !default;
 $background-webapp:  $comp-blue-light;
+
+// Borders
 $main-border-color:  darken(saturate($comp-blue-light, 8%), 10%) !default;
 $webapp-border:      rgba(saturate($comp-blue-off, 3%), .3);
 
-$live-player-background:            #062939;
+$live-player-background:            $background-dark;
 $live-player-background-light:      #0F3B4E;
 $live-player-background-lightest:   #124C63;
 
+// Text
 $text-color:         $comp-teal-dark !default;
 $link-color:         darken($comp-blue, 7%) !default;
 $heading-color:      $comp-teal-dark-saturated !default;
@@ -53,6 +60,7 @@ $heading-color:      $comp-teal-dark-saturated !default;
 $logo-color:         rgb(255, 96, 106);
 $logo-text-color:    $comp-teal-dark-soft;
 
+// Components
 $btn-color:          $comp-blue;
 $btn-color-primary:  $comp-green;
 $btn-color-danger:   $negative;

@@ -1,45 +1,34 @@
-/* =BACKDROP
----------------------------------------- */
+/*
+BACKDROP
+----------------------------------------------------------------*/
 
-.backdrop {
-  content: '';
-  display: block;
+.Backdrop {
   position: fixed;
   top: 0;
-  right: 0;
   left: 0;
+  right: 0;
   bottom: 0;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1001;
-  transition: opacity .4s ease;
+  z-index: 1003;
+  transition: opacity .1s ease;
+  overflow-y: auto;
+  @include center(all);
 
-  &.backdrop--light {
-    background-color: #E9F5F7;
+  &--activated {
     -webkit-backdrop-filter: blur(10px);
+    background-color: rgba($comp-teal-dark, .5);
   }
 
-  &.backdrop--normal {
-    background-color: $comp-teal-dark;
-    -webkit-backdrop-filter: blur(10px);
+  &.in {
+    opacity: 1;
+
+    .Modal {
+      opacity: 1;
+      transform: none;
+    }
   }
 
-  &.backdrop--dark {
-    background-color: $dark;
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  &--visible {
-    pointer-events: all;
-
-    &.backdrop--normal {
-      opacity: .5;
-    }
-    &.backdrop--light {
-      opacity: .3;
-    }
-    &.backdrop--dark {
-      opacity: .9;
-    }
+  &.off-screen,
+  &.out {
+    opacity: 0;
   }
 }

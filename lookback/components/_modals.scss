@@ -1,71 +1,21 @@
-/* =MODALS
---------------------------------- */
+/*
+MODAL
+----------------------------------------------------------------*/
 
-.backdrop-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1001;
-  transition: opacity .1s ease;
-  overflow-y: auto;
-  text-align: center;
-
-  &--activated {
-    -webkit-backdrop-filter: blur(10px);
-    background-color: rgba($comp-teal-dark, .5);
-  }
-
-  &--centered {
-    @include center(all);
-
-    .modal.modal--frame {
-      margin: 0;
-    }
-  }
-
-  &.in {
-    opacity: 1;
-
-    .modal {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  &.off-screen,
-  &.out {
-    opacity: 0;
-
-    .modal {
-      opacity: 0;
-      // I'd reaaally would've liked to do
-      //   translate3d(0, 0, -20px)
-      // here too, but Safari fucks up the graphic
-      // rendering together with backdrop-filter :'(
-      transform: scale(.97);
-      // > Oh who are men to know
-      // > What might be out there to achieve
-      // > If it weren't for browsers
-      // > You can't work with them
-      // > You can't work without them
-      // > Alas I will never stop loath them
-    }
-  }
-}
-
-.modal {
-  color: $comp-teal-dark;
+.Modal {
+  @include center(all);
   transition: opacity .15s ease,
               transform .2s ease;
+  
+  &:focus {
+    outline: 0;
+  }
 
-  &.modal--fixed {
+  &--fixed {
     position: fixed;
   }
 
-  &.modal--flat {
-    @include center(all);
+  &--flat {
     background-color: rgba($comp-blue-light, .95);
     -webkit-backdrop-filter: blur(3px);
     position: fixed;
@@ -74,293 +24,29 @@
     left: 0;
     bottom: 0;
     overflow-y: scroll;
+
+    .Modal__inner {
+      overflow-y: auto;
+    }
   }
 
-  &.modal--frame {
+  &--frame {
     position: relative;
-    margin: $lineheight*2 auto;
-    padding: $lineheight $lineheight*2;
-    background: rgba(248, 251, 252, .97);
+    margin: 0 auto;
+    padding: $spacing-large $spacing-extra-large;
+    background: #fff;
     border-radius: 8px;
     box-shadow: rgba(62, 94, 101, 0.25) 0 5px 40px,
                 rgba(78, 125, 136, 0.14) 0 3px 10px;
   }
 
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: $lineheight;
-    padding: 0 3rem;
-
-    h1 {
-      margin-bottom: 0;
-    }
-
-    &__center {
-      flex: 1;
-    }
+  &__inner {
+    width: 100%;
   }
 
-  .modal-back {
-    color: $grey-tint;
-
-    &:hover {
-      color: darken($grey-tint, 10%);
-    }
-  }
-
-  // An end to end tab navigation
-
-  .modal-nav {
-    margin-bottom: $lineheight;
-    border-bottom: 1px solid rgba(saturate($comp-blue-off, 3%), .3);
-
-    ul {
-      // #pixelfucking. Make the nav bar sit on the border (see above).
-      position: relative;
-      top: 2px;
-    }
-  }
-
-  // A horizontal settings box in a modal
-
-  .modal-setting {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(saturate($comp-blue-off, 3%), .3);
-
-    .help-link {
-      position: relative;
-      top: -.3ex;
-      margin-left: 5px;
-    }
-
-    &__group {
-      > * {
-        vertical-align: middle;
-      }
-    }
-
-    &__label {
-      color: darken($grey-tint, 30%);
-    }
-
-    @include smaller-than(700px) {
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-
-      .modal-setting__group {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-  }
-
-  .modal__close {
+  .Modal__close {
     position: absolute;
-    font-size: 1em;
     right: 16px;
     top: 16px;
-    color: rgba($comp-teal-dark, .56);
-    border-radius: 100%;
-    width: 2.2em;
-    height: 2.2em;
-    line-height: 1.9;
-    transition: background-color .15s ease;
-
-    &:hover {
-      color: rgba($comp-teal-dark, .6);
-      background-color: rgba($comp-blue-faded, .1);
-
-      .modal__close__desc {
-        opacity: 1;
-        transform: translate(0, 0);
-      }
-    }
-
-    &:active {
-      color: $comp-teal-dark;
-      background-color: rgba($comp-blue-faded, .18);
-    }
-
-    &__desc {
-      position: absolute;
-      transition: opacity .15s ease,
-                  transform .2s ease;
-      transform: translate(10px, 0);
-      right: 100%;
-      text-align: right;
-      font-size: 0.8em;
-      white-space: nowrap;
-      padding-right: 5px;
-      top: 0.4em;
-      opacity: 0;
-      font-style: italic;
-    }
-  }
-
-  h1, h2, h3 {
-    font-family: $sans-serif;
-    color: $comp-teal-dark;
-    margin-bottom: $lineheight;
-    font-weight: 300;
-  }
-
-  h1 {
-    font-size: to_rem(22);
-  }
-
-  h2 {
-    font-size: to_rem(18);
-  }
-
-  h3 {
-    font-size: to_rem(15);
-    font-weight: 500;
-  }
-
-  &__actions {
-    display: flex;
-    margin: 0 #{-$lineheight} #{-$lineheight*2};
-    border-top: 1px solid #dedede;
-
-    .btn {
-      flex: 1;
-      color: $comp-blue;
-      padding-top: .8em;
-      padding-bottom: .8em;
-      background-color: lighten($off-white, 1%);
-
-      &:active {
-        background-color: darken($off-white, 3%);
-        color: darken($comp-blue, 10%);
-        box-shadow: inset rgba(#000, .1) 0 1px 1px;
-      }
-
-      &:hover,
-      &:focus {
-        background-color: darken($off-white, 2%);
-      }
-
-      &.modal-btn--primary {
-        font-weight: 500;
-      }
-
-      &:first-child {
-        border-radius: 0;
-        border-bottom-left-radius: 6px;
-        border-right: 1px solid #dedede;
-      }
-      &:last-child {
-        border-radius: 0;
-        border-bottom-right-radius: 6px;
-      }
-    }
-  }
-
-  .form-label {
-    text-align: initial;
-  }
-}
-
-// A horizontal user list
-.modal__users {
-  @include list-reset;
-
-  &__name,
-  &__detail {
-    @include truncate(200px);
-    vertical-align: middle;
-  }
-
-  &__name {
-    width: 200px;
-    color: #666;
-    transition: color .15s ease;
-    font-weight: normal;
-    margin-right: 10px;
-  }
-
-  &__detail {
-    font-size: .9em;
-    color: #888;
-  }
-
-  .avatar {
-    vertical-align: middle;
-    opacity: .9;
-    cursor: pointer;
-    text-align: center;
-
-    &.avatar--initials::after {
-      transition: box-shadow .2s ease,
-                  color .2s ease,
-                  border-color .2s ease;
-      background-color: #fff;
-    }
-  }
-
-  & &__selected {
-
-    .avatar {
-      opacity: 1;
-      // So it doesn't block the box shadow.
-      overflow: visible;
-
-      &.avatar--initials::after {
-        color: #fff;
-        background-color: $comp-green;
-        border-color: $comp-green;
-        // Outline
-        box-shadow: #fff 0 0 0 2px,
-                    $comp-green 0 0 0 4px;
-      }
-    }
-
-    .modal__users__name {
-      color: $text-color;
-    }
-    .modal__users__detail {
-      color: lighten($text-color, 10%);
-    }
-  }
-
-  li {
-    margin: 0 0 1rem;
-    display: flex;
-    text-align: left;
-    cursor: pointer;
-    font-size: .95em;
-
-    &.modal__users__blank {
-      color: $grey-dark;
-      text-align: center;
-      flex-basis: 100%;
-    }
-
-    .modal__users__details {
-      flex: 1;
-      margin-left: 1rem;
-    }
-
-    &:hover:not(.modal__users__selected) {
-      .modal__users__name {
-        color: $text-color;
-      }
-
-      .avatar {
-        opacity: 1;
-
-        &.avatar--initials::after {
-          border-color: #aaa;
-          color: #999;
-        }
-      }
-    }
   }
 }

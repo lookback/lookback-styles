@@ -9,8 +9,7 @@ $button-border-radius: 4px;
 }
 
 @mixin focused($base-color) {
-  box-shadow: #fff 0 0 0 2px,
-              rgba($base-color, .3) 0 0 0 4px;
+  box-shadow: rgba($base-color, .3) 0 0 0 4px;
 }
 
 /* A regular fucking button */
@@ -42,15 +41,17 @@ $button-border-radius: 4px;
   transition: background-color .2s ease-out,
               box-shadow .2s ease-out;
 
-  &:focus {
-    outline: 0;
-  }
-
   &:hover,
   &:focus {
     text-decoration: none;
     background-color: lighten(saturate($btn-color, 8%), 1%);
     box-shadow: rgba(saturate($btn-color, 10%), .4) 0 3px 20px;
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    @include focused($btn-color);
   }
 
   &:active {
@@ -85,10 +86,14 @@ $button-border-radius: 4px;
     box-shadow: rgba($btn-color-primary, .3) 0 3px 16px;
     font-weight: bold;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: saturate($btn-color-primary, 10%);
       box-shadow: rgba(saturate($btn-color-primary, 10%), .4) 0 3px 20px;
+    }
+
+    &:focus,
+    &.focus {
+      @include focused($btn-color-primary);
     }
 
     &:active {
@@ -102,10 +107,14 @@ $button-border-radius: 4px;
     background-color: $btn-color-attention;
     box-shadow: rgba($btn-color-attention, .3) 0 3px 16px;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: saturate($btn-color-attention, 10%);
       box-shadow: rgba(saturate($btn-color-attention, 10%), .4) 0 3px 20px;
+    }
+
+    &:focus,
+    &.focus {
+      @include focused($btn-color-attention);
     }
 
     &:active {
@@ -119,10 +128,14 @@ $button-border-radius: 4px;
     background-color: $btn-color-danger;
     box-shadow: rgba($btn-color-danger, .3) 0 3px 16px;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: lighten(saturate($btn-color-danger, 20%), 2%);
       box-shadow: rgba(saturate($btn-color-danger, 10%), .4) 0 3px 20px;
+    }
+
+    &:focus,
+    &.focus {
+      @include focused($btn-color-danger);
     }
 
     &:active {

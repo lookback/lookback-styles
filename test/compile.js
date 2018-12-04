@@ -1,5 +1,5 @@
 const assert = require('assert');
-const sass = require('node-sass');
+const sass = require('sass');
 const Path = require('path');
 
 function test(title, cb) {
